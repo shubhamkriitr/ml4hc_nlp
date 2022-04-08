@@ -1,11 +1,12 @@
 # Data loader classes for arrythmia and PTB datasets
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
+# from sklearn.model_selection import train_test_split
 from pathlib import Path
+import torch
 from torch.utils.data import DataLoader, Dataset
 from util import PROJECTPATH
-import torch
+
 
 Test = "test"
 Train = "train"
@@ -55,7 +56,7 @@ class DataLoaderUtil:
                 if line!= '\n':
                     Valid_sample_labels = line.split()[0]
                     if Valid_sample_labels[0] != '#':
-                        Valid_labels.append(Test_sample_labels)
+                        Valid_labels.append(Valid_sample_labels)
                         Valid_sample_labels__ = line.split('\t')[1]
                         Valid_data.append(Valid_sample_labels__)
         return Valid_labels, Valid_data
