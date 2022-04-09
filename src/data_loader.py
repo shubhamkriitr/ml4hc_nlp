@@ -22,9 +22,18 @@ PUBMED_LABEL_TO_ID_MAP = {label: id_ for id_, label
                           in PUBMED_ID_TO_LABEL_MAP.items()}
 
 class TextDataLoaderUtil(object):
-    def __init__(self, config={}) -> None:
+    def __init__(self, config=None) -> None:
         self.data_loaded = False
+        if config is None:
+            config = {
+                "verbose": True,
+                "preprocessor_class": None,
+                "label_to_id_map": PUBMED_LABEL_TO_ID_MAP,
+                "id_to_label_map": PUBMED_ID_TO_LABEL_MAP
+            }
         self.config = config
+        self.verbose = self.config["verbose"]
+        self.label_to_id_map = self.config["label_to_id_map"]
     
     def load_raw_text(self, split_name=None, file_path=None):
         """Load based on split_name or path. Loads whole text in memory.
@@ -49,8 +58,7 @@ class TextDataLoaderUtil(object):
                                  f" {valid_names}")
         return os.path.join(DATASET_DIR_LOC, split_name+".txt")
     
-    def load(self, split_name=None, file_path=None,
-             verbose=False):
+    def load(self, split_name=None, file_path=None):
         raw_txt = self.load_raw_text(split_name, file_path)
         raw_txt = raw_txt.split("\n")
         
@@ -77,7 +85,8 @@ class TextDataLoaderUtil(object):
                 continue
             if line.startswith("###"): # new record
                 assert current_record is None
-                current_record = defaultdict(lambda: [])
+                current_record = defaultdict(lambda: None)
+                current_record["data"] = defaultdict(lambda: [])
                 current_record["id"] = int(line.split("###")[1])
                 current_record["start_line_num"] = line_num
                 continue
@@ -91,7 +100,7 @@ class TextDataLoaderUtil(object):
             # do validation related to continuity (i.e. same labels occur in
             # one and only one group)
             if (last_label_seen is not None) and (label in labels_seen_so_far)\
-                and (last_label_seen != label) and verbose:
+                and (last_label_seen != label) and self.verbose:
                 logger.info(f"Repeated label group [{label}]"
                              f" at line number {line_num}")
             
@@ -99,10 +108,28 @@ class TextDataLoaderUtil(object):
             labels_seen_so_far.add(label)
             
             label_counts[label] += 1
-            current_record[label].append(text_data)
+            current_record["data"][label].append(text_data)
         
         logger.info(f"Label counts: {label_counts}")
         return dataset
+    
+    def load_as_text_label_pair(self, split_name=None, file_path=None):
+        dataset = self.load(split_name, file_path)
+        return self.get_text_label_pairs(dataset)
+    
+    def get_text_label_pairs(self, dataset):
+        text_label_pairs = []
+        for idx, record in enumerate(dataset):
+            data = record["data"]
+            for label in data:
+                text_list = data[label]
+                text_label_pairs.extend(
+                    [(text, self.label_to_id_map[label]) 
+                     for text  in text_list]
+                )
+        
+        return text_label_pairs
+            
             
             
             
@@ -116,6 +143,8 @@ class TextDataLoaderUtil(object):
 if __name__ == "__main__":
     txt_dataloader = TextDataLoaderUtil()
     raw_txt = txt_dataloader.load_raw_text("test")
-    raw_dataset = txt_dataloader.load("test", verbose=True)
+    raw_dataset = txt_dataloader.load("test")
     sample = raw_dataset[0]
+    txt_label_pairs_1 = txt_dataloader.load_as_text_label_pair("test")
+    txt_label_pairs_2 = txt_dataloader.get_text_label_pairs(raw_dataset)
     print(sample)
