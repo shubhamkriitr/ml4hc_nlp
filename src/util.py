@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from datetime import datetime
+from loguru import logger # use this logger (util.logger) in other modules
 # Generic utility code
 
 PROJECTPATH = Path(__file__).parent.parent
