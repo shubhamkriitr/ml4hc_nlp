@@ -15,6 +15,12 @@ DATASET_LOC_TEST = str(Path(PROJECTPATH)/"resources/test.txt")
 DATASET_LOC_VAL = str(Path(PROJECTPATH)/"resources/dev.txt")
 DATASET_DIR_LOC = str(Path(PROJECTPATH)/"resources/")
 
+PUBMED_ID_TO_LABEL_MAP = {0: 'BACKGROUND', 1: 'CONCLUSIONS',
+                          2: 'METHODS', 3: 'OBJECTIVE',
+                          4: 'RESULTS'}
+PUBMED_LABEL_TO_ID_MAP = {label: id_ for id_, label
+                          in PUBMED_ID_TO_LABEL_MAP.items()}
+
 class TextDataLoaderUtil(object):
     def __init__(self, config={}) -> None:
         self.data_loaded = False
@@ -43,7 +49,8 @@ class TextDataLoaderUtil(object):
                                  f" {valid_names}")
         return os.path.join(DATASET_DIR_LOC, split_name+".txt")
     
-    def load(self, split_name=None, file_path=None):
+    def load(self, split_name=None, file_path=None,
+             verbose=False):
         raw_txt = self.load_raw_text(split_name, file_path)
         raw_txt = raw_txt.split("\n")
         
@@ -84,8 +91,8 @@ class TextDataLoaderUtil(object):
             # do validation related to continuity (i.e. same labels occur in
             # one and only one group)
             if (last_label_seen is not None) and (label in labels_seen_so_far)\
-                and (last_label_seen != label):
-                logger.error(f"Repeated label group [{label}]"
+                and (last_label_seen != label) and verbose:
+                logger.info(f"Repeated label group [{label}]"
                              f" at line number {line_num}")
             
             last_label_seen = label
@@ -109,6 +116,6 @@ class TextDataLoaderUtil(object):
 if __name__ == "__main__":
     txt_dataloader = TextDataLoaderUtil()
     raw_txt = txt_dataloader.load_raw_text("test")
-    raw_dataset = txt_dataloader.load("test")
+    raw_dataset = txt_dataloader.load("test", verbose=True)
     sample = raw_dataset[0]
     print(sample)
