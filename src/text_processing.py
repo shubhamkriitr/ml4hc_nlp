@@ -7,6 +7,8 @@ import tqdm
 
 SPACY_MODEL = "en_core_web_lg"
 TOK_NUM = "spcltokennum"
+TOKEN_BOS = "<bos>"
+TOKEN_EOS = "<eos>"
 SPECIAL_TOKENS = [
     
 ]
