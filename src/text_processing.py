@@ -3,6 +3,7 @@ from nltk.corpus import stopwords as nltk_stopwords
 import re
 import spacy
 import string
+import tqdm
 
 SPACY_MODEL = "en_core_web_lg"
 TOK_NUM = "num"
@@ -61,10 +62,12 @@ class BaseTextPreprocessor(object):
     
     def process_dataset(self, text_dataset):
         new_dataset = []
-        for text in text_dataset:
-            new_dataset.append(
-                self.apply_transformations(text)
-            )
+        with tqdm.tqdm(total=len(text_dataset)) as progress_bar:
+            for text in text_dataset:
+                new_dataset.append(
+                    self.apply_transformations(text)
+                )
+                progress_bar.update(1)
         return new_dataset
     
     def lower_case(self, text: str):
