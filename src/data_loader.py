@@ -129,6 +129,13 @@ class TextDataLoaderUtil(object):
                 )
         
         return text_label_pairs
+    
+    def get_text(self):
+        texts = []
+        for split_name in ["train", "dev", "test"]:
+            data = self.load_as_text_label_pair(split_name)
+            texts.extend([text for text, _ in data])
+        return texts
             
             
             
