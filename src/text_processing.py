@@ -6,7 +6,7 @@ import string
 import tqdm
 
 SPACY_MODEL = "en_core_web_lg"
-TOK_NUM = "num"
+TOK_NUM = "spcltokennum"
 SPECIAL_TOKENS = [
     
 ]
@@ -22,8 +22,7 @@ class BaseTextPreprocessor(object):
         self.config = config
         
         
-        self.number_regex = re.compile(
-            r'([-]?[0-9]+[.,][0-9]*)|([0-9]+[.,][0-9]*)|([-]?[0-9]+)')
+        self.number_regex = re.compile(r'-?[0-9]+[.,]?[0-9]*')
         self.nlp = spacy.load(SPACY_MODEL)
         
         self.init_transformations()
@@ -46,6 +45,7 @@ class BaseTextPreprocessor(object):
     def init_transformations(self):
         self.transforms = [
             self.lower_case,
+            self.tokenize,
             self.get_replacer(r"%", "percent"),
             self.get_replacer(r"[\.]{1,}", "."), # replace one or more dots 
             # with just one 
@@ -78,7 +78,8 @@ class BaseTextPreprocessor(object):
     
     def lemmatize(self, text):
         doc = self.nlp(text)
-        text = " ".join([token.lemma_ for token in doc])
+        text = " ".join([token.lemma_.strip() for token in doc
+                         if token.lemma_.strip() != ""])
         return text
     
     def substitute_numbers(self, text):
@@ -105,5 +106,12 @@ class BaseTextPreprocessor(object):
     def remove_extra_whitespaces(self, text):
         text = [token.strip() for token in text.split() if token.strip() != ""]
         return " ".join(text)
+    
+    def tokenize(self, text):
+        """ Tokenizes `text` and combines the tokens back separated by
+        just a single whitespace"""
+        doc = self.nlp(text)
+        tokens = [word.text.strip() for word in doc if word.text.strip() != ""]
+        return " ".join(tokens)
     
 

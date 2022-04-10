@@ -32,9 +32,10 @@ class TestBaseTextPreprocessor:
         
         texts = txt_dataloader.get_text()
         
-        input_ = texts #texts[10:20] #
+        input_ = texts[0:1000] #
+        self.save_text("\n".join([x.lower() for x in input_]),
+                       "text_input.txt")
         result = proc.process_dataset(input_)
-        
         self.save_text("\n".join(result), "text_for_training_word2vec.txt")
         
         compare = list(zip(input_, result))
