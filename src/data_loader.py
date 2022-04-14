@@ -9,6 +9,8 @@ import torch
 import os
 from util import logger
 from collections import defaultdict
+import Data_loader_nlp
+import datasets
 
 DATASET_LOC_TRAIN = str(Path(PROJECTPATH)/"resources/train.txt")
 DATASET_LOC_TEST = str(Path(PROJECTPATH)/"resources/test.txt")
@@ -136,14 +138,34 @@ class TextDataLoaderUtil(object):
             data = self.load_as_text_label_pair(split_name)
             texts.extend([text for text, _ in data])
         return texts
-            
-            
-            
-            
-            
-            
-                
-                
+
+class TransformerDataUtil:
+    def __init__(self, datapath):
+        self.datapath = Path(datapath)
+
+    def read_data_files(self):
+        def read_file(filename):
+            labels =[]
+            texts =[]
+            with open(filename, encoding="utf-8") as f:
+                # ordlist = [line.split(None, 1)[0] for line in Training_samples] 
+                for line in f:
+                    if line!= '\n' and line[0] != '#':
+                        label, text = line.split('\t')
+                        labels.append(label)
+                        texts.append(text)
+            return texts, labels
+        train_data = read_file(self.datapath / 'train.txt')
+        dev_data = read_file(self.datapath / 'dev.txt')
+        test_data = read_file(self.datapath / 'test.txt')
+        return train_data, dev_data, test_data
+
+    def get_datasets(self):
+        training_data, valid_data, test_data = self.read_data_files()
+        training_data = datasets.Dataset.from_dict({'text':training_data[0], 'label':list(PUBMED_LABEL_TO_ID_MAP[x] for x in training_data[1])})
+        valid_data = datasets.Dataset.from_dict({'text':valid_data[0], 'label':list(PUBMED_LABEL_TO_ID_MAP[x] for x in valid_data[1])})
+        test_data = datasets.Dataset.from_dict({'text':test_data[0], 'label':list(PUBMED_LABEL_TO_ID_MAP[x] for x in test_data[1])})
+        return training_data, valid_data, test_data
             
             
         
