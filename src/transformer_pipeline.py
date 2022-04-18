@@ -26,9 +26,9 @@ class TokenizerFactory:
     def get(name):
         return AutoTokenizer.from_pretrained(name)
 
-metric_dict = {
+"""metric_dict = {
     'accuracy': (load_metric('accuracy'), {}),
-    'f1_macro': (load_metric('f1'), dict(average="macro"))}
+    'f1_macro': (load_metric('f1'), dict(average="macro"))}"""
 
 TRANSFORMER_DATA = str(Path(PROJECTPATH)/"pubmed-rct-master"/"PubMed_200k_RCT")
 
@@ -167,15 +167,15 @@ class TransformerPipeline:
         )
        
     def prepare_metrics(self):
-        self.metrics = self.config["metrics"]
-        metrics = [metric_dict[metric_name] for metric_name in self.config["metrics"]]
         def compute_metrics(eval_pred):
             logits, labels = eval_pred
             predictions = np.argmax(logits, axis=-1)
             res = { }
-            for metric, kwargs in metrics:
-                metric_val = metric.compute(predictions=predictions, references=labels, **kwargs)
-                res.update(metric_val)
+            res['accuracy'] = accuracy_score(labels, predictions)
+            res['f1'] = f1_score(labels, predictions, average='macro')
+            #for metric, kwargs in metrics:
+            #    metric_val = metric.compute(predictions=predictions, references=labels, **kwargs)
+            #    res.update(metric_val)
             return res
             
         self.compute_metrics = compute_metrics
