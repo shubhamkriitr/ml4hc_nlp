@@ -163,8 +163,8 @@ class TransformerPipeline:
             train_dataset=self.training_data,
             data_collator=self.data_collator,
             eval_dataset=self.valid_data,
-            compute_metrics=self.compute_metrics,
-            callbacks=[SummarizerCallback(self.summary_writer)]
+            compute_metrics=self.compute_metrics
+            #callbacks=[SummarizerCallback(self.summary_writer)]
         )
        
     def prepare_metrics(self):
@@ -209,8 +209,8 @@ class TransformerPipeline:
         )
         os.makedirs(self.current_experiment_log_directory, exist_ok=True)
         
-        self.summary_writer = SummaryWriter(
-            log_dir=self.current_experiment_log_directory)
+        #self.summary_writer = SummaryWriter(
+        #    log_dir=self.current_experiment_log_directory)
     
     def prepare_batch_callbacks(self):
         self.batch_callbacks = [self.batch_callback]
@@ -231,8 +231,8 @@ class TransformerPipeline:
             print(
             f"[({global_batch_number}){current_epoch}-{current_epoch_batch_number}]"
             f" Loss: {kwargs['loss']}")
-        if global_batch_number % self.config["tensorboard_log_frequency"] == 0:
-            self.summary_writer.add_scalar("train/loss", kwargs['loss'], global_batch_number)
+        #if global_batch_number % self.config["tensorboard_log_frequency"] == 0:
+        #    self.summary_writer.add_scalar("train/loss", kwargs['loss'], global_batch_number)
     
     def epoch_callback(self, model, batch_data, global_batch_number,
                     current_epoch, current_epoch_batch_number, **kwargs):
