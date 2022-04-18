@@ -112,7 +112,7 @@ class TransformerPipeline:
             logger.info(f"Model Loaded")
         else:
             logger.info(f"Creating new model")
-            model = TransformerFactory.get(self.config["model_name"])
+            model = TransformerFactory.get(self.config["from_pretrained"])
             self.model = model
 
         modules = list(model.named_modules())
@@ -219,6 +219,9 @@ class TransformerPipeline:
 
     def run_experiment(self):
         self.trainer.train()
+        if self.config["save_pretrained"]:
+            logger.info("Saving model")
+            self.model.save_pretrained(self.current_experiment_directory+"/final_model")
     
     def batch_callback(self, model, batch_data, global_batch_number,
                     current_epoch, current_epoch_batch_number, **kwargs):
