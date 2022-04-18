@@ -76,9 +76,9 @@ class TransformerPipeline:
             training_data, valid_data, test_data = dataloader.get_datasets()
             def tokenize_function(examples):
                 return self.tokenizer(examples["text"])
-            self.training_data = training_data.map(tokenize_function)
-            self.valid_data = valid_data.map(tokenize_function)
-            self.test_data = test_data.map(tokenize_function)
+            self.training_data = training_data.map(tokenize_function).remove_columns('text')
+            self.valid_data = valid_data.map(tokenize_function).remove_columns('text')
+            self.test_data = test_data.map(tokenize_function).remove_columns('text')
 
         if self.config["save_disk_data"]:
             logger.info("Saving data to disk")
@@ -153,7 +153,8 @@ class TransformerPipeline:
             logging_steps=self.config["log_steps"],
             eval_steps=self.config["eval_steps"],
             save_steps=self.config["save_steps"],
-            save_strategy=self.config["save_strategy"]
+            save_strategy=self.config["save_strategy"],
+            disable_tqdm=self.config["notqdm"]
         )
 
         self.trainer = Trainer(
@@ -254,11 +255,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=str, required=True)
     parser.add_argument("--cpu", action="store_true")
+    parser.add_argument("--notqdm", action="store_true")
     args = parser.parse_args()
     device = "cpu" if args.cpu or not torch.cuda.is_available() else "cuda"
-    logging.basicConfig(level=logging.INFO)
+    logger.setLevel(logging.INFO)
     with open(args.config, 'r', encoding="utf-8") as f:
         config_data = yaml.load(f, Loader=yaml.FullLoader)
+    config_data["notqdm"] = args.notqdm
     logger.info('Config:'+str(config_data))
     experiment = TransformerPipeline(config_data, device=device)
     experiment.run_experiment()
