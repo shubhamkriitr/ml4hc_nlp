@@ -54,6 +54,7 @@ class BaseTextPreprocessor(object):
             self.lemmatize,
             self.substitute_numbers,
             self.remove_punctuations,
+            self.add_bos_eos_tokens,
             self.remove_extra_whitespaces
         ]
         
@@ -86,6 +87,13 @@ class BaseTextPreprocessor(object):
     
     def substitute_numbers(self, text):
         text = self.number_regex.sub(TOK_NUM, text)
+        # making sure that the num tokens are separated (tokenized)
+        #tokenize number special tokens
+        text = f" {TOK_NUM} ".join(text.split(TOK_NUM))
+        
+        # remove extra whitespaces
+        text = " ".join([word.strip() for word in text.split() if
+                            word.strip() != ""])
         return text
     
     def get_replacer(self, regex, new_value):
@@ -116,4 +124,6 @@ class BaseTextPreprocessor(object):
         tokens = [word.text.strip() for word in doc if word.text.strip() != ""]
         return " ".join(tokens)
     
-
+    def add_bos_eos_tokens(self, text):
+        return f"{TOKEN_BOS} {text.strip()} {TOKEN_EOS}"
+    
