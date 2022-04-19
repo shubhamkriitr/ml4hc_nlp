@@ -34,8 +34,11 @@ class BaseTextPreprocessor(object):
         
     
     def init_punctuation_replacement_table(self):
-        # init punctuations to be removed (we want to keep `.`)
-        self.punctuations = string.punctuation.replace(".", "")
+        self.punctuations = string.punctuation
+        # uncomment this to preserve one `.` instances
+        # >>> self.punctuations = string.punctuation.replace(".", "")
+        
+        # currently removing all punctuations
         self.punctuation_replacement_table \
             = str.maketrans('', '', self.punctuations)
     
