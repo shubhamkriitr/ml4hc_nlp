@@ -124,7 +124,7 @@ class TextCorpusGenerator:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output-dir", "-o", type=str, default="./text_output")
+    parser.add_argument("--output-dir", "-o", type=str)
     args = parser.parse_args()
     TextCorpusGenerator().run(None, None, args.output_dir)
     # >>> in_path = "/home/shubham/Documents/study/2022SS/ML4HC/projects/local_resources/txt_corpus_1_6b0c1138674f3c66292c2a5e5fc03a84ab8e0f0c/text_processed_for_learning_embedding.txt"
