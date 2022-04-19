@@ -1,7 +1,8 @@
 from data_loader import TransformerDataUtil, PUBMED_ID_TO_LABEL_MAP
 from datasets import Dataset, DatasetDict, load_metric
-from transformers import Trainer, TrainingArguments, AutoTokenizer, AutoModelForSequenceClassification
+from transformers import ProgressCallback, Trainer, TrainingArguments, AutoTokenizer, AutoModelForSequenceClassification
 from transformers.trainer_callback import TrainerCallback
+import transformers
 from util import get_timestamp_str, PROJECTPATH
 from torch.utils.tensorboard import SummaryWriter
 from transformers.data.data_collator import DefaultDataCollator, DataCollatorWithPadding
@@ -75,7 +76,7 @@ class TransformerPipeline:
             dataloader = TransformerDataUtil(TRANSFORMER_DATA)
             training_data, valid_data, test_data = dataloader.get_datasets()
             def tokenize_function(examples):
-                return self.tokenizer(examples["text"])
+                return self.tokenizer(examples["text"], max_length=self.config["max_length"])
             self.training_data = training_data.map(tokenize_function).remove_columns('text')
             self.valid_data = valid_data.map(tokenize_function).remove_columns('text')
             self.test_data = test_data.map(tokenize_function).remove_columns('text')
@@ -149,12 +150,14 @@ class TransformerPipeline:
             evaluation_strategy=self.config["evaluation_strategy"],
             per_device_train_batch_size=self.config["batch_size"],
             per_device_eval_batch_size=self.config["batch_size"],
+            learning_rate=self.config["learning_rate"],
+            lr_scheduler_type=self.config["lr_scheduler_type"],
+            warmup_ratio=self.config["warmup_ratio"],
             num_train_epochs=self.config["num_epochs"],
             logging_steps=self.config["log_steps"],
             eval_steps=self.config["eval_steps"],
             save_steps=self.config["save_steps"],
-            save_strategy=self.config["save_strategy"],
-            disable_tqdm=self.config["notqdm"]
+            save_strategy=self.config["save_strategy"]
         )
 
         self.trainer = Trainer(
@@ -166,7 +169,10 @@ class TransformerPipeline:
             compute_metrics=self.compute_metrics
             #callbacks=[SummarizerCallback(self.summary_writer)]
         )
-       
+
+        if self.config["verbose"] == 0:
+            self.trainer.remove_callback(ProgressCallback)
+
     def prepare_metrics(self):
         def compute_metrics(eval_pred):
             logits, labels = eval_pred
@@ -255,13 +261,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=str, required=True)
     parser.add_argument("--cpu", action="store_true")
-    parser.add_argument("--notqdm", action="store_true")
+    parser.add_argument("-v", "--verbose", action="store", default=1, type=int)
     args = parser.parse_args()
     device = "cpu" if args.cpu or not torch.cuda.is_available() else "cuda"
+    #logger.basicConfig()
+    logging.basicConfig(level=logging.ERROR)
     logger.setLevel(logging.INFO)
     with open(args.config, 'r', encoding="utf-8") as f:
         config_data = yaml.load(f, Loader=yaml.FullLoader)
-    config_data["notqdm"] = args.notqdm
+    config_data["verbose"] = args.verbose
     logger.info('Config:'+str(config_data))
     experiment = TransformerPipeline(config_data, device=device)
     experiment.run_experiment()
