@@ -1,0 +1,491 @@
+###24293578
+OBJECTIVE	To investigate the efficacy of 6 weeks of daily low-dose oral prednisolone in improving pain , mobility , and systemic low-grade inflammation in the short term and whether the effect would be sustained at 12 weeks in older adults with moderate to severe knee osteoarthritis ( OA ) .
+METHODS	A total of 125 patients with primary knee OA were randomized 1:1 ; 63 received 7.5 mg/day of prednisolone and 62 received placebo for 6 weeks .
+METHODS	Outcome measures included pain reduction and improvement in function scores and systemic inflammation markers .
+METHODS	Pain was assessed using the visual analog pain scale ( 0-100 mm ) .
+METHODS	Secondary outcome measures included the Western Ontario and McMaster Universities Osteoarthritis Index scores , patient global assessment ( PGA ) of the severity of knee OA , and 6-min walk distance ( 6MWD ) .
+METHODS	Serum levels of interleukin 1 ( IL-1 ) , IL-6 , tumor necrosis factor ( TNF ) - , and high-sensitivity C-reactive protein ( hsCRP ) were measured .
+RESULTS	There was a clinically relevant reduction in the intervention group compared to the placebo group for knee pain , physical function , PGA , and 6MWD at 6 weeks .
+RESULTS	The mean difference between treatment arms ( 95 % CI ) was 10.9 ( 4.8-18 .0 ) , p < 0.001 ; 9.5 ( 3.7-15 .4 ) , p < 0.05 ; 15.7 ( 5.3-26 .1 ) , p < 0.001 ; and 86.9 ( 29.8-144 .1 ) , p < 0.05 , respectively .
+RESULTS	Further , there was a clinically relevant reduction in the serum levels of IL-1 , IL-6 , TNF - , and hsCRP at 6 weeks in the intervention group when compared to the placebo group .
+RESULTS	These differences remained significant at 12 weeks .
+RESULTS	The Outcome Measures in Rheumatology Clinical Trials-Osteoarthritis Research Society International responder rate was 65 % in the intervention group and 34 % in the placebo group ( p < 0.05 ) .
+CONCLUSIONS	Low-dose oral prednisolone had both a short-term and a longer sustained effect resulting in less knee pain , better physical function , and attenuation of systemic inflammation in older patients with knee OA ( ClinicalTrials.gov identifier NCT01619163 ) .
+
+###24854809
+BACKGROUND	Emotional eating is associated with overeating and the development of obesity .
+BACKGROUND	Yet , empirical evidence for individual ( trait ) differences in emotional eating and cognitive mechanisms that contribute to eating during sad mood remain equivocal .
+OBJECTIVE	The aim of this study was to test if attention bias for food moderates the effect of self-reported emotional eating during sad mood ( vs neutral mood ) on actual food intake .
+OBJECTIVE	It was expected that emotional eating is predictive of elevated attention for food and higher food intake after an experimentally induced sad mood and that attentional maintenance on food predicts food intake during a sad versus a neutral mood .
+METHODS	Participants ( N = 85 ) were randomly assigned to one of the two experimental mood induction conditions ( sad/neutral ) .
+METHODS	Attentional biases for high caloric foods were measured by eye tracking during a visual probe task with pictorial food and neutral stimuli .
+METHODS	Self-reported emotional eating was assessed with the Dutch Eating Behavior Questionnaire ( DEBQ ) and ad libitum food intake was tested by a disguised food offer .
+RESULTS	Hierarchical multivariate regression modeling showed that self-reported emotional eating did not account for changes in attention allocation for food or food intake in either condition .
+RESULTS	Yet , attention maintenance on food cues was significantly related to increased intake specifically in the neutral condition , but not in the sad mood condition .
+CONCLUSIONS	The current findings show that self-reported emotional eating ( based on the DEBQ ) might not validly predict who overeats when sad , at least not in a laboratory setting with healthy women .
+CONCLUSIONS	Results further suggest that attention maintenance on food relates to eating motivation when in a neutral affective state , and might therefore be a cognitive mechanism contributing to increased food intake in general , but maybe not during sad mood .
+
+###25165090
+BACKGROUND	Although working smoke alarms halve deaths in residential fires , many households do not keep alarms operational .
+BACKGROUND	We tested whether theory-based education increases alarm operability .
+METHODS	Randomised multiarm trial , with a single arm randomly selected for use each day , in low-income neighbourhoods in Maryland , USA .
+METHODS	Intervention arms : ( 1 ) Full Education combining a health belief module with a social-cognitive theory module that provided hands-on practice installing alarm batteries and using the alarm 's hush button ; ( 2 ) Hands-on Practice social-cognitive module supplemented by typical fire department education ; ( 3 ) Current Norm receiving typical fire department education only .
+METHODS	Four hundred and thirty-six homes recruited through churches or by knocking on doors in 2005-2008 .
+METHODS	Follow-up visits checked alarm operability in 370 homes ( 85 % ) 1-3 .5 years after installation .
+METHODS	number of homes with working alarms defined as alarms with working batteries or hard-wired and number of working alarms per home .
+METHODS	Regressions controlled for alarm status preintervention ; demographics and beliefs about fire risks and alarm effectiveness .
+RESULTS	Homes in the Full Education and Practice arms were more likely to have a functioning smoke alarm at follow-up ( OR = 2.77 , 95 % CI 1.09 to 7.03 ) and had an average of 0.32 more working alarms per home ( 95 % CI 0.09 to 0.56 ) .
+RESULTS	Working alarms per home rose 16 % .
+RESULTS	Full Education and Practice had similar effectiveness ( p = 0.97 on both outcome measures ) .
+CONCLUSIONS	Without exceeding typical fire department installation time , installers can achieve greater smoke alarm operability .
+CONCLUSIONS	Hands-on practice is key .
+CONCLUSIONS	Two years after installation , for every three homes that received hands-on practice , one had an additional working alarm .
+BACKGROUND	http://www.clinicaltrials.gov number NCT00139126 .
+
+###24633056
+OBJECTIVE	To evaluate the performance ( efficacy , safety and acceptability ) of a new micro-adherent absorbent dressing ( UrgoClean ) compared with a hydrofiber dressing ( Aquacel ) in the local management of venous leg ulcers , in the debridement stage .
+METHODS	A non-inferiority European randomised controlled clinical trial ( RCT ) was conducted in 37 centres , on patients presenting with venous or predominantly venous , mixed aetiology leg ulcers at their sloughy stage ( with more than 70 % of the wound bed covered with slough at baseline ) .
+METHODS	Patients were followed over a 6-week period and assessed weekly .
+METHODS	The primary judgement criteria was the relative regression of the wound surface area after the 6-week treatment period .
+METHODS	Secondary endpoints were the relative reduction of sloughy tissue and the percentage of patients presenting with a debrided wound .
+RESULTS	Altogether , 159 patients were randomised to either UrgoClean ( test group ; n = 83 ) or Aquacel ( control group ; n = 76 ) dressings .
+RESULTS	Regarding the wound healing process predictive factors ( wound area , duration , ABPI value , recurrence ) , at baseline , the two groups were well balanced , for both wound and patient characteristics .
+RESULTS	Compression therapy was administered to both groups and after a median 42-day treatment period , the percentage of relative reduction of the wound surface area was very similar ( -36.9 % vs -35.4 % in the UrgoClean and control groups , respectively ) .
+RESULTS	When considering the secondary criteria at week 6 , the relative reduction of sloughy tissue was significantly higher in the UrgoClean group than in the control group ( -65.3 % vs -42,6 % ; p = 0.013 ) .
+RESULTS	The percentage of debrided wounds was also significantly higher in the test group ( 52.5 % vs 35.1 % ; p = 0.033 ) .
+CONCLUSIONS	This ` EARTH ' RCT confirmed that the UrgoClean dressing has similar efficacy and safety compared to Aquacel .
+CONCLUSIONS	However , UrgoClean also showed better autolytic properties than the control group in the management of venous leg ulcers at the sloughy stage .
+CONCLUSIONS	The new UrgoClean dressing therefore represents a promising therapeutic option within the current range of autolytic dressings available .
+BACKGROUND	This study was sponsored by a grant from the pharmaceutical company Laboratoires Urgo .
+BACKGROUND	S. Bohbot and O. Tacca are employees of Laboratoires Urgo .
+BACKGROUND	S. Meaume , J. Dissemond and G. Perceau have received monetary compensation as presenters for Laboratoires Urgo .
+BACKGROUND	Data management and statistical analyses were conducted independently by Vertical ( Paris , France ) .
+
+###24814304
+OBJECTIVE	Eye movements ( EM ) during recall of an aversive memory is a treatment element unique to Eye Movement Desensitization and Reprocessing ( EMDR ) .
+OBJECTIVE	Experimental studies have shown that EM reduce memory vividness and/or emotionality shortly after the intervention .
+OBJECTIVE	However , it is unclear whether the immediate effects of the intervention reflect actual changes in memory .
+OBJECTIVE	The aim of this study was to test whether immediate reductions in memory vividness and emotionality persist at a 24h follow up and whether the magnitude of these effects is related to the duration of the intervention .
+METHODS	Seventy-three undergraduates recalled two negative autobiographical memories , one with EM ( `` recall with EM '' ) and one without ( `` recall only '' ) .
+METHODS	Half of participants recalled each memory for four periods of 24s , the other half for eight periods of 24s .
+METHODS	Memory vividness/emotionality were self-rated at a pre-test , an immediate post-test , and a 24h follow-up test .
+RESULTS	In both duration groups , recall with EM , but not recall only , caused an immediate decrease in memory vividness .
+RESULTS	There were no immediate reductions in memory emotionality .
+RESULTS	Furthermore , only the ` eight periods ' group showed that recall with EM , but not recall only , caused a decrease in both memory emotionality and memory vividness from the pre-test to the follow-up .
+CONCLUSIONS	Only self-report measures were used .
+CONCLUSIONS	The findings suggest that recall with EM causes 24-hchanges in memory vividness/emotionality , which may explain part of the EMDR treatment effect , and these effects are related to intervention duration .
+
+###25825539
+OBJECTIVE	Few studies have tested the impact of motivational interviewing ( MI ) delivered by primary care providers on pediatric obesity .
+OBJECTIVE	This study tested the efficacy of MI delivered by providers and registered dietitians ( RDs ) to parents of overweight children aged 2 through 8 .
+METHODS	Forty-two practices from the Pediatric Research in Office Settings Network of the American Academy of Pediatrics were randomly assigned to 1 of 3 groups .
+METHODS	Group 1 ( usual care ) measured BMI percentile at baseline and 1 - and 2-year follow-up .
+METHODS	Group 2 ( provider only ) delivered 4 MI counseling sessions to parents of the index child over 2 years .
+METHODS	Group 3 ( provider + RD ) delivered 4 provider MI sessions plus 6 MI sessions from a RD. .
+METHODS	The primary outcome was child BMI percentile at 2-year follow up .
+RESULTS	At 2-year follow-up , the adjusted BMI percentile was 90.3 , 88.1 , and 87.1 for groups 1 , 2 , and 3 , respectively .
+RESULTS	The group 3 mean was significantly ( P = .02 ) lower than group 1 .
+RESULTS	Mean changes from baseline in BMI percentile were 1.8 , 3.8 , and 4.9 across groups 1 , 2 , and 3 .
+CONCLUSIONS	MI delivered by providers and RDs ( group 3 ) resulted in statistically significant reductions in BMI percentile .
+CONCLUSIONS	Research is needed to determine the clinical significance and persistence of the BMI effects observed .
+CONCLUSIONS	How the intervention can be brought to scale ( in particular , how to train physicians to use MI effectively and how best to train RDs and integrate them into primary care settings ) also merits future research .
+
+###24507941
+BACKGROUND	Antithrombin ( AT ) concentrations are reduced after cardiac surgery with cardiopulmonary bypass compared with the preoperative levels .
+BACKGROUND	Low postoperative AT is associated with worse short - and mid-term clinical outcomes .
+BACKGROUND	The aim of the study is to evaluate the effects of AT administration on activation of the coagulation and fibrinolytic systems , platelet function , and the inflammatory response in patients with low postoperative AT levels .
+METHODS	Sixty patients with postoperative AT levels of less than 65 % were randomly assigned to receive purified AT ( 5000 IU in three administrations ) or placebo in the postoperative intensive care unit .
+METHODS	Thirty patients with postoperative AT levels greater than 65 % were observed as controls .
+METHODS	Interleukin 6 ( a marker of inflammation ) , prothrombin fragment 1-2 ( a marker of thrombin generation ) , plasmin-antiplasmin complex ( a marker of fibrinolysis ) , and platelet factor 4 ( a marker of platelet activation ) were measured at six different times .
+RESULTS	Compared with the no AT group and control patients , patients receiving AT showed significantly higher AT values until 48 hours after the last administration .
+RESULTS	Analysis of variance for repeated measures showed a significant effect of study treatment in reducing prothrombin fragment 1-2 ( p = 0.009 ; interaction with time sample , p = 0.006 ) and plasmin-antiplasmin complex ( p < 0.001 ; interaction with time sample , p < 0.001 ) values but not interleukin 6 ( p = 0.877 ; interaction with time sample , p = 0.521 ) and platelet factor 4 ( p = 0.913 ; interaction with time sample , p = 0.543 ) .
+RESULTS	No difference in chest tube drainage , reopening for bleeding , and blood transfusion was observed .
+CONCLUSIONS	Antithrombin administration in patients with low AT activity after surgery with cardiopulmonary bypass reduces postoperative thrombin generation and fibrinolysis with no effects on platelet activation and inflammatory response .
+
+###24976083
+OBJECTIVE	We evaluated patients at tertiary [ both percutaneous coronary intervention ( PCI ) and coronary artery bypass grafting ( CABG ) capable ] and primary hospitals in the EARLY-ACS trial .
+BACKGROUND	Early invasive management is recommended for high-risk non-ST-segment elevation acute coronary syndromes .
+METHODS	We evaluated outcomes in 9,204 patients presenting to : tertiary sites , primary sites with transfer to tertiary sites ( `` transferred '' ) and those who remained at primary sites ( `` non-transfer '' ) .
+RESULTS	There were 348 tertiary ( n = 7,455 patients ) and 89 primary hospitals [ n = 1,749 patients ( 729 transferred ; 1,020 non-transfer ) ] .
+RESULTS	Significant delays occurred in time from symptom onset to angiography ( 49 hr ) , PCI ( 53h ) , and CABG ( 178 hr ) for transferred patients ( P < 0.001 ) .
+RESULTS	Non-transfer patients had less 30-day death/myocardial infarction [ 9.4 % vs. 11.7 % ( tertiary ) ; adjusted odds ratio ( OR ) : 0.78 ( 0.62-0 .97 ) , P = 0.026 ] ; transferred ( 14.0 % ) and tertiary patients were similar [ adjusted OR : 1.23 ( 0.98-1 .53 ) , P = 0.074 ] .
+RESULTS	Non-transfer patients had lower 1-year mortality [ 4.3 % vs. 6.3 % ( tertiary ) ; adjusted hazard ratio ( HR ) : 0.64 ( 0.47-0 .87 ) , P = 0.005 ] : there was no difference between transferred and tertiary patients [ 5.2 % vs. 6.3 % ; adjusted HR : 0.80 ( 0.58-1 .12 ) , P = 0.202 ] .
+RESULTS	Despite similar rates of catheterization , GUSTO severe/moderate bleeding within 120 hr was less in non-transfer [ 3.1 % vs. 6.7 % ( tertiary ) ; adjusted OR : 0.47 ( 0.32-0 .68 ) , P < 0.001 ] , whereas transferred ( 6.1 % ) and tertiary patients were similar [ adjusted OR : 0.94 ( 0.68-1 .30 ) , P = 0.693 ] .
+RESULTS	There was no difference in non-CABG bleeding .
+CONCLUSIONS	Timely angiography and revascularization were often not achieved in transferred patients .
+CONCLUSIONS	Non-transferred patients presenting to primary sites had the lowest event rates and the best long-term survival .
+
+###25001475
+OBJECTIVE	We hypothesized that a targeted temperature of 33 C as compared to that of 36 C would increase survival and reduce the severity of circulatory shock in patients with shock on admission after out-of-hospital cardiac arrest ( OHCA ) .
+METHODS	The recently published Target Temperature Management trial ( TTM-trial ) randomized 939 OHCA patients with no difference in outcome between groups and no difference in mortality at the end of the trial in a predefined subgroup of patients with shock at admission .
+METHODS	Shock was defined as a systolic blood pressure of < 90 mm Hg for > 30 min or the need of supportive measures to maintain a blood pressure 90 mmHg and/or clinical signs of end-organ hypoperfusion .
+METHODS	In this post hoc analysis reported here , we further analyzed the 139 patients with shock at admission ; all had been randomized to receive intervention at 33 C ( TTM33 ; n = 71 ) or 36 C ( TTM36 ; n = 68 ) .
+METHODS	Primary outcome was 180-day mortality .
+METHODS	Secondary outcomes were intensive care unit ( ICU ) and 30-day mortality , severity of circulatory shock assessed by mean arterial pressure , serum lactate , fluid balance and the extended Sequential Organ Failure assessment ( SOFA ) score .
+RESULTS	There was no significance difference between targeted temperature management at 33 C or 36 C on 180-day mortality [ log-rank test , p = 0.17 , hazard ratio 1.33 , 95 % confidence interval ( CI ) 0.88-1 .98 ] or ICU mortality ( 61 vs. 44 % , p = 0.06 ; relative risk 1.37 , 95 % CI 0.99-1 .91 ) .
+RESULTS	Serum lactate and the extended cardiovascular SOFA score were higher in the TTM33 group ( p < 0.01 ) .
+CONCLUSIONS	We found no benefit in survival or severity of circulatory shock with targeted temperature management at 33 C as compared to 36 C in patients with shock on admission after OHCA .
+
+###25406902
+BACKGROUND	Youths with a family history of alcohol and other drug use disorders ( FH + ) are at a greater risk of developing substance use disorders than their peers with no such family histories ( FH - ) , and this increased risk may be related to impaired maturation of forebrain circuitry .
+BACKGROUND	FH + individuals have shown altered forebrain activity at rest and while performing cognitive tasks .
+BACKGROUND	However , it is not fully understood how forebrain activity is altered in FH + individuals , and ultimately how these alterations may contribute to substance use disorder risk .
+METHODS	In this study , we tested 72 FH + and 32 FH - youths performing a go/no-go task and examined activations in blocks with only go trials ( Go Only ) , blocks with 50 % go and 50 % no-go trials ( Go/NoGo ) , and a contrast of those 2 blocks .
+RESULTS	FH + youths had significantly greater cerebral activations in both the Go and Go/NoGo blocks than FH - youths in regions including the posterior cingulate/precuneus , bilateral middle/superior temporal gyrus , and medial superior frontal gyrus with no significant group differences in the subtraction between Go Only and Go/NoGo blocks .
+RESULTS	Additionally , FH + youths had moderately slower reaction times on go trials in the Go Only blocks .
+CONCLUSIONS	Our findings suggest that global activation increase in FH + youths are modulated by FH density and are not specific to the inhibitory components of the task .
+CONCLUSIONS	This pattern of increased activations in FH + youths may be at least partially due to impaired forebrain white matter development leading to greater activations/less efficient neural communication during task performance .
+
+###25471989
+BACKGROUND	Risk factors have been proposed for running injuries including ( a ) reduced muscular strength , ( b ) excessive joint movements and ( c ) excessive joint moments in the frontal and transverse planes .
+BACKGROUND	To date , many running injury prevention programs have focused on a `` top down '' approach to strengthen the hip musculature in the attempt to reduce movements and moments at the hip , knee , and/or ankle joints .
+BACKGROUND	However , running mechanics did not change when hip muscle strength increased .
+BACKGROUND	It could be speculated that emphasis should be placed on increasing the strength of the ankle joint for a `` ground up '' approach .
+BACKGROUND	Strengthening of the large and small muscles crossing the ankle joint is assumed to change the force distribution for these muscles and to increase the use of smaller muscles .
+BACKGROUND	This would be associated with a reduction of joint and insertion forces , which could have a beneficial effect on injury prevention .
+BACKGROUND	However , training of the ankle joint as an injury prevention strategy has not been studied .
+BACKGROUND	Ankle strengthening techniques include isolated strengthening or movement-related strengthening such as functional balance training .
+BACKGROUND	There is little knowledge about the efficacy of such training programs on strength alteration , gait or injury reduction .
+METHODS	Novice runners will be randomly assigned to one of three groups : an isolated ankle strengthening group ( strength , n = 40 ) , a functional balance training group ( balance , n = 40 ) or an activity-matched control group ( control , n = 40 ) .
+METHODS	Isokinetic strength will be measured using a Biodex System 3 dynamometer .
+METHODS	Running kinematics and kinetics will be assessed using 3D motion analysis and a force platform .
+METHODS	Postural control will be assessed by quantifying the magnitude and temporal structure of the center of pressure trace during single leg stance on a force platform .
+METHODS	The change pre - and post-training in isokinetic strength , running mechanics , and postural control variables will be compared following the interventions .
+METHODS	Injuries rates will be compared between groups over 6months .
+CONCLUSIONS	Avoiding injury will allow individuals to enjoy the benefits of participating in aerobic activities and reduce the healthcare costs associated with running injuries .
+BACKGROUND	Current Controlled Trial NCT01900262 .
+
+###24694205
+BACKGROUND	Vitamin B12 deficiency causes neurologic and psychiatric disease , especially in older adults .
+BACKGROUND	Subacute combined degeneration is characterized by damage to the posterior and lateral spinal cord affecting the corticospinal tract .
+OBJECTIVE	To test corticospinal tract projections using motor evoked potentials ( MEPs ) by transcranial magnetic stimulation ( TMS ) in asymptomatic older adults with low vitamin B12 ( B12 ) levels .
+METHODS	Cross-sectional study of 53 healthy older adults ( > 70 years ) .
+METHODS	MEPs were recorded in the abductor pollicis brevis and tibialis anterior muscles , at rest and during slight tonic contraction .
+METHODS	Central motor conduction time ( CMCT ) was derived from the latency of MEPs and peripheral motor conduction time ( PMCT ) .
+METHODS	Neurophysiological variables were analyzed statistically according to B12 status .
+RESULTS	Median age was 74.33.6 years ( 58.5 % women ) .
+RESULTS	Twenty-six out of the 53 subjects had low vitamin B12 levels ( B12 < 221pmol/l ) .
+RESULTS	MEPs were recorded for all subjects in upper and lower extremities .
+RESULTS	There were no significant differences in either latency or amplitude of MEPs and CMCT between low and normal B12 groups .
+RESULTS	There was a significant PMCT delay in the lower extremities in the low B12 group ( p = 0.014 ) .
+CONCLUSIONS	No subclinical abnormality of the corticospinal tract is detected in asymptomatic B12-deficient older adults .
+CONCLUSIONS	The peripheral nervous system appears to be more vulnerable to damage attributable to this vitamin deficit .
+CONCLUSIONS	The neurophysiological evaluation of asymptomatic older adults with lower B12 levels should be focused mainly in peripheral nervous system evaluation .
+
+###24576512
+BACKGROUND	Uncontrolled hypertension ( HTN ) is a significant public health problem among blacks in the United States .
+BACKGROUND	Despite the proven efficacy of therapeutic lifestyle change ( TLC ) on blood pressure ( BP ) reduction in clinical trials , few studies have examined their effectiveness in church-based settings-an influential institution for health promotion in black communities .
+METHODS	Using a cluster-randomized , 2-arm trial design , this study evaluates the effectiveness of a faith-based TLC intervention vs health education ( HE ) control on BP reduction among hypertensive black adults .
+METHODS	The intervention is delivered by trained lay health advisors through group TLC sessions plus motivational interviewing in 32 black churches .
+METHODS	Participants in the intervention group receive 11 weekly TLC sessions targeting weight loss , increasing physical activity , fruit , vegetable and low-fat dairy intake , and decreasing fat and sodium intake , plus 3 monthly individual motivational interviewing sessions .
+METHODS	Participants in the control group attend 11 weekly classes on HTN and other health topics delivered by health care experts .
+METHODS	The primary outcome is change in BP from baseline to 6 months .
+METHODS	Secondary outcomes include level of physical activity , percent change in weight , and fruit and vegetable consumption at 6 months , and BP control at 9 months .
+CONCLUSIONS	If successful , this trial will provide an alternative and culturally appropriate model for HTN control through evidence-based lifestyle modification delivered in churches by lay health advisors .
+
+###24807407
+BACKGROUND	The classification of clinical severity of Ebstein anomaly still remains a challenge .
+BACKGROUND	The aim of this study was to focus on the interaction of the pathologically altered right heart with the anatomically-supposedly-normal left heart and to derive from cardiac magnetic resonance ( CMR ) a simple imaging measure for the clinical severity of Ebstein anomaly .
+RESULTS	Twenty-five patients at a mean age of 2614 years with unrepaired Ebstein anomaly were examined in a prospective study .
+RESULTS	Disease severity was classified using CMR volumes and functional measurements in comparison with heart failure markers from clinical data , ECG , laboratory and cardiopulmonary exercise testing , and echocardiography .
+RESULTS	All examinations were completed within 24 hours .
+RESULTS	A total right/left-volume index was defined from end-diastolic volume measurements in CMR : total right/left-volume index = ( RA + aRV + fRV ) / ( LA+LV ) .
+RESULTS	Mean total right/left-volume index was 2.61.7 ( normal values : 1.10.1 ) .
+RESULTS	This new total right/left-volume index correlated with almost all clinically used biomarkers of heart failure : brain natriuretic peptide ( r = 0.691 ; P = 0.0003 ) , QRS ( r = 0.432 ; P = 0.039 ) , peak oxygen consumption/kg ( r = -0.479 ; P = 0.024 ) , ventilatory response to carbon dioxide production at anaerobic threshold ( r = 0.426 ; P = 0.048 ) , the severity of tricuspid regurgitation ( r = 0.692 ; P = 0.009 ) , tricuspid valve offset ( r = 0.583 ; P = 0.004 ) , and tricuspid annular plane systolic excursion ( r = 0.554 ; P = 0.006 ) .
+RESULTS	Previously described severity indices ( [ RA + aRV ] / [ fRV + LA+LV ] ) and fRV/LV end-diastolic volume corresponded only to some parameters .
+CONCLUSIONS	In patients with Ebstein anomaly , the easily acquired index of right-sided to left-sided heart volumes from CMR correlated well with established heart failure markers .
+CONCLUSIONS	Our data suggest that the total right/left-volume index should be used as a new and simplified CMR measure , allowing more accurate assessment of disease severity than previously described scoring systems .
+
+###24947717
+OBJECTIVE	This study sought to investigate the association of beta-blocker therapy at discharge with clinical outcomes in patients with ST-segment elevation myocardial infarction ( STEMI ) after primary percutaneous coronary intervention ( PCI ) .
+BACKGROUND	Limited data are available on the efficacy of beta-blocker therapy for secondary prevention in STEMI patients .
+METHODS	Between November 1 , 2005 and September 30 , 2010 , 20,344 patients were enrolled in nationwide , prospective , multicenter registries .
+METHODS	Among these , we studied STEMI patients undergoing primary PCI who were discharged alive ( n = 8,510 ) .
+METHODS	We classified patients into the beta-blocker group ( n = 6,873 ) and no-beta-blocker group ( n = 1,637 ) according to the use of beta-blockers at discharge .
+METHODS	Propensity-score matching analysis was also performed in 1,325 patient triplets .
+METHODS	The primary outcome was all-cause death .
+RESULTS	The median follow-up duration was 367 days ( interquartile range : 157 to 440 days ) .
+RESULTS	All-cause death occurred in 146 patients ( 2.1 % ) of the beta-blocker group versus 59 patients ( 3.6 % ) of the no-beta-blocker group ( p < 0.001 ) .
+RESULTS	After 2:1 propensity-score matching , beta-blocker therapy was associated with a lower incidence of all-cause death ( 2.8 % vs. 4.1 % , adjusted hazard ratio : 0.46 , 95 % confidence interval : 0.27 to 0.78 , p = 0.004 ) .
+RESULTS	The association with better outcome of beta-blocker therapy in terms of all-cause death was consistent across various subgroups , including patients with relatively low-risk profiles such as ejection fraction > 40 % or single-vessel disease .
+CONCLUSIONS	Beta-blocker therapy at discharge was associated with improved survival in STEMI patients treated with primary PCI .
+CONCLUSIONS	Our results support the current American College of Cardiology/American Heart Association guidelines , which recommend long-term beta-blocker therapy in all patients with STEMI regardless of reperfusion therapy or risk profile .
+
+###24281275
+OBJECTIVE	Local anesthetic wound infiltration is widely used as an effective adjunct during multimodal postoperative pain management .
+OBJECTIVE	The aim of this study was to evaluate the effectiveness of continuous wound infusion of ropivacaine in postoperative pain relief , opioid sparing , incidence of nausea and vomiting , and bowel and liver function improvement in patients undergoing open hepatectomy .
+METHODS	Forty patients undergoing open hepatectomy were enrolled in this prospective , randomized , double-blinded , placebo-controlled trial .
+METHODS	Patients were divided into 2 groups : the 0.9 % saline continuous infusion group ( the control group ; n = 20 ) and the ropivacaine continuous infusion group ( the Ropi group ; n = 20 ) .
+METHODS	Outcomes measured postoperatively were pain score at rest and on movement , sufentanil consumption , incidence of nausea and vomiting , and sedation score across 48 postoperative hours .
+METHODS	Time to bowel recovery , liver function change , mean length of hospitalization , patient satisfaction , and other data after 48 postoperative hours were collected until hospital discharge .
+RESULTS	Pain scores at rest were lower for the ropivacaine group and reached significance after 8 and 16 hours ( P < 0.01 ) .
+RESULTS	Sufentanil consumption ( 41.5021.80 vs. 89.7035.22 g ; P < 0.01 ) after 48 hours , time to bowel recovery ( 1.800.70 vs. 3.151.04 d ; P < 0.01 ) , incidence of nausea and vomiting ( 1.750.72 vs. 2.400.68 ; P < 0.05 ) , and mean length of hospitalization ( 5.62.44 vs. 7.352.85 d ; P < 0.01 ) were significantly reduced , and the sedation score and liver function change were also comparable between the 2 groups .
+RESULTS	There was no difference with respect to pain scores on movement , nor with respect to patient satisfaction .
+CONCLUSIONS	Surgical wound infusion with ropivacaine after hepatectomy can improve pain relief at rest and accelerate recovery and discharge .
+
+###24911353
+OBJECTIVE	Tuberculosis ( TB ) is highly prevalent among HIV-infected people , including those receiving combination antiretroviral therapy ( cART ) , necessitating a well tolerated and efficacious TB vaccine for these populations .
+OBJECTIVE	We evaluated the safety and immunogenicity of the candidate TB vaccine M72/AS01 in adults with well controlled HIV infection on cART .
+METHODS	A randomized , observer-blind , controlled trial ( NCT00707967 ) .
+METHODS	HIV-infected adults on cART in Switzerland were randomized 3:1:1 to receive two doses , 1 month apart , of M72/AS01 , AS01 or 0.9 % physiological saline ( N = 22 , N = 8 and N = 7 , respectively ) and were followed up to 6 months postdose 2 ( D210 ) .
+METHODS	Individuals with CD4 cell counts below 200 cells/l were excluded .
+METHODS	Adverse events ( AEs ) including HIV-specific and laboratory safety parameters were recorded .
+METHODS	Cell-mediated ( ICS ) and humoral ( ELISA ) responses were evaluated before vaccination , 1 month after each dose ( D30 , D60 ) and D210 .
+RESULTS	Thirty-seven individuals [ interquartile range ( IQR ) CD4 cell counts at screening : 438-872 cells/l ; undetectable HIV-1 viremia ] were enrolled ; 73 % of individuals reported previous BCG vaccination , 97.3 % tested negative for the QuantiFERON-TB assay .
+RESULTS	For M72/AS01 recipients , no vaccine-related serious AEs or cART-regimen adjustments were recorded , and there were no clinically relevant effects on laboratory safety parameters , HIV-1 viral loads or CD4 cell counts .
+RESULTS	M72/AS01 was immunogenic , inducing persistent and polyfunctional M72-specific CD4 T-cell responses [ medians 0.70 % ( IQR 0.37-1 .07 ) at D60 ] and 0.42 % ( 0.24-0 .61 ) at D210 , predominantly CD40LIL-2TNF - , CD40LIL-2 and CD40LIL-2TNF-IFN - ] .
+RESULTS	All M72/AS01 vaccines were seropositive for anti-M72 IgG after second vaccination until study end .
+CONCLUSIONS	M72/AS01 was clinically well tolerated and immunogenic in this population , supporting further clinical evaluation in HIV-infected individuals in TB-endemic settings .
+
+###25318787
+OBJECTIVE	The aim of this study was to investigate whether remedial hydration ( RH ) reduces the incidence of contrast-induced nephropathy ( CIN ) and short-term adverse events in ST-elevation myocardial infarction ( STEMI ) patients undergoing primary percutaneous coronary intervention ( PCI ) .
+METHODS	A total of 216 consecutive STEMI patients were prospectively and randomly assigned into two groups : 108 patients in the RH group and 108 patients in the no RH ( control ) group .
+METHODS	The serum creatinine ( SCr ) and creatinine clearance ( CCr ) levels were measured on admission and at 24 , 48 and 72 hours after primary PCI .
+METHODS	The rates of CIN and short-term adverse events were analyzed for each group .
+METHODS	After surgery , the patients were categorized into four groups according to the Mehran risk score : low ( 5 , n = 98 ) , moderate ( 6-10 , n = 56 ) , high ( 11-15 , n = 40 ) or very high ( 16 , n = 22 ) .
+RESULTS	The incidence of CIN in the RH group was lower than that observed in the control group ( 22/108 ; 20.4 % vs. 38/108 ; 35.2 % , p < 0.05 ) .
+RESULTS	The subgroup analysis showed that the rate of CIN was lower in the moderate ( 6/29 ; 20.7 % vs. 13/30 ; 43.3 % , p < 0.10 ) and significantly lower in both the high ( 5/21 ; 23.8 % vs. 10/18 ; 55.6 % , p < 0.05 ) and very high score groups ( 3/12 ; 25.0 % vs. 8/12 ; 66.7 % , p < 0.05 ) among the RH patients compared to the controls .
+RESULTS	At 24 , 48 and 72 hours after PCI , the patients in the RH group exhibited lower SCr levels and higher CCr levels than the patients in the control group ( both p < 0.05 ) .
+RESULTS	A lower incidence of in-hospital clinical events was also observed in the RH group .
+CONCLUSIONS	Remedial hydration decreases the occurrence of CIN and improves the short-term prognosis of STEMI patients undergoing primary PCI .
+
+###24396280
+BACKGROUND	An increased production of oxidizing species related to reactive oral diseases , such as chronic apical periodontitis , could have systemic implications such as an increase in cardiovascular morbidity .
+BACKGROUND	Based on this consideration , we conducted a prospective study to assess whether subjects affected by chronic periodontitis presented with higher values of oxidative stress than reference values before endodontic treatment , and whether endodontic treatment can reduce the oxidative imbalance and bring it back to normal in these subjects .
+METHODS	The authors recruited 2 groups of patients from private studies and dental clinics : these patients were recruited randomly .
+METHODS	The oxidative balance in both patients with chronic apical periodontitis ( CAP ) and healthy control patients was determined by measuring the oxidant status , using an identification of the reactive oxygen metabolites ( d-ROMs ) test , while the antioxidant status in these patients was determined using a biological antioxidant potential ( BAP ) test .
+METHODS	Both these tests were carried on plasma samples taken from enrolled patients .
+METHODS	Values were measured both before the endodontic treatment of the patients with chronic apical periodontitis , and 30 and 90 days after treatment , and compared to those obtained from healthy control patients .
+RESULTS	It was found that , on recruitment , the patients with chronic apical periodontitis exhibited significantly higher levels of oxidative stress than control patients , as determined by the d-ROMs and BAP tests .
+RESULTS	Furthermore , the d-ROMs test values were shown to decrease and the BAP test values to increase over time in patients with chronic apical periodontitis following endodontic therapy .
+RESULTS	As the levels of oxidative stress in these patients tended to reduce and return to normal by 90 days following treatment .
+CONCLUSIONS	This study has demonstrated a positive association between chronic apical periodontitis and oxidative stress .
+CONCLUSIONS	Subjects affected by chronic apical periodontitis are exposed to a condition of oxidative stress , which is extremely dangerous to general health .
+CONCLUSIONS	Moreover , one can infer from these findings that through proper endodontic therapy , a good oxidative balance can be restored , thereby avoiding the risk of contracting the abovementioned diseases .
+
+###24731889
+BACKGROUND	Placebo effect has been largely studied and debated in medicine .
+BACKGROUND	Research focused mainly on children and adults but not on newborns .
+BACKGROUND	In osteopathy , few studies documented this effect and no research has been conducted in newborns .
+OBJECTIVE	To assess the presence of placebo effect in newborns using sham osteopathic manipulative treatment .
+METHODS	Randomized control trial .
+METHODS	Neonatal Intensive Care Unit in Italy .
+METHODS	Two groups ( 103 patients each ) of preterm infants aged 29-36 weeks without medical complications received routine pediatric care and osteopathic sham therapy was administrated to the study group only for the entire period of hospitalization .
+METHODS	Primary end point was the mean reduction of length of stay at discharge .
+METHODS	Secondary objective was the change in daily weight gain .
+RESULTS	206 newborns entered the study .
+RESULTS	No difference between sham and control group was found for the primary outcome length of stay ( 30.020.3 ; 28.818.9 ; p = 0.70 ) .
+RESULTS	Multivariate analysis showed no difference between study and control group on length of stay .
+RESULTS	A negative association was found for gestational age ( -2.33 ; 95 % CI -3.81 to -0.85 ; p = 0.002 ) , birth weight ( -0.01 ; 95 % CI -0.02 to -0.01 ; p < 0.001 ) and milk volume at study enrollment ( -0.02 ; 95 % CI -0.05 to -0.01 ; p = 0.01 ) .
+CONCLUSIONS	To the best of our knowledge , this study is the first in the field showing no placebo effect on newborns .
+CONCLUSIONS	Further discussions are opened concerning the age when placebo effect starts .
+
+###25880933
+BACKGROUND	Clostridium difficile infection ( CDI ) is a leading cause of diarrhoea in health care settings with symptoms ranging from mild and self-limiting to life threatening .
+BACKGROUND	SMT19969 is a novel , non-absorbable antibiotic currently under development for the treatment of CDI .
+BACKGROUND	Here we report the results from a Phase I study .
+METHODS	A double-blind , randomized , placebo-controlled study assessing safety and tolerability of single and multiple oral doses of SMT19969 in healthy volunteers .
+METHODS	Pharmacokinetic assessments included blood and faecal sampling .
+METHODS	The effect of food on systemic exposure and analysis of the gut microbiota were also included .
+RESULTS	Fifty-six healthy male subjects were enrolled .
+RESULTS	Following single oral doses of up to 2,000 mg in the fasted state , plasma concentrations of SMT19969 were generally below the lower limit of quantification .
+RESULTS	In the fed state levels ranged from 0.102 to 0.296 ng/mL after single dosing and after repeat dosing at Day 10 from 0.105 to 0.305 ng/mL .
+RESULTS	Following single and multiple oral doses of SMT19969 , mean daily faecal concentrations increased with increasing dose level and were significantly above the typical MIC range for C. difficile ( 0.06-0 .5 g/mL ) .
+RESULTS	At 200 mg BID , mean ( SD ) faecal concentrations of 1,466 ( 547 ) g/g and 1,364 ( 446 ) g/g were determined on days 5 and 10 of dosing respectively .
+RESULTS	No notable metabolites were detected in faeces .
+RESULTS	Overall , all doses of SMT19969 were well tolerated both as single oral doses or BID oral doses for 10 days .
+RESULTS	The majority ( 88 % ) of adverse events ( AEs ) were classified as gastrointestinal disorders and were mild in severity , resolving without treatment .
+RESULTS	The gut microbiota was analysed in the multiple dose groups with minimal changes observed in the bacterial groups analysed except for total clostridia which were reduced to below the limit of detection by day 4 of dosing .
+CONCLUSIONS	Oral administration of SMT19969 was considered safe and well tolerated and was associated with negligible plasma concentrations after single and multiple doses .
+CONCLUSIONS	In addition , minimal disruption of normal gut microbiota was noted , confirming the highly selective spectrum of the compound .
+CONCLUSIONS	These results support the further clinical development of SMT19969 as an oral therapy for CDI .
+BACKGROUND	Current Controlled Trials .
+BACKGROUND	ISRCTN10858225 .
+
+###25231496
+BACKGROUND	While overall survival for most common cancers in Australia is improving , the rural-urban differential has been widening , with significant excess deaths due to lung , colorectal , breast and prostate cancer in regional Australia .
+BACKGROUND	Internationally a major focus on understanding variations in cancer outcomes has been later presentation to healthcare and later diagnosis .
+BACKGROUND	Approaches to reducing time to diagnosis of symptomatic cancer include public symptom awareness campaigns and interventions in primary care to improve early cancer detection .
+BACKGROUND	This paper reports the protocol of a factorial cluster-randomised trial of community and general practice ( GP ) level interventions to reduce the time to diagnosis of cancer in rural Western Australia ( WA ) .
+METHODS	The community intervention is a symptom awareness campaign tailored for rural Australians delivered through a community engagement model .
+METHODS	The GP intervention includes a resource card with symptom risk assessment charts and local referral pathways implemented through multiple academic detailing visits and case studies .
+METHODS	Participants are eligible if recently diagnosed with breast , colorectal , lung or prostate cancer who reside in specific regions of rural WA with a planned sample size of 1350 .
+METHODS	The primary outcome is the Total Diagnostic Interval , defined as the duration from first symptom ( or date of cancer screening test ) to cancer diagnosis .
+METHODS	Secondary outcomes include cancer stage , healthcare utilisation , disease-free status , survival at 2 and 5years and cost-effectiveness .
+BACKGROUND	Ethics approval has been granted by the University of Western Australia and from all relevant hospital recruitment sites in WA .
+RESULTS	Results of this trial will be reported in peer-reviewed publications and in conference presentations .
+BACKGROUND	Australian New Zealand Clinical Trials Registry ( ANZCTR ) .
+BACKGROUND	ACTRN12610000872033 .
+
+###26024687
+BACKGROUND	This study aimed to evaluate whether incidental CT findings of emphysema , airway thickening and bronchiectasis , as seen on CT scans performed for other non-pulmonary clinical indications , are associated with future acute exacerbations of COPD resulting in hospitalisation or death .
+METHODS	This multicentre prospective case-cohort study comprised 6406 subjects who underwent routine diagnostic chest CT for non-pulmonary indications .
+METHODS	Using a case-cohort approach , we visually graded CT scans from cases and a random sample of 10 % of the baseline cohort ( n = 704 ) for emphysema severity ( range 0-20 ) , airway thickening ( range 0-5 ) and bronchiectasis ( range 0-5 ) .
+METHODS	We used weighted Cox proportional hazards analysis to assess the independent association between CT findings and hospitalisation or death due to COPD exacerbation .
+RESULTS	During a median follow-up of 4.4 years ( maximum 5.2 years ) , 338 COPD events were identified .
+RESULTS	The risk of experiencing a future acute exacerbation of COPD resulting in hospitalisation or death was significantly increased in subjects with severe emphysema ( score 7 ) and severe airway thickening ( score 3 ) .
+RESULTS	The respective HRs were 4.6 ( 95 % CI 3.0 to 7.1 ) and 5.9 ( 95 % CI 3.4 to 10.5 ) .
+RESULTS	Severe bronchiectasis ( score 3 ) was not significantly associated with increased risk of adverse events ( HR 1.5 ; 95 % CI 0.9 to 2.5 ) .
+CONCLUSIONS	Morphological correlates of COPD such as emphysema and airway thickening detected on CT scans obtained for other non-pulmonary indications are strong independent predictors of subsequent development of acute exacerbations of COPD resulting in hospitalisation or death .
+
+###24851690
+OBJECTIVE	To explore the feasibility of making a preoperative diagnosis of lung adenocarcinoma shown as ground-glass nodule ( GGN ) on computed tomography ( CT ) .
+METHODS	A total of 143 GGN lesions proved pathologically were divided randomly into A and B groups .
+METHODS	Then each group was further divided pathologically into preinvasive lesion , minimal invasive adenocarcinoma ( MIA ) and invasive adenocarcinoma ( IAC ) subgroups .
+METHODS	Group A ( n = 101 ) , size of lesion , proportion of ground glass opacity ( GGO ) composition of lesion , long diameter , longest diameter and size of solid component in lesion were measured on CT so as to establish the CT diagnostic standard of lung adenocarcinoma shown as GGN on CT. .
+METHODS	Group B ( n = 42 ) was employed to evaluate the accuracy of the above CT diagnostic standard .
+METHODS	SPSS 17.0 software was used for statistical analysis .
+RESULTS	Significant statistic significance existed in all parameters among all groups ( P < 0.05 ) .
+RESULTS	All parameters were correlated the pathologic type of lesion .
+RESULTS	The differences were statistically significant ( P = 0.000 ) .
+RESULTS	Through the receiver operating characteristic ( ROC ) curve , between groups of preinvasive lesion and MIA , each parameter had a medium diagnostic value of 0.70-0 .90 ; between groups of MIA and IAC , size of lesion and long diameter of solid component in lesion had a medium diagnostic value of 0.70-0 .90 , longest diameter of solid component , size of solid component in lesion and proportion of GGO composition of lesion had a high diagnostic value with an AUC of > 0.90 .
+RESULTS	The CT diagnostic standard , derived from group A , was used to analyze the pathologic type of group B. And t no significant statistic significance existed between CT preoperative diagnosis and operative pathologic diagnosis ( P > 0.05 ) .
+RESULTS	The correct diagnosis rates of size of lesion , proportion of GGO composition of lesion , long diameter , longest diameter and size of solid component in lesion were 71.43 % , 76.19 % , 90.05 % , 90.05 % and 88.10 % respectively .
+CONCLUSIONS	Based upon size of lesion , proportion of GGO composition of lesion , long diameter , longest diameter and size of solid component in lesion , preoperative CT examination may be used to determine the pathological types of lung adenocarcinoma shown as GGN .
+
+###25883103
+OBJECTIVE	Tonsillectomy surgery is associated with severe postoperative pain that usually requires analgesics including opioids .
+OBJECTIVE	Pain control is still a big problem after tonsillectomy surgery .
+OBJECTIVE	We aimed to evaluate the efficacy of preemptive analgesia using montelukast for pediatric post-tonsillectomy pain management .
+OBJECTIVE	This is the first-time use of montelukast in post-tonsillectomy pain .
+METHODS	Double-blind , controlled-randomized study .
+METHODS	University teaching and research hospital .
+METHODS	A total of 60 children , aged 5 to 15 years , American Society of Anesthesiologist class I-II , scheduled for elective tonsillectomy were enrolled in this clinical trial study .
+METHODS	The patients were randomized into 2 groups : the montelukast group ( group M , n = 30 ) and control group ( group C , n = 30 ) .
+METHODS	Group M recieved an oral montelukast tablet and group C recieved placebo at 2400pm on the morning before surgery .
+METHODS	Post-tonsillectomy pain was evaluated with the Wong-Baker FACES Scale during the 24 hours after surgery .
+METHODS	Patients ' intraoperative hemodynamic parameters and intraoperative and postoperative complications were recorded .
+RESULTS	There were statistically significant differences between group C and group M for Wong-Baker FACES pain rating scale scores ( P < .05 ) .
+RESULTS	In the 24 hours after surgery , the total number of patients using rescue analgesics was higher in group C than in group M , and the difference was statistically significant ( P < .001 ) .
+RESULTS	There was no significant difference in demographic parameters ( P > .05 ) .
+RESULTS	There were no significant differences in postoperative nausea and vomiting , otalgia , trismus , fever , or halitosis between the groups ( P > .05 ) .
+CONCLUSIONS	Preemptive montelukast can be used safely to reduce the serious pain caused by tonsillectomy in children .
+
+###24318863
+OBJECTIVE	Metastatic colon cancer patients are treated with the chemotherapy regimens , FOLFOX and FOLFIRI , in either order .
+OBJECTIVE	So far , we can not predict the response of chemotherapeutic agent , so it is necessary to find which regimen is adequate before starting chemotherapy .
+METHODS	Enrolled patients are randomized into either conventional treatment or planned treatment preceded by pretreatment genetic analysis .
+METHODS	Blood samples of patients in planned treatment group ( N = 53 ) were analyzed for the genetic polymorphism before selection of chemotherapeutic agents .
+METHODS	Target genes were XPD-751 , GSTP-1-105 , XRCC1-399 for oxaliplatin , UGT1A1 for irinotecan .
+METHODS	The response was measured by computed tomographic scan after completion of three cycles of chemotherapy .
+RESULTS	Overall response rate was significantly higher in planned group ( 67.9 % vs. 46.3 % , P = 0.020 ) .
+RESULTS	In FOLFOX group , response rate was significantly improved in the planned patients ( 77.1 % vs. 50 % , P = 0.018 ) .
+RESULTS	In FOLFIRI group , the difference did n't reach statistical significance ( 50 % vs. 42.5 % , P = 0.776 ) .
+CONCLUSIONS	We found significantly improved response rates in the chemotherapy of metastatic colon cancer by pretreatment genetic analysis , especially in FOLFOX group .
+
+###25872502
+BACKGROUND	Cardiac arrest causes ischaemic brain injury .
+BACKGROUND	Arterial carbon dioxide tension ( PaCO2 ) is a major determinant of cerebral blood flow .
+BACKGROUND	Thus , mild hypercapnia in the 24 h following cardiac arrest may increase cerebral blood flow and attenuate such injury .
+BACKGROUND	We describe the Carbon Control and Cardiac Arrest ( CCC ) trial .
+METHODS	The CCC trial is a pilot multicentre feasibility , safety and biological efficacy randomized controlled trial recruiting adult cardiac arrest patients admitted to the intensive care unit after return of spontaneous circulation .
+METHODS	At admission , using concealed allocation , participants are randomized to 24 h of either normocapnia ( PaCO2 35 to 45 mmHg ) or mild hypercapnia ( PaCO2 50 to 55 mmHg ) .
+METHODS	Key feasibility outcomes are recruitment rate and protocol compliance rate .
+METHODS	The primary biological efficacy and biological safety measures are the between-groups difference in serum neuron-specific enolase and S100b protein levels at 24 h , 48 h and 72 h. Secondary outcome measure include adverse events , in-hospital mortality , and neurological assessment at 6 months .
+CONCLUSIONS	The trial commenced in December 2012 and , when completed , will provide clinical evidence as to whether targeting mild hypercapnia for 24 h following intensive care unit admission for cardiac arrest patients is feasible and safe and whether it results in decreased concentrations of neurological injury biomarkers compared with normocapnia .
+CONCLUSIONS	Trial results will also be used to determine whether a phase IIb study powered for survival at 90 days is feasible and justified .
+BACKGROUND	Australian New Zealand Clinical Trials Registry ACTRN12612000690853 .
+
+###24226487
+BACKGROUND	For decades thiopental has been considered as the hypnotic drug of choice for intracranial surgery .
+BACKGROUND	However , total intravenous anesthesia performed with thiopental is associated with delayed recovery , whereas early post-operative neurological evaluation is critical .
+BACKGROUND	For this reason , target controlled infusion ( TCI ) of propofol is increasingly used for maintenance of anesthesia .
+BACKGROUND	However , a thiopental TCI has never been assessed for this purpose .
+BACKGROUND	We tested the hypothesis that a thiopental TCI provides an acceptable way to achieve early recovery compared to a propofol TCI during supratentorial surgery .
+METHODS	Eighty patients undergoing elective craniotomy for a supratentorial tumor were randomized to receive either a propofol TCI ( group P ) or a thiopental TCI ( group T ) .
+METHODS	Both groups received a sufentanil TCI and the bispectral index was monitored .
+METHODS	The primary end-point was time to tracheal extubation .
+METHODS	Secondary end-points were per - and post-operative hemodynamics as well as respiratory and recovery parameters .
+METHODS	Assessment of study end-points was performed by an intensive care specialist blinded ( like the patient ) to the received hypnotic .
+RESULTS	Time to extubation was significantly ( P < 0.0001 ) shorter in group P ( median 149 minutes ; interquartile range 72-250 minutes ) than in group T ( median 453 minutes ; interquartile range 286-813 minutes ) .
+RESULTS	Similarly , the recovery parameters were significantly better in group P than in group T.
+RESULTS	There was no difference between groups in terms of patient characteristics and hemodynamic parameters .
+CONCLUSIONS	Even with TCI and bispectral index monitoring , thiopental is associated with an inappropriate delayed recovery from supratentorial surgery compared to propofol TCI .
+
+###25539560
+OBJECTIVE	To investigate the effects of conservative therapy applied before arthroscopic subacromial decompression on the clinical outcome in patients with stage 2 shoulder impingement syndrome .
+METHODS	Sixty-eight patients having stage 2 shoulder impingement syndrome and treated with arthroscopic subacromial decompression were included in the study .
+METHODS	We divided these patients into 2 groups , whereby 32 ( 47 % ) patients received conservative therapy before arthroscopic subacromial decompression and 36 ( 53 % ) patients did not receive conservative therapy .
+METHODS	We compared both groups in terms of the the Constant , UCLA , and VAS scores for shoulder pain before and after arthroscopic subacromial decompression .
+RESULTS	Constant , UCLA , and VAS scores were statistically significantly improved in both groups after arthroscopic subacromial decompression ( P < 0.001 ) .
+RESULTS	Constant , UCLA , and VAS scores before arthroscopic subacromial decompression were statistically better in Group 1 than in Group 2 ( P < 0.001 ) .
+RESULTS	No statistically significant difference was found between the groups in terms of Constant , UCLA , and VAS scores after arthroscopic subacromial decompression ( P > 0.05 ) .
+CONCLUSIONS	Conservative therapy applied in patients with stage 2 shoulder impingement syndrome before arthroscopic subacromial decompression does not have a positive contribution on the clinical outcome after arthroscopic subacromial decompression .
+
+###24401051
+BACKGROUND	Obstructive sleep apnea is associated with considerable health risks .
+BACKGROUND	Although continuous positive airway pressure ( CPAP ) can mitigate these risks , effectiveness can be reduced by inadequate adherence to treatment .
+BACKGROUND	We evaluated the clinical safety and effectiveness of upper-airway stimulation at 12 months for the treatment of moderate-to-severe obstructive sleep apnea .
+METHODS	Using a multicenter , prospective , single-group , cohort design , we surgically implanted an upper-airway stimulation device in patients with obstructive sleep apnea who had difficulty either accepting or adhering to CPAP therapy .
+METHODS	The primary outcome measures were the apnea-hypopnea index ( AHI ; the number of apnea or hypopnea events per hour , with a score of 15 indicating moderate-to-severe apnea ) and the oxygen desaturation index ( ODI ; the number of times per hour of sleep that the blood oxygen level drops by 4 percentage points from baseline ) .
+METHODS	Secondary outcome measures were the Epworth Sleepiness Scale , the Functional Outcomes of Sleep Questionnaire ( FOSQ ) , and the percentage of sleep time with the oxygen saturation less than 90 % .
+METHODS	Consecutive participants with a response were included in a randomized , controlled therapy-withdrawal trial .
+RESULTS	The study included 126 participants ; 83 % were men .
+RESULTS	The mean age was 54.5 years , and the mean body-mass index ( the weight in kilograms divided by the square of the height in meters ) was 28.4 .
+RESULTS	The median AHI score at 12 months decreased 68 % , from 29.3 events per hour to 9.0 events per hour ( P < 0.001 ) ; the ODI score decreased 70 % , from 25.4 events per hour to 7.4 events per hour ( P < 0.001 ) .
+RESULTS	Secondary outcome measures showed a reduction in the effects of sleep apnea and improved quality of life .
+RESULTS	In the randomized phase , the mean AHI score did not differ significantly from the 12-month score in the nonrandomized phase among the 23 participants in the therapy-maintenance group ( 8.9 and 7.2 events per hour , respectively ) ; the AHI score was significantly higher ( indicating more severe apnea ) among the 23 participants in the therapy-withdrawal group ( 25.8 vs. 7.6 events per hour , P < 0.001 ) .
+RESULTS	The ODI results followed a similar pattern .
+RESULTS	The rate of procedure-related serious adverse events was less than 2 % .
+CONCLUSIONS	In this uncontrolled cohort study , upper-airway stimulation led to significant improvements in objective and subjective measurements of the severity of obstructive sleep apnea .
+CONCLUSIONS	( Funded by Inspire Medical Systems ; STAR ClinicalTrials.gov number , NCT01161420 . )
+
+###26126563
+OBJECTIVE	To identify facilitators and barriers to clinical trial implementation in Aboriginal health services .
+METHODS	Indepth interview study with thematic analysis .
+METHODS	Six Aboriginal community-controlled health services and one government-run service involved in the Kanyini Guidelines Adherence with the Polypill ( KGAP ) study , a pragmatic randomised controlled trial that aimed to improve adherence to indicated drug treatments for people at high risk of cardiovascular disease .
+METHODS	32 health care providers and 21 Aboriginal and Torres Strait Islander patients .
+RESULTS	A fundamental enabler was that participants considered the research to be governed and endorsed by the local health service .
+RESULTS	That the research was perceived to address a health priority for communities was also highly motivating for both providers and patients .
+RESULTS	Enlisting the support of Aboriginal and Torres Strait Islander staff champions who were visible to the community as the main source of information about the trial was particularly important .
+RESULTS	The major implementation barrier for staff was balancing their service delivery roles with adherence to often highly demanding trial-related procedures .
+RESULTS	This was partially alleviated by the research team 's provision of onsite support and attempts to make trial processes more streamlined .
+RESULTS	Although more intensive support was highly desired , there were usually insufficient resources to provide this .
+CONCLUSIONS	Despite strong community and health service support , major investments in time and resources are needed to ensure successful implementation and minimal disruption to already overstretched , routine services .
+CONCLUSIONS	Trial budgets will necessarily be inflated as a result .
+CONCLUSIONS	Funding agencies need to consider these additional resource demands when supporting trials of a similar nature .
+
+###24693629
+OBJECTIVE	To compare the effect of incomplete caries removal ( ICR ) and indirect pulp capping ( IPC ) with calcium hydroxide ( CH ) or an inert material ( wax ) on color , consistency and contamination of the remaining dentin of primary molars .
+METHODS	This double-blind , parallel-design , randomized controlled trial included 30 children presenting one primary molar with deep caries lesion .
+METHODS	Children were randomly assigned after ICR to receive IPC with CH or wax .
+METHODS	All teeth were then restored with resin composite .
+METHODS	Baseline dentin color and consistency were evaluated after ICR , and dentin samples were collected for contamination analyses using scanning electron microscopy .
+METHODS	After 3 months , restorations were removed and the three parameters were re-evaluated .
+METHODS	In both groups , dentin became significantly darker after 3 months .
+RESULTS	No cases of yellow dentin were observed after 3 months with CH compared to 33.3 % of the wax cases ( P < 0.05 ) .
+RESULTS	A statistically significant difference over time was observed only for CH regarding consistency .
+RESULTS	CH stimulated a dentin hardening process in a statistically higher number of cases than wax ( 86.7 % vs. 33.3 % ; P = 0.008 ) .
+RESULTS	Contamination changed significantly over time in CH and wax without significant difference between groups .
+RESULTS	It was concluded that CH and wax arrested the carious process of the remaining carious dentin after indirect pulp capping , but CH showed superior dentin color and consistency after 3 months .
+
+###24996519
+BACKGROUND	In literature there is a general consensus that the use of the mirror improves proprioception .
+BACKGROUND	During rehabilitation the mirror is an important instrument to improve stability .
+BACKGROUND	In some sports , such as dancing , mirrors are widely used during training .
+BACKGROUND	The purpose of this study is to evaluate the effectiveness of the use of a mirror on balance in young dancers .
+BACKGROUND	Sixty-four young dancers ( ranging from 9-10 years ) were included in this study .
+BACKGROUND	Thirty-two attending lessons with a mirror ( mirror - group ) were compared to 32 young dancers that attended the same lessons without a mirror ( non-mirror group ) .
+BACKGROUND	Balance was evaluated by BESS ( Balance Error Scoring System ) , which consists of three stances ( double limb , single limb , and tandem ) on two surfaces ( firm and foam ) .
+BACKGROUND	The errors were assessed at each stance and summed to create the two subtotal scores ( firm and foam surface ) and the final total score ( BESS ) .
+BACKGROUND	The BESS was performed at recruitment ( T0 ) and after 6months of dance lessons ( T1 ) .
+RESULTS	The repeated measures ANOVA analysis showed that for the BESS total score there is a difference due to the time ( F = 3.86 ; p < 0.05 ) .
+RESULTS	No other differences due to the group or to the time of measurement were found ( p > 0.05 ) .
+RESULTS	The analysis of the multiple regression model showed the influence of the values at T0 for every BESS items and the dominance of limb for stability on an unstable surface standing on one or two legs .
+CONCLUSIONS	These preliminary results suggest that the use of a mirror in a ballet classroom does not improve balance acquisition of the dancer .
+CONCLUSIONS	On the other hand , improvement found after 6months confirms that at the age of the dancers studied motor skills and balance can easily be trained and improved .
+
+###25440306
+OBJECTIVE	Long-term follow-up studies documenting maintenance of treatment effects are fewin adolescent anorexia nervosa ( AN ) .
+OBJECTIVE	This exploratory study reports relapse from full remission and attainment of remission during a 4-year open follow-up period using a convenience sample of a subgroup of 65 % ( n = 79 ) from an original cohort of 121 participants who completed a randomized clinical trial comparing family-based therapy ( FBT ) and adolescent-focused individual therapy ( AFT ) .
+METHODS	Follow-up assessments were completed up to 4years posttreatment ( average , 3.26 years ) .
+METHODS	Available participants completed the Eating Disorder Examination as well as self-report measures of self-esteem and depression at 2 to 4 years posttreatment .
+RESULTS	Two participants ( 6.1 % ) relapsed ( FBT : n = 1 , 4.5 % ; AFT : n = 1 , 9.1 % ) , on average 1.98 years ( SD = 0.14 years ) after remission was achieved at 1-year follow-up .
+RESULTS	Ten new participants ( 22.7 % ) achieved remission ( FBT : n = 1 , 5.9 % ; AFT : n = 9 , 33.3 % ) .
+RESULTS	Mean time to remission for this group was 2.01 years ( SD = 0.82 years ) from 1-year follow-up .
+RESULTS	There were no differences based on treatment group assignment in either relapse from full remission or new remission during long-term follow-up .
+RESULTS	Other psychopathology was stable over time .
+CONCLUSIONS	There were few changes in the clinical presentation of participants who were assessed at long-term follow-up .
+CONCLUSIONS	These data suggest that outcomes are generally stable posttreatment regardless of treatment type once remission is achieved .
+CONCLUSIONS	Clinical trial registration information-Effectiveness of Family-Based Versus Individual Psychotherapy in Treating Adolescents With Anorexia Nervosa ; http://www.clinicaltrials.gov/; NCT00149786 .
+
