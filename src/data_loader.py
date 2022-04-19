@@ -36,6 +36,7 @@ class TextDataLoaderUtil(object):
         self.config = config
         self.verbose = self.config["verbose"]
         self.label_to_id_map = self.config["label_to_id_map"]
+        self.id_to_label_map = self.config["id_to_label_map"]
     
     def load_raw_text(self, split_name=None, file_path=None):
         """Load based on split_name or path. Loads whole text in memory.
@@ -138,6 +139,20 @@ class TextDataLoaderUtil(object):
             data = self.load_as_text_label_pair(split_name)
             texts.extend([text for text, _ in data])
         return texts
+
+class TextDataLoaderUtilMini(TextDataLoaderUtil):
+    """ Loads mini version of dataset files by default,
+    otherwise same as `TextDataLoaderUtil`"""
+    def __init__(self, config=None) -> None:
+        super().__init__(config)
+    
+    def resolve_path(self, split_name):
+        valid_names = ["test", "dev", "train"]
+        if split_name not in valid_names:
+            raise AssertionError(f"`split_name` should be one of these:"
+                                 f" {valid_names}")
+        return os.path.join(DATASET_DIR_LOC, split_name+"_mini.txt")
+
 
 class TransformerDataUtil:
     def __init__(self, datapath):
