@@ -16,6 +16,7 @@ DATASET_LOC_TRAIN = str(Path(PROJECTPATH)/"resources/train.txt")
 DATASET_LOC_TEST = str(Path(PROJECTPATH)/"resources/test.txt")
 DATASET_LOC_VAL = str(Path(PROJECTPATH)/"resources/dev.txt")
 DATASET_DIR_LOC = str(Path(PROJECTPATH)/"resources/")
+PROCESSED_DATASET_DIR_LOC = str(Path(PROJECTPATH)/"resources/processed_data")
 
 PUBMED_ID_TO_LABEL_MAP = {0: 'BACKGROUND', 1: 'CONCLUSIONS',
                           2: 'METHODS', 3: 'OBJECTIVE',
@@ -23,7 +24,7 @@ PUBMED_ID_TO_LABEL_MAP = {0: 'BACKGROUND', 1: 'CONCLUSIONS',
 PUBMED_LABEL_TO_ID_MAP = {label: id_ for id_, label
                           in PUBMED_ID_TO_LABEL_MAP.items()}
 
-class TextDataLoaderUtil(object):
+class BaseTextDataLoaderUtil(object):
     def __init__(self, config=None) -> None:
         self.data_loaded = False
         if config is None:
@@ -37,6 +38,31 @@ class TextDataLoaderUtil(object):
         self.verbose = self.config["verbose"]
         self.label_to_id_map = self.config["label_to_id_map"]
         self.id_to_label_map = self.config["id_to_label_map"]
+    
+    def load_raw_text(self, split_name=None, file_path=None):
+        """Load based on split_name or path. Loads whole text in memory.
+        (no lazy laoding)
+        """
+        raise NotImplementedError()
+    
+    def resolve_path(self, split_name):
+        raise NotImplementedError()
+    
+    def load(self, split_name=None, file_path=None):
+        raise NotImplementedError()
+    
+    def load_as_text_label_pair(self, split_name=None, file_path=None):
+        raise NotImplementedError()
+    
+    def get_text_label_pairs(self, dataset):
+        raise NotImplementedError()
+    
+    def get_text(self):
+        raise NotImplementedError()
+class TextDataLoaderUtil(BaseTextDataLoaderUtil):
+    def __init__(self, config=None) -> None:
+        super().__init__(config=config)
+        
     
     def load_raw_text(self, split_name=None, file_path=None):
         """Load based on split_name or path. Loads whole text in memory.
@@ -153,7 +179,11 @@ class TextDataLoaderUtilMini(TextDataLoaderUtil):
                                  f" {valid_names}")
         return os.path.join(DATASET_DIR_LOC, split_name+"_mini.txt")
 
-
+class ProcessedTextDataLoaderUtil(BaseTextDataLoaderUtil):
+    def __init__(self, config=None) -> None:
+        super().__init__(config)
+    
+    
 class TransformerDataUtil:
     def __init__(self, datapath):
         self.datapath = Path(datapath)
