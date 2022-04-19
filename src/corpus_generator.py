@@ -1,10 +1,10 @@
-from data_loader import TextDataLoaderUtil
+from data_loader import TextDataLoaderUtil, TextDataLoaderUtilMini
 from text_processing import BaseTextPreprocessor, TOKEN_BOS, TOKEN_EOS, TOK_NUM
 import os
 from util import logger
 import argparse
 
-
+DEFAULT_TEXT_DATALOADER_UTIL = TextDataLoaderUtil()
 class TextCorpusGenerator:
     def __init__(self) -> None:
         """
@@ -19,7 +19,7 @@ class TextCorpusGenerator:
     
     def run(self, txt_dataloader=None, processor=None, output_dir="."):
         if txt_dataloader is None:
-            txt_dataloader = TextDataLoaderUtil()
+            txt_dataloader = DEFAULT_TEXT_DATALOADER_UTIL
         if processor is None:
             processor = BaseTextPreprocessor()
         texts = txt_dataloader.get_text() # get text from all splits (`train`,
@@ -38,8 +38,8 @@ class TextCorpusGenerator:
         result = []
         
         splits = [
-            ("dev", processed_dev_file_path),
             ("train", processed_train_file_path),
+            ("dev", processed_dev_file_path),
             ("test", processed_test_file_path)
         ]
         
