@@ -10,7 +10,7 @@ import os
 from util import logger
 from collections import defaultdict
 import Data_loader_nlp
-import datasets
+# import datasets
 
 DATASET_LOC_TRAIN = str(Path(PROJECTPATH)/"resources/train.txt")
 DATASET_LOC_TEST = str(Path(PROJECTPATH)/"resources/test.txt")
