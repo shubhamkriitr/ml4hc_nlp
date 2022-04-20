@@ -1,12 +1,13 @@
 pipeline_class: "ExperimentPipelineForClassification" # choose the pipeline
 experiment_metadata:
-  description: "ResNet based 1-D conv model for classification"
-  tag: "exp_01_task2_cnn_res"
+  description: "Fully connected ANN. Embedding is also fine tuned \
+    (to start trainedword2vec embeddings are used)"
+  tag: "exp_03_task2_ann_unfrozen"
 dataloader_util_class_name: "ProcessedTextDataLoaderUtil" # This utility class
 # is supposed to return loaders upon invoking its `get_data_loaders`
 dataloader_root_dir: "resources/processed_data" # set root dir to load data from
 shuffle: true
-model_class_name: "CnnWithResidualConnection" # The network to use
+model_class_name: "FullyConnectedModelUnfrozenEmdeddings" # The network to use
 load_from_checkpoint: false
 checkpoint_path: ""
 embedding_model_path: "resources/saved_models/embedding.model" #to load 
@@ -16,9 +17,9 @@ cost_function_class_name: "CrossEntropyLoss"
 threshold: 0.5 # to be used only if we decide to go for one vs all setting/ else ignored
 trainer_class_name: "NetworkTrainer"
 num_epochs: 300
-batch_size: 8
+batch_size: 50
 optimizer_class_name: "AdamW"
-learning_rate: 0.001
+learning_rate: 0.0001
 scheduler: null
 weight_decay: 0.0000001
 logdir: "runs"

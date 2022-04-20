@@ -1,10 +1,16 @@
 import torch
 from util import BaseFactory
 from model_cnn_res import CnnWithResidualConnection
-
+from model_ann import (
+    FullyConnectedModel, FullyConnectedModelWithDropout,
+    FullyConnectedModelUnfrozenEmdeddings)
 # model mapping
 MODEL_NAME_TO_CLASS_OR_INTIALIZER_MAP = {
-    "CnnWithResidualConnection": CnnWithResidualConnection
+    "CnnWithResidualConnection": CnnWithResidualConnection,
+    "FullyConnectedModel": FullyConnectedModel,
+    "FullyConnectedModelWithDropout": FullyConnectedModelWithDropout,
+    "FullyConnectedModelUnfrozenEmdeddings": \
+        FullyConnectedModelUnfrozenEmdeddings
 }
 
 # For saved models 
