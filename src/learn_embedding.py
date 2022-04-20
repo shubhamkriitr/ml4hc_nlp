@@ -10,7 +10,7 @@ import json
 
 
 DEFAULT_CORPUS_FILE_PATH = str(Path(PROJECTPATH)/"resources/processed_data/text_processed_for_learning_embedding.txt")
-DEFAULT_EPOCHS = 100
+DEFAULT_EPOCHS = 1000
 DEFAULT_OUTPUT_PATH = str(Path(PROJECTPATH)/"resources/saved_models/word2vec.model")
 
 def save_json(path, data):
