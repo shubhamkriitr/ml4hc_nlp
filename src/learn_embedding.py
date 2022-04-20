@@ -2,7 +2,7 @@ from gensim.test.utils import common_texts
 from gensim.models import Word2Vec
 from collections import defaultdict, OrderedDict
 from util import logger
-from util import PROJECTPATH
+from util import PROJECTPATH, get_timestamp_str
 from pathlib import Path
 from argparse import ArgumentParser
 import os
@@ -11,7 +11,7 @@ import json
 
 DEFAULT_CORPUS_FILE_PATH = str(Path(PROJECTPATH)/"resources/processed_data/text_processed_for_learning_embedding.txt")
 DEFAULT_EPOCHS = 1000
-DEFAULT_OUTPUT_PATH = str(Path(PROJECTPATH)/"resources/saved_models/embedding.model")
+DEFAULT_OUTPUT_PATH = ""
 DEFAULT_VECTOR_SIZE = 200
 
 def save_json(path, data):
@@ -82,6 +82,11 @@ if __name__ == "__main__":
     workers = args.workers
     vector_size = args.vector_size
     # set up directories
+    
+    if output_path == "":
+        output_path = str(Path(PROJECTPATH)/\
+            f"resources/saved_models_{get_timestamp_str()}/embedding.model")
+        logger.info(f"Model will be saved in directory: {output_path}")
     
     os.makedirs(os.path.dirname(corpus_path), exist_ok=True)
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
