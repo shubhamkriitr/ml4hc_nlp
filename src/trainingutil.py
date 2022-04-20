@@ -3,19 +3,19 @@ import logging
 from argparse import ArgumentParser
 import torch
 import yaml
-from sklearn.metrics import accuracy_score, f1_score
+from torchmetrics import F1Score
 from torch import nn
 from torch.optim.adam import Adam
 from torch.optim.adamw import AdamW
 from torch.optim.optimizer import Optimizer
 from torch.utils.tensorboard import SummaryWriter
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from data_loader import DataLoaderUtil, ClassWeights
+from datautil import (DataLoaderUtilFactory)
 from model_factory import ModelFactory
-from util import get_timestamp_str
-from metric_auroc_auprc import plot_auroc
-
-logger = logging.getLogger(name=__name__)
+from commonutil import get_timestamp_str, BaseFactory
+import commonutil
+from loggingutil import logger
+from cost_functions import CostFunctionFactory
 
 
 class BaseTrainer(object):
@@ -69,9 +69,9 @@ class BaseTrainer(object):
             try:
                 callback(*args, **kwargs)
             except Exception as exc:
-                logger.error(exc)
+                logger.exception(exc)
 
-class CnnTrainer(BaseTrainer):
+class NetworkTrainer(BaseTrainer):
 
     def training_step(self, batch_data, global_batch_number,
                         current_epoch, current_epoch_batch_number):
@@ -81,8 +81,8 @@ class CnnTrainer(BaseTrainer):
         # reset optimizer
         self.optimizer.zero_grad()
 
-        # unpack batch data
-        x, y_true = batch_data
+        # unpack batch data and shift to resovled device (to cuda if available)
+        x, y_true = (t.to(commonutil.resolve_device()) for t in batch_data)
 
         # compute model prediction
         y_pred = self.model(x)
@@ -135,15 +135,34 @@ class BaseExperimentPipeline(object):
 # dictionary to refer to class by name
 # (to be used in config)
 TRAINER_NAME_TO_CLASS_MAP = {
-    "CnnTrainer": CnnTrainer # it is generic enough to be used by all of the networks we experimented with
+    "NetworkTrainer": NetworkTrainer
 }
 
 # Factory class to get trainer class by name
-class TrainerFactory(object):
-    def get(self, trainer_name):
-        return TRAINER_NAME_TO_CLASS_MAP[trainer_name]
+class TrainerFactory(BaseFactory):
+    def __init__(self, config=None) -> None:
+        super().__init__(config)
+        self.resource_map = TRAINER_NAME_TO_CLASS_MAP
+     
+    def get(self, trainer_name, config=None,
+            args_to_pass=[], kwargs_to_pass={}):
+        return super().get(trainer_name, config,
+                            args_to_pass=[], kwargs_to_pass={})
 
-
+# TODO: may move optimizer part to another file
+OPTIMIZER_NAME_TO_CLASS_OR_INITIALIZER_MAP = {
+    "Adam": Adam,
+    "AdamW": AdamW
+}
+class OptimizerFactory(BaseFactory):
+    def __init__(self, config=None) -> None:
+        super().__init__(config)
+        self.resource_map = OPTIMIZER_NAME_TO_CLASS_OR_INITIALIZER_MAP
+    
+    def get(self, optimizer_name, config=None,
+                args_to_pass=[], kwargs_to_pass={}):
+        return super().get(optimizer_name, config,
+            args_to_pass, kwargs_to_pass)
 
 class ExperimentPipeline(BaseExperimentPipeline):
     def __init__(self, config) -> None:
@@ -154,6 +173,7 @@ class ExperimentPipeline(BaseExperimentPipeline):
         self.prepare_optimizer() # call this after model has been initialized
         self.prepare_scheduler()
         self.prepare_cost_function()
+        self.prepare_metrics()
         self.prepare_summary_writer()
         self.prepare_dataloaders()
         self.prepare_batch_callbacks()
@@ -163,16 +183,18 @@ class ExperimentPipeline(BaseExperimentPipeline):
 
 
     def prepare_dataloaders(self):
-        dataloader_class_name = self.config["dataloader_class_name"]
+        dataloader_util_class_name = self.config["dataloader_util_class_name"]
         train_batch_size = self.config["batch_size"]
 
         train_loader, val_loader, test_loader \
-        = DataLoaderUtil().get_data_loaders(
-        dataloader_class_name,
-        train_batch_size=train_batch_size, 
-        val_batch_size=1,
-        test_batch_size=self.config["test_batch_size"], 
-        train_shuffle=True, val_split=self.config["val_split"])
+        = DataLoaderUtilFactory()\
+            .get(dataloader_util_class_name, config=None)\
+            .get_data_loaders(root_dir=self.config["dataloader_root_dir"],
+                              batch_size=train_batch_size,
+                              shuffle=self.config["shuffle"],
+                              normalize=self.config["normalize"])
+            
+        
 
         self.train_loader = train_loader
         self.val_loader = val_loader
@@ -180,7 +202,7 @@ class ExperimentPipeline(BaseExperimentPipeline):
         return train_loader, val_loader, test_loader
 
     def prepare_trainer(self):
-        trainer_class = TrainerFactory().get(
+        trainer_class = TrainerFactory().get_uninitialized(
             self.config["trainer_class_name"])
         
         trainer = trainer_class(model=self.model,
@@ -200,8 +222,11 @@ class ExperimentPipeline(BaseExperimentPipeline):
 
     def prepare_model(self):
         # TODO: use model config too (or make it work by creating new class)
-        model = ModelFactory().get(self.config["model_class_name"])()
+        model = ModelFactory().get(self.config["model_class_name"])
         self.model = model
+        
+        # use cuda if available (TODO: decide to use config/resolve device)
+        self.model.to(commonutil.resolve_device())
 
         if self.config["load_from_checkpoint"]:
             checkpoint_path = self.config["checkpoint_path"]
@@ -215,15 +240,23 @@ class ExperimentPipeline(BaseExperimentPipeline):
     def prepare_optimizer(self):
         trainable_params, trainable_param_names, frozen_params, \
                 frozen_param_names = self.filter_trainer_parameters()
-        print(f"Frozen Parameters: {frozen_param_names}")
-        print(f"Trainable Parameters: {trainable_param_names} ")
+        logger.info(f"Frozen Parameters: {frozen_param_names}")
+        logger.info(f"Trainable Parameters: {trainable_param_names} ")
         lr = self.config["learning_rate"]
         weight_decay = self.config["weight_decay"]
-        optimizer_class = AdamW # Adam
-        self.optimizer = optimizer_class(
-            lr=lr, weight_decay=weight_decay,
-            params=trainable_params
-            )
+        # TODO: Discuss and Add subfields (2nd level nesting) in the experminet 
+        # config (yaml files) to pass args and kwargs if needed 
+        self.optimizer = OptimizerFactory().get(
+            self.config["optimizer_class_name"],
+            config=None,
+            args_to_pass=[],
+            kwargs_to_pass={
+                "lr": lr,
+                "weight_decay": weight_decay,
+                "params": trainable_params
+            }
+        )
+        logger.info(f"Using optimizer: {self.optimizer}")
     
     def prepare_scheduler(self):
         if "scheduler" not in self.config:
@@ -235,6 +268,7 @@ class ExperimentPipeline(BaseExperimentPipeline):
             self.scheduler = ReduceLROnPlateau(self.optimizer, 'min')
         else:
             raise NotImplementedError()
+        logger.info(f"Using scheduler: {self.scheduler}")
         
     
     def filter_trainer_parameters(self):
@@ -270,31 +304,23 @@ class ExperimentPipeline(BaseExperimentPipeline):
 
     def prepare_cost_function(self):
         class_weights = self.prepare_class_weights_for_cost_function()
+        kwargs_to_pass = {}
         if class_weights is not None:
-            print("Using class weights: ", class_weights)
-        if self.config["cost_function_class_name"] == "MSELoss":
-            print("Using: MSELoss")
-            self.cost_function = nn.MSELoss()
-        elif self.config["cost_function_class_name"] == "CrossEntropyLoss":
-            print("Using: CrossEntropyLoss")
-            self.cost_function = nn.CrossEntropyLoss(weight=class_weights)
-        elif self.config["cost_function_class_name"] == "BCELoss":
-            print("Using: BCELoss")
-            self.cost_function = nn.BCELoss(weight=class_weights    )
-        else:
-            raise NotImplementedError()
-    
-    def prepare_class_weights_for_cost_function(self):
-        if "do_class_weighting" in self.config and \
-                self.config["do_class_weighting"]:
-            # Based on the data loader being used and the weighting scheme,
-            #  fetch the class weights
-            return ClassWeights().get(
-                self.config["dataloader_class_name"],
-                self.config["class_weighting_scheme"])
+            kwargs_to_pass["weight"] = class_weights
         
-        # None is the default value for most of the cost classes
-
+        self.cost_function = CostFunctionFactory().get(
+            self.config["cost_function_class_name"],
+            config=None,
+            args_to_pass=[],
+            kwargs_to_pass=kwargs_to_pass
+        )
+    
+    def prepare_metrics(self):
+        self.metrics = {}
+        self.metrics["F1"] = F1Score(threshold=self.config["threshold"])
+        
+    def prepare_class_weights_for_cost_function(self):
+        # TODO: Add if needed
         return None
         
 
@@ -311,11 +337,12 @@ class ExperimentPipeline(BaseExperimentPipeline):
                     current_epoch, current_epoch_batch_number, **kwargs):
         
         if global_batch_number % self.config["batch_log_frequency"] == 0:
-            print(
+            logger.info(
             f"[({global_batch_number}){current_epoch}-{current_epoch_batch_number}]"
             f" Loss: {kwargs['loss']}")
         if global_batch_number % self.config["tensorboard_log_frequency"] == 0:
-            self.summary_writer.add_scalar("train/loss", kwargs['loss'], global_batch_number)
+            self.summary_writer.add_scalar("train/loss", kwargs['loss'],
+                                           global_batch_number)
     
     def epoch_callback(self, model: nn.Module, batch_data, global_batch_number,
                     current_epoch, current_epoch_batch_number, **kwargs):
@@ -332,56 +359,11 @@ class ExperimentPipeline(BaseExperimentPipeline):
             with open(file_path, 'w') as f:
                 yaml.dump(self.config, f)
         except Exception as exc:
-            print(exc) # TODO: replace all prints with logger         
-
-
-class ExperimentPipelineForAutoEncoder(ExperimentPipeline):
-    def __init__(self, config) -> None:
-        super().__init__(config)
-        self.best_loss = 100000000000
-
-    def epoch_callback(self, model: nn.Module, batch_data, global_batch_number,
-     current_epoch, current_epoch_batch_number, **kwargs):
-        super().epoch_callback(model, batch_data, global_batch_number, 
-        current_epoch, current_epoch_batch_number, **kwargs)
-        if current_epoch == 1:
-            with torch.no_grad():
-                self.summary_writer.add_graph(self.model, batch_data[0])
-        
-
-        # N.B. it is validation loss but it uses test dataloader
-        val_loss = self.compute_and_log_evaluation_metrics(
-            model, current_epoch, "val"
-        )
-        metric_name = "Validation loss"
-        metric_value = val_loss
-
-        print(f"{metric_name}: {metric_value}")
-
-        if metric_value < self.best_loss:
-            print(f"Saving model: {metric_name} changed from {self.best_loss}"
-                  f" to {metric_value}")
-            self.best_loss = metric_value
-            file_path = os.path.join(self.current_experiment_directory,
-            "best_model.ckpt")
-            torch.save(model.state_dict(), file_path)
-    
-    def compute_and_log_evaluation_metrics(self, model, current_epoch,
-        eval_type):
-        if eval_type == "val" or eval_type == "test":
-            x = self.test_loader.dataset.x
-            y_true = self.test_loader.dataset.y
-        
-        y_pred = model(x)
-        loss = self.cost_function(input=y_pred, target=y_true)
-
-        self.summary_writer.add_scalar(f"{eval_type}/loss", loss, current_epoch)
-
-        return loss
+            logger.exception(exc)       
 
 
 
-class ExperimentPipelineForClassifier(ExperimentPipeline):
+class ExperimentPipelineForSegmentation(ExperimentPipeline):
     def __init__(self, config) -> None:
         super().__init__(config)
         self.best_metric = None
@@ -392,104 +374,121 @@ class ExperimentPipelineForClassifier(ExperimentPipeline):
             # save the config
             self.save_config()
             with torch.no_grad():
-                self.summary_writer.add_graph(self.model, batch_data[0])
+                self.summary_writer.add_graph(
+                    self.model, batch_data[0].to(commonutil.resolve_device()))
     
         model.eval()
         # 
 
-        with torch.no_grad():
-            val_f1, _, _, _ = self.compute_and_log_evaluation_metrics(
-                model, current_epoch, "val")
-            test_f1, _, _, y_test_pred_prob = self.compute_and_log_evaluation_metrics(
-                model, current_epoch, "test")
-        
-        metric_to_use_for_model_selection = val_f1 # TODO: can be pulled in config
+        val_f1, _ = self.compute_and_log_evaluation_metrics(
+            model, current_epoch, "val")
+    
+        # TODO: metric can also be pulled in config
+        metric_to_use_for_model_selection = val_f1 
         metric_name = "Validation F1-Score"
+        
         if self.best_metric is None or \
              (self.best_metric < metric_to_use_for_model_selection):
-            print(f"Saving model: {metric_name} changed from {self.best_metric}"
-                  f" to {metric_to_use_for_model_selection}")
+            logger.info(f"Saving model: {metric_name} changed from "
+                  f"{self.best_metric} to {metric_to_use_for_model_selection}")
             self.best_metric = metric_to_use_for_model_selection
             file_path = os.path.join(self.current_experiment_directory,
-            "best_model.ckpt")
+            f"best_model_{self.config['model_name_tag']}.ckpt")
+            torch.save(model.state_dict(), file_path)
+        
+        if (current_epoch % self.config["model_save_frequency"] == 0)\
+            or (current_epoch == self.config["num_epochs"]):
+            file_path = os.path.join(self.current_experiment_directory,
+            f"model_{self.config['model_name_tag']}_"\
+                +f"{str(current_epoch).zfill(4)}.ckpt")
             torch.save(model.state_dict(), file_path)
 
-            self.generate_roc_curves(self.test_loader.dataset.y,
-                 y_test_pred_prob)
         if hasattr(self, "scheduler"):
             self.scheduler.step(metric_to_use_for_model_selection)
             next_lr = [group['lr'] for group in self.optimizer.param_groups][0]
             self.summary_writer.add_scalar("lr", next_lr,
              current_epoch)
+        
+        # don't forget to dump log so far
+        self.summary_writer.flush()
+        
+        # save images if asked:
+        if  (current_epoch == self.config["num_epochs"]) and \
+                "save_images" in self.config and self.config["save_images"]:
+            self.save_images()
+
         return self.best_metric
 
     def compute_and_log_evaluation_metrics(self, model, current_epoch,
         eval_type):
-        if eval_type == "test":
-            x = self.test_loader.dataset.x
-            y_true = self.test_loader.dataset.y
-        if eval_type == "val":
-            x = self.val_loader.dataset.x
-            y_true = self.val_loader.dataset.y
+        model.eval()
+        eval_loss = 0.
+        n_epochs = self.config["num_epochs"]
+        with torch.no_grad():
+            predictions = []
+            targets = []
+
+            for i, (inp, target) in enumerate(self.val_loader):
+                # move input to cuda if required
+                # >>> if self.config["device"] == "cuda": 
+                # >>>     inp = inp.cuda(non_blocking=True)
+                # >>>     target = target.cuda(non_blocking=True)
+                # TODO: take device info from `resolve_device`
+                inp, target = inp.to(commonutil.resolve_device()), \
+                    target.to(commonutil.resolve_device())
+
+                # forward pass
+                pred = model.forward(inp)
+                loss = self.cost_function(pred, target)
+                eval_loss += loss.item()
+                predictions.append(pred)
+                targets.append(target)
+
+            targets = torch.cat(targets, axis=0)
+            predictions = torch.cat(predictions, axis=0)
+            f1_value = self.metrics["F1"](
+                predictions.to('cpu'), targets.int().to('cpu')[:, 0])
+
+        self.summary_writer.add_scalar(
+            f"{eval_type}/loss", eval_loss / len(self.val_loader.dataset),
+            current_epoch)
+        self.summary_writer.add_scalar(f"{eval_type}/F1", f1_value,
+                                       current_epoch)
+        logger.info(f"Evaluation loss after epoch {current_epoch}/{n_epochs}:"
+                    f" {eval_loss / len(self.val_loader.dataset)}")
+        logger.info(
+            f"F1-Score after epoch {current_epoch}/{n_epochs}: {f1_value}")
         
-        model_output = None
-        try:
-            model_output = model(x)
-        except Exception as exc:
-            print(exc)
-
-        if hasattr(model, "predict"):
-            y_pred_prob = model.predict(x)
-            if model_output is None:
-                model_output = y_pred_prob
-        else:
-            if model_output is None:
-                model_output = model(x)
-            y_pred_prob = model_output
-
-        if "task_type" in self.config and \
-                self.config["task_type"] == "binary_classification":
-            if torch.max(y_pred_prob) > 1.0 or torch.min(y_pred_prob) < 0.:
-                print("warning!: expected probability but received logits!")
-            y_pred = (y_pred_prob>0.5).type(torch.int8)
-        else:
-            y_pred = torch.argmax(y_pred_prob, axis=1)
-        f1 = f1_score(y_true, y_pred, average="macro")
-
-        print("%s f1 score : %s "% (eval_type, f1))
-
-        acc = accuracy_score(y_true, y_pred)
-            
-        loss = self.cost_function(input=model_output, target=y_true)
-        print(f"{eval_type} acc: {acc}")
-        print(f"{eval_type} loss: {loss}")
-        self.summary_writer.add_scalar(f"{eval_type}/loss", loss, current_epoch)
-        self.summary_writer.add_scalar(f"{eval_type}/F1", f1, current_epoch)
-        self.summary_writer.add_scalar(f"{eval_type}/Accuracy", acc, current_epoch)
-        self.summary_writer.flush()
-        return f1, acc, loss, y_pred_prob
+        return f1_value, loss
     
-    def generate_roc_curves(self, y_true, y_pred_prob):
-        if "generate_roc_curves" not in self.config:
-            return
-        if not self.config["generate_roc_curves"]:
-            return
-        save_path_prefix = os.path.join(self.current_experiment_log_directory,
-             get_timestamp_str() + "_metrics_")
-        print("Saving plots at "+save_path_prefix+"*")
-        plot_auroc(y_true, y_pred_prob, save_path_prefix)
+    def save_images(self):
+        output_dir = os.path.join(
+            self.current_experiment_directory, "output_images"
+        )
+        logger.info(f"Saving images at: {output_dir}")
+        train_output_dir, val_output_dir = (os.path.join(output_dir, p)
+                                            for p in ["train", "val"])
+        os.makedirs(output_dir, exist_ok=False)
+        commonutil.write_images(self.model, self.train_loader,
+                                train_output_dir, self.config["threshold"])
+        commonutil.write_images(self.model, self.val_loader,
+                                val_output_dir, self.config["threshold"])
+        
+        
+    
+    
+        
         
 
         
 PIPELINE_NAME_TO_CLASS_MAP = {
     "ExperimentPipeline": ExperimentPipeline,
-    "ExperimentPipelineForAutoEncoder": ExperimentPipelineForAutoEncoder,
-    "ExperimentPipelineForClassifier": ExperimentPipelineForClassifier
+    "ExperimentPipelineForSegmentation": ExperimentPipelineForSegmentation
 }
 
 
 if __name__ == "__main__":
-    DEFAULT_CONFIG_LOCATION = "experiment_configs/experiment_11_a_transfer_cnn_with_residual_block_mit_to_ptb.yaml"
+    DEFAULT_CONFIG_LOCATION = "experiment_configs/exp_00_sample_b.yaml"
     argparser = ArgumentParser()
     argparser.add_argument("--config", type=str,
                             default=DEFAULT_CONFIG_LOCATION)
