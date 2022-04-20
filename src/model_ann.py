@@ -3,9 +3,10 @@ import torch
 
 class FullyConnectedModel(nn.Module):
 
-    def __init__(self, config={"num_classes": 5}, *args, **kwargs) -> None:
+    def __init__(self, config={"num_classes": 5, "vector_size": 200}, *args, **kwargs) -> None:
         super().__init__()
         self.num_classes = config["num_classes"]
+        self.input_vector_size = config["vector_size"]
         self.embeddings = None
         self.word_to_index = None
         self.index_to_word = None
@@ -13,7 +14,7 @@ class FullyConnectedModel(nn.Module):
         self.flatten = nn.Flatten()
 
         self.fc_block = nn.Sequential(
-            nn.Linear(in_features=200, out_features=200),
+            nn.Linear(in_features=self.input_vector_size, out_features=200),
             nn.ReLU(),
             nn.Linear(in_features=200, out_features=128),
             nn.ReLU(),
@@ -73,7 +74,11 @@ class FullyConnectedModel(nn.Module):
     
 
         
-
+class FullyConnectedModel300(FullyConnectedModel):
+    # embedding vector size 300 expected
+    def __init__(self, config={ "num_classes": 5,"vector_size": 300 },
+                 *args, **kwargs) -> None:
+        super().__init__(config, *args, **kwargs)
 
 class FullyConnectedModelWithDropout(FullyConnectedModel):
     def __init__(self, config={ "num_classes": 5 }, *args, **kwargs) -> None:
