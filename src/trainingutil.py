@@ -427,6 +427,10 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
             model, current_epoch, "val")
         test_f1, _ = self.compute_and_log_evaluation_metrics(
             model, current_epoch, "test")
+        if "eval_on_train_data_too" in self.config:
+            if self.config["eval_on_train_data_too"]:
+               _, _ = self.compute_and_log_evaluation_metrics(
+                        model, current_epoch, "train") 
     
         # TODO: metric can also be pulled in config
         metric_to_use_for_model_selection = val_f1 
@@ -469,6 +473,8 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
         _loader = None
         if eval_type == "val":
             _loader = self.val_loader
+        elif eval_type == "train":
+            _loader = self.train_loader
         elif eval_type == "test":
             _loader = self.test_loader
         else:
@@ -500,7 +506,8 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
         logger.info(f"{eval_type} loss after epoch {current_epoch}/{n_epochs}:"
                     f" {eval_loss / len(_loader.dataset)}")
         logger.info(
-            f"F1-Score after epoch {current_epoch}/{n_epochs}: {f1_value}")
+            f"{eval_type} F1-Score after epoch"
+            f" {current_epoch}/{n_epochs}: {f1_value}")
         
         return f1_value, loss
 
