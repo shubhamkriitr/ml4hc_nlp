@@ -216,7 +216,8 @@ class EmbeddingLoader(object):
         
         embeddings = np.concatenate(embeddings, axis=0)
         
-        embeddings = torch.tensor(data=embeddings, dtype=torch.float32)
+        embeddings = torch.tensor(data=embeddings, dtype=torch.float32,
+                                  device=commonutil.resolve_device())
         
         return embeddings
         
