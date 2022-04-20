@@ -431,7 +431,7 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
         if "eval_on_train_data_too" in self.config:
             if self.config["eval_on_train_data_too"]:
                _, _ = self.compute_and_log_evaluation_metrics(
-                        model, current_epoch, "train") 
+                        model, current_epoch, "train/eval") 
     
         # TODO: metric can also be pulled in config
         metric_to_use_for_model_selection = val_f1 
@@ -474,7 +474,7 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
         _loader = None
         if eval_type == "val":
             _loader = self.val_loader
-        elif eval_type == "train":
+        elif eval_type == "train/eval":
             _loader = self.train_loader
         elif eval_type == "test":
             _loader = self.test_loader
