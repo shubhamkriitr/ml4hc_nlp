@@ -11,7 +11,7 @@ import json
 
 DEFAULT_CORPUS_FILE_PATH = str(Path(PROJECTPATH)/"resources/processed_data/text_processed_for_learning_embedding.txt")
 DEFAULT_EPOCHS = 1000
-DEFAULT_OUTPUT_PATH = str(Path(PROJECTPATH)/"resources/saved_models/word2vec.model")
+DEFAULT_OUTPUT_PATH = str(Path(PROJECTPATH)/"resources/saved_models/embedding.model")
 
 def save_json(path, data):
     with open(path, "w") as f:
@@ -44,6 +44,18 @@ class TextCorpusProcessor:
         vocab = OrderedDict(sorted(vocab.items()))
         
         return vocab
+    
+    @staticmethod
+    def create_indexed_vocab(vocab: dict):
+        vocab_word_to_index = {}
+        vocab_index_to_word = {}
+        for idx, word in enumerate(vocab, 1):
+            vocab_word_to_index[word]  = idx
+            vocab_index_to_word[idx] = word
+        
+        return vocab_word_to_index, vocab_index_to_word
+            
+        
         
         
 
@@ -73,6 +85,8 @@ if __name__ == "__main__":
     txt_corpus_processor = TextCorpusProcessor()
     pubmed_text = txt_corpus_processor.read_corpus(corpus_path)
     vocab = txt_corpus_processor.build_vocabulary(pubmed_text)
+    vocab_word_to_index, vocab_index_to_word \
+        = txt_corpus_processor.create_indexed_vocab(vocab)
     vocab_sorted_by_frequency = OrderedDict(sorted(vocab.items(), key=lambda x: x[1]))
     model = Word2Vec(sentences=pubmed_text, vector_size=200,
                     window=5, min_count=1, workers=workers,
@@ -81,6 +95,8 @@ if __name__ == "__main__":
                     )
     model.save(output_path)
     save_json(output_path+".vocab.json", vocab)
+    save_json(output_path+".vocab_word_to_index.json", vocab_word_to_index)
+    save_json(output_path+".vocab_index_to_word.json", vocab_index_to_word)
     save_json(output_path+".vocab_sorted_by_frequency.json",
               vocab_sorted_by_frequency)
     
