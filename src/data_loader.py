@@ -10,7 +10,7 @@ import os
 from util import logger
 import util as commonutil
 from collections import defaultdict
-import Data_loader_nlp
+from constants  import (TOKEN_PAD, TOKEN_PAD_IDX)
 # import datasets
 
 DATASET_LOC_TRAIN = str(Path(PROJECTPATH)/"resources/train.txt")
@@ -180,7 +180,45 @@ class TextDataLoaderUtilMini(TextDataLoaderUtil):
                                  f" {valid_names}")
         return os.path.join(DATASET_DIR_LOC, split_name+"_mini.txt")
 
-
+class EmbeddingLoader(object):
+    def load(self, embedding_model_path):
+        vocab_file_suffix = ".vocab_word_to_index.json"
+        logger.info(f"Loading embedding model from {embedding_model_path}")
+        
+        from gensim.models import Word2Vec
+        model = Word2Vec.load(embedding_model_path)
+        
+        
+        logger.info(f"{embedding_model_path}/{vocab_file_suffix} file must be present")
+        vocab_path = embedding_model_path+vocab_file_suffix
+        word_to_index = commonutil.load_json(vocab_path)
+        
+        self.check_model(model, word_to_index)
+        
+        # add padding to vocab
+        word_to_index[TOKEN_PAD] = TOKEN_PAD_IDX
+        assert TOKEN_PAD_IDX == 0 , "Token padding index must be 0"
+        
+        index_to_word = {idx: word for word, idx in word_to_index.items()}
+    
+    def create_embedding_tensor(self, model, index_to_word):
+        pass
+        
+        
+        
+    def check_model(self, model, word_to_index):
+        missing_words = []
+        for word in word_to_index:
+            try:
+                _ = model.wv[word] # check if this word has corresponding embedding
+            except KeyError:
+                missing_words.append(word)
+        
+        if len(missing_words) > 0:
+            raise AssertionError(f"Embedding model does not have these words:",
+                                 f" \n{missing_words}")
+        
+        
 class ProcessedTextDataLoaderUtil(BaseTextDataLoaderUtil):
     def __init__(self, config=None) -> None:
         super().__init__(config)
@@ -190,8 +228,9 @@ class ProcessedTextDataLoaderUtil(BaseTextDataLoaderUtil):
         self.label_pipeline = None
         self.text_pipeline = None
         self.device = commonutil.resolve_device()
+        self.embedding_model = None
     
-    def get_data_loaders(self, root_dir, batch_size, shuffle):
+    def get_data_loaders(self, root_dir, embedding_model_dir, batch_size, shuffle):
         pass
     
     def create_loader(self, file_path, batch_size, shuffle):
