@@ -6,10 +6,17 @@ from util import PROJECTPATH
 from pathlib import Path
 from argparse import ArgumentParser
 import os
+import json
+
 
 DEFAULT_CORPUS_FILE_PATH = str(Path(PROJECTPATH)/"resources/processed_data/text_processed_for_learning_embedding.txt")
 DEFAULT_EPOCHS = 100
 DEFAULT_OUTPUT_PATH = str(Path(PROJECTPATH)/"resources/saved_models/word2vec.model")
+
+def save_json(path, data):
+    with open(path, "w") as f:
+        json.dump(data, f, indent=4)
+    
 class TextCorpusProcessor:
     def read_corpus(self, file_path=DEFAULT_CORPUS_FILE_PATH):
         data = []
@@ -66,7 +73,14 @@ if __name__ == "__main__":
     txt_corpus_processor = TextCorpusProcessor()
     pubmed_text = txt_corpus_processor.read_corpus(corpus_path)
     vocab = txt_corpus_processor.build_vocabulary(pubmed_text)
-    vocab2 = OrderedDict(sorted(vocab.items(), key=lambda x: x[1]))
+    vocab_sorted_by_frequency = OrderedDict(sorted(vocab.items(), key=lambda x: x[1]))
     model = Word2Vec(sentences=pubmed_text, vector_size=200,
-                    window=5, min_count=1, workers=workers)
+                    window=5, min_count=1, workers=workers,
+                    sg=1, # use skip gram
+                    hs=1 # use heirarchical softmax
+                    )
     model.save(output_path)
+    save_json(output_path+".vocab.json", vocab)
+    save_json(output_path+".vocab_sorted_by_frequency.json",
+              vocab_sorted_by_frequency)
+    
