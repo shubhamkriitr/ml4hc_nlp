@@ -10,11 +10,11 @@ from torch.optim.adamw import AdamW
 from torch.optim.optimizer import Optimizer
 from torch.utils.tensorboard import SummaryWriter
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from datautil import (DataLoaderUtilFactory)
+from data_loader import (DataLoaderUtilFactory)
 from model_factory import ModelFactory
-from commonutil import get_timestamp_str, BaseFactory
-import commonutil
-from loggingutil import logger
+from util import get_timestamp_str, BaseFactory
+import util as commonutil
+from util import logger
 from cost_functions import CostFunctionFactory
 
 
@@ -363,7 +363,7 @@ class ExperimentPipeline(BaseExperimentPipeline):
 
 
 
-class ExperimentPipelineForSegmentation(ExperimentPipeline):
+class ExperimentPipelineForClassification(ExperimentPipeline):
     def __init__(self, config) -> None:
         super().__init__(config)
         self.best_metric = None
@@ -412,10 +412,7 @@ class ExperimentPipelineForSegmentation(ExperimentPipeline):
         # don't forget to dump log so far
         self.summary_writer.flush()
         
-        # save images if asked:
-        if  (current_epoch == self.config["num_epochs"]) and \
-                "save_images" in self.config and self.config["save_images"]:
-            self.save_images()
+        
 
         return self.best_metric
 
@@ -460,19 +457,7 @@ class ExperimentPipelineForSegmentation(ExperimentPipeline):
             f"F1-Score after epoch {current_epoch}/{n_epochs}: {f1_value}")
         
         return f1_value, loss
-    
-    def save_images(self):
-        output_dir = os.path.join(
-            self.current_experiment_directory, "output_images"
-        )
-        logger.info(f"Saving images at: {output_dir}")
-        train_output_dir, val_output_dir = (os.path.join(output_dir, p)
-                                            for p in ["train", "val"])
-        os.makedirs(output_dir, exist_ok=False)
-        commonutil.write_images(self.model, self.train_loader,
-                                train_output_dir, self.config["threshold"])
-        commonutil.write_images(self.model, self.val_loader,
-                                val_output_dir, self.config["threshold"])
+
         
         
     
@@ -483,7 +468,7 @@ class ExperimentPipelineForSegmentation(ExperimentPipeline):
         
 PIPELINE_NAME_TO_CLASS_MAP = {
     "ExperimentPipeline": ExperimentPipeline,
-    "ExperimentPipelineForSegmentation": ExperimentPipelineForSegmentation
+    "ExperimentPipelineForClassification": ExperimentPipelineForClassification
 }
 
 
