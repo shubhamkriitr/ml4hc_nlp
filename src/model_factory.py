@@ -1,94 +1,26 @@
 import torch
-
-from model_cnn import (VanillaCnnPTB, VanillaCnnMITBIH)
-from model_cnn_ae import (
- CnnPretrainEncoderWithTrainableClassifierHead, CnnEncoderDecoder,
- CnnEncoder, CnnPretrainEncoderWithTrainableClassifierHeadPTB,
- CnnPretrainEncoderWithTrainableClassifierHeadPartiallyFrozen
- )
-
-from model_cnn_res import (CnnWithResidualConnection,
- CnnWithResidualConnectionPTB, CnnWithResidualConnectionTransferMitbihToPtb,
- CnnWithResidualConnectionTransferMitbihToPtbFrozen)
-
-from model_rnn_b import (RnnModelPTB, RnnModelMITBIH,
- RnnModelMITBIHLongerSeq, VanillaRNNPTB, VanillaRNNMITBIH)
-from model_cnn_2d import (CnnModel2DMITBIH, CnnModel2DPTB)
-from model_transformer import (TransformerModelMITBIH, TransformerModelPTB)
-from model_lstm import (BidirLstmModelMITBIH, BidirLstmModelPTB)
-
-MODEL_CNN_ENCODER_DECODER = "CnnEncoderDecoder"
-MODEL_CNN_ENCODER = "CnnEncoder"
-MODEL_UNET_PRETRAINED_ENCODER_NN_CLASSIFIER = \
-    "CnnPretrainEncoderWithTrainableClassifierHead"
+from util import BaseFactory
 
 
-MODEL_NAME_TO_CLASS_MAP = {
-    MODEL_UNET_PRETRAINED_ENCODER_NN_CLASSIFIER:\
-         CnnPretrainEncoderWithTrainableClassifierHead,
-    MODEL_CNN_ENCODER_DECODER: CnnEncoderDecoder,
-    MODEL_CNN_ENCODER: CnnEncoder,
-    "CnnWithResidualConnection": CnnWithResidualConnection,
-    "CnnPretrainEncoderWithTrainableClassifierHeadPTB": \
-        CnnPretrainEncoderWithTrainableClassifierHeadPTB,
-    "CnnWithResidualConnectionPTB": \
-        CnnWithResidualConnectionPTB,
-    "RnnModelPTB": RnnModelPTB,
-    "RnnModelMITBIH": RnnModelMITBIH,
-    "CnnModel2DMITBIH": CnnModel2DMITBIH,
-    "CnnModel2DPTB": CnnModel2DPTB,
-    "TransformerModelMITBIH": TransformerModelMITBIH,
-    "TransformerModelPTB": TransformerModelPTB,
-    "CnnPretrainEncoderWithTrainableClassifierHeadPartiallyFrozen":\
-         CnnPretrainEncoderWithTrainableClassifierHeadPartiallyFrozen,
-    "RnnModelMITBIHLongerSeq": RnnModelMITBIHLongerSeq,
-    "BidirLstmModelMITBIH": BidirLstmModelMITBIH,
-    "BidirLstmModelPTB": BidirLstmModelPTB,
-    "VanillaRNNPTB": VanillaRNNPTB,
-    "VanillaRNNMITBIH": VanillaRNNMITBIH,
-    "VanillaCnnPTB": VanillaCnnPTB,
-    "VanillaCnnMITBIH": VanillaCnnMITBIH,
-    "CnnWithResidualConnectionTransferMitbihToPtb":\
-        CnnWithResidualConnectionTransferMitbihToPtb,
-    "CnnWithResidualConnectionTransferMitbihToPtbFrozen":\
-        CnnWithResidualConnectionTransferMitbihToPtbFrozen
-
-
+# model mapping
+MODEL_NAME_TO_CLASS_OR_INTIALIZER_MAP = {
+    
 }
 
-
+# For saved models 
 MODEL_NAME_TO_WEIGHTS_PATH = {
-    MODEL_UNET_PRETRAINED_ENCODER_NN_CLASSIFIER:\
-         None,
-    MODEL_CNN_ENCODER_DECODER: None,
-    MODEL_CNN_ENCODER: None,
-    "CnnWithResidualConnection": "saved_models/2022-03-28_000731__CnnWithResidualConnection/best_model.ckpt",
-    "CnnPretrainEncoderWithTrainableClassifierHeadPTB": \
-        None,
-    "CnnWithResidualConnectionPTB": \
-        "saved_models/2022-03-28_183658__exp_2_a_CnnWithResidualConnectionPTB/best_model.ckpt",
-    "RnnModelPTB": "saved_models/2022-03-28_084444__RnnModelPTB/best_model.ckpt",
-    "RnnModelMITBIH": "saved_models/2022-03-28_174957__RnnModelMITBIH/best_model.ckpt",
-    "CnnModel2DMITBIH": "saved_models/2022-03-28_215502__exp_6_a_CnnModel2DMITBIH/best_model.ckpt",
-    "CnnModel2DPTB": "saved_models/2022-03-28_224128__CnnModel2DPTB/best_model.ckpt",
-    "TransformerModelMITBIH": None,
-    "TransformerModelPTB": None,
-    "CnnPretrainEncoderWithTrainableClassifierHeadPartiallyFrozen": None,
-    "RnnModelMITBIHLongerSeq": None,
-    "BidirLstmModelMITBIH": None,
-    "BidirLstmModelPTB": None,
-    "VanillaRNNMITBIH": "saved_models/2022-03-28_235015__exp_10_b_VanillaRNNMITBIH/best_model.ckpt",
-    "VanillaRNNPTB": "saved_models/2022-03-28_234942__exp_10_a_VanillaRNNPTB/best_model.ckpt",
-    "VanillaCnnPTB": "saved_models/2022-03-29_014835__exp_0_b_VanillaCnnPTB/best_model.ckpt",
-    "VanillaCnnMITBIH": "saved_models/2022-03-29_012323__exp_0_a_VanillaCnnMITBIH/best_model.ckpt",
-    "CnnWithResidualConnectionTransferMitbihToPtb": "saved_models/2022-03-29_202045__exp_11_a_CnnWithResidualConnectionTransferMitbihToPtb/best_model.ckpt",
-    "CnnWithResidualConnectionTransferMitbihToPtbFrozen": "saved_models/2022-03-29_201122__exp_11_c_CnnWithResidualConnectionTransferMitbihToPtbFrozen/best_model.ckpt"
 
 }
-class ModelFactory(object):
-    def get(self, model_name):
-        return MODEL_NAME_TO_CLASS_MAP[model_name]
+class ModelFactory(BaseFactory):
+    def __init__(self, config=None) -> None:
+        super().__init__(config)
+        self.resource_map = MODEL_NAME_TO_CLASS_OR_INTIALIZER_MAP
 
+    def get(self, model_name, config=None,
+            args_to_pass=[], kwargs_to_pass={}):
+        # handle models 
+        return super().get(model_name, config,
+                            args_to_pass, kwargs_to_pass)
 
 class TrainedModelFactory(ModelFactory):
     def __init__(self, config = {}) -> None:
@@ -101,7 +33,8 @@ class TrainedModelFactory(ModelFactory):
 
         self.model_weights_path = self.config["model_name_to_weights_path"]
     
-    def get(self, model_name):
+    def get(self, model_name, config=None):
+        # TODO: config not being used currently
         model_class =  super().get(model_name)
         model_weights_path = self.model_weights_path[model_name]
 
@@ -133,6 +66,7 @@ class TrainedModelFactory(ModelFactory):
         
 
 if __name__ == "__main__":
-    model_factory = TrainedModelFactory()
-    model = model_factory.get("CnnWithResidualConnectionPTB")
+    # >>> model_factory = TrainedModelFactory()
+    model_factory = ModelFactory()
+    model = model_factory.get("PrunedResnet50")
     print(model)
