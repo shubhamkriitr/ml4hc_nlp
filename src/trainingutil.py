@@ -418,7 +418,8 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
             self.save_config()
             with torch.no_grad():
                 self.summary_writer.add_graph(
-                    self.model, batch_data[0])
+                    self.model, (batch_data[0],))# wrap data inside tuple
+                #as expected by writer
     
         model.eval()
         # 
