@@ -58,6 +58,8 @@ class BaseTextPreprocessor(object):
             self.substitute_numbers,
             self.remove_punctuations,
             self.add_bos_eos_tokens,
+            self.lower_case, # lower casing again, as some chars were
+            # in upper case, during lemmatizing
             self.remove_extra_whitespaces
         ]
         
