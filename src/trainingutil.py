@@ -81,8 +81,8 @@ class NetworkTrainer(BaseTrainer):
         # reset optimizer
         self.optimizer.zero_grad()
 
-        # unpack batch data and shift to resovled device (to cuda if available)
-        x, y_true = (t.to(commonutil.resolve_device()) for t in batch_data)
+        # unpack batch data
+        x, y_true = batch_data
 
         # compute model prediction
         y_pred = self.model(x)
@@ -375,7 +375,7 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
             self.save_config()
             with torch.no_grad():
                 self.summary_writer.add_graph(
-                    self.model, batch_data[0].to(commonutil.resolve_device()))
+                    self.model, batch_data[0])
     
         model.eval()
         # 
@@ -426,14 +426,7 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
             targets = []
 
             for i, (inp, target) in enumerate(self.val_loader):
-                # move input to cuda if required
-                # >>> if self.config["device"] == "cuda": 
-                # >>>     inp = inp.cuda(non_blocking=True)
-                # >>>     target = target.cuda(non_blocking=True)
-                # TODO: take device info from `resolve_device`
-                inp, target = inp.to(commonutil.resolve_device()), \
-                    target.to(commonutil.resolve_device())
-
+                # device allocation to be handeled in data loader and model
                 # forward pass
                 pred = model.forward(inp)
                 loss = self.cost_function(pred, target)
