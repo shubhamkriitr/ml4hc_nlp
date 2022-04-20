@@ -86,10 +86,10 @@ if __name__ == "__main__":
     if output_path == "":
         output_path = str(Path(PROJECTPATH)/\
             f"resources/saved_models_{get_timestamp_str()}/embedding.model")
-        logger.info(f"Model will be saved in directory: {output_path}")
-    
+    output_dir = os.path.dirname(output_path)
+    logger.info(f"Model will be saved in directory: {output_dir}")
     os.makedirs(os.path.dirname(corpus_path), exist_ok=True)
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
     
     txt_corpus_processor = TextCorpusProcessor()
     pubmed_text = txt_corpus_processor.read_corpus(corpus_path)
