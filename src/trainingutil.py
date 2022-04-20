@@ -488,8 +488,9 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
 
             targets = torch.cat(targets, axis=0)
             predictions = torch.cat(predictions, axis=0)
+            predictions_hard = torch.argmax(predictions, axis=1)
             f1_value = self.metrics["F1"](
-                predictions.to('cpu'), targets.int().to('cpu')[:, 0])
+                predictions_hard.to('cpu'), targets.int().to('cpu'))
 
         self.summary_writer.add_scalar(
             f"{eval_type}/loss", eval_loss / len(_loader.dataset),
