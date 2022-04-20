@@ -4,10 +4,11 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from pathlib import Path
 from torch.utils.data import DataLoader, Dataset
-from util import PROJECTPATH
+from util import PROJECTPATH, BaseFactory
 import torch
 import os
 from util import logger
+import util as commonutil
 from collections import defaultdict
 import Data_loader_nlp
 # import datasets
@@ -179,11 +180,54 @@ class TextDataLoaderUtilMini(TextDataLoaderUtil):
                                  f" {valid_names}")
         return os.path.join(DATASET_DIR_LOC, split_name+"_mini.txt")
 
+
 class ProcessedTextDataLoaderUtil(BaseTextDataLoaderUtil):
     def __init__(self, config=None) -> None:
         super().__init__(config)
+        self.train_file_name = "processed_train.txt"
+        self.val_file_name = "processed_dev.txt"
+        self.test_file_name = "processed_test.txt"
+        self.label_pipeline = None
+        self.text_pipeline = None
+        self.device = commonutil.resolve_device()
     
+    def get_data_loaders(self, root_dir, batch_size, shuffle):
+        pass
     
+    def create_loader(self, file_path, batch_size, shuffle):
+        pass
+    
+    def load(self, file_path):
+        pass
+        
+    def collate_batch(self, batch):
+        # taken from pytorch tutorial
+        label_list, text_list, offsets = [], [], [0]
+        for (_label, _text) in batch:
+            label_list.append(self.label_pipeline(_label))
+            processed_text = torch.tensor(self.text_pipeline(_text), dtype=torch.int64)
+            text_list.append(processed_text)
+            offsets.append(processed_text.size(0))
+        label_list = torch.tensor(label_list, dtype=torch.int64)
+        offsets = torch.tensor(offsets[:-1]).cumsum(dim=0)
+        text_list = torch.cat(text_list)
+        return label_list.to(self.device), text_list.to(self.device), offsets.to(self.device)
+    
+# Add newly created specialized loader utils here        
+DATALOADER_UTIL_CLASS_MAP = {
+    "ProcessedTextDataLoaderUtil": ProcessedTextDataLoaderUtil
+}
+
+class DataLoaderUtilFactory(BaseFactory):
+    def __init__(self, config=None) -> None:
+        super().__init__(config)
+        self.resource_map = DATALOADER_UTIL_CLASS_MAP
+    
+    def get(self, dataloader_util_class_name, config=None,
+            args_to_pass=[], kwargs_to_pass={}):
+        return super().get(dataloader_util_class_name, config,
+            args_to_pass, kwargs_to_pass)
+
 class TransformerDataUtil:
     def __init__(self, datapath):
         self.datapath = Path(datapath)

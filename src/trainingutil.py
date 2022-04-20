@@ -191,8 +191,7 @@ class ExperimentPipeline(BaseExperimentPipeline):
             .get(dataloader_util_class_name, config=None)\
             .get_data_loaders(root_dir=self.config["dataloader_root_dir"],
                               batch_size=train_batch_size,
-                              shuffle=self.config["shuffle"],
-                              normalize=self.config["normalize"])
+                              shuffle=self.config["shuffle"])
             
         
 
