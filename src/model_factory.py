@@ -1,10 +1,10 @@
 import torch
 from util import BaseFactory
-
+from model_cnn_res import CnnWithResidualConnection
 
 # model mapping
 MODEL_NAME_TO_CLASS_OR_INTIALIZER_MAP = {
-    
+    "CnnWithResidualConnection": CnnWithResidualConnection
 }
 
 # For saved models 

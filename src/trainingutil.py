@@ -16,7 +16,7 @@ from util import get_timestamp_str, BaseFactory
 import util as commonutil
 from util import logger
 from cost_functions import CostFunctionFactory
-
+from sklearn.metrics import accuracy_score, f1_score
 
 class BaseTrainer(object):
 
@@ -377,6 +377,11 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
         super().__init__(config)
         self.best_metric = None
     
+    def prepare_metrics(self):
+        self.metrics = {}
+        self.metrics["F1"] = lambda y_true, y_pred : f1_score(
+            y_true=y_true, y_pred=y_pred, average="macro")
+    
     def _prepare_embeddings(self):
         embeddings, word_to_index, index_to_word \
             = EmbeddingLoader().load(self.config["embedding_model_path"])
@@ -420,6 +425,8 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
 
         val_f1, _ = self.compute_and_log_evaluation_metrics(
             model, current_epoch, "val")
+        test_f1, _ = self.compute_and_log_evaluation_metrics(
+            model, current_epoch, "test")
     
         # TODO: metric can also be pulled in config
         metric_to_use_for_model_selection = val_f1 
@@ -459,11 +466,18 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
         model.eval()
         eval_loss = 0.
         n_epochs = self.config["num_epochs"]
+        _loader = None
+        if eval_type == "val":
+            _loader = self.val_loader
+        elif eval_type == "test":
+            _loader = self.test_loader
+        else:
+            raise AssertionError(f"Invalid evalutaion type: {eval_type}")
         with torch.no_grad():
             predictions = []
             targets = []
 
-            for i, (inp, target) in enumerate(self.val_loader):
+            for i, (inp, target) in enumerate(_loader):
                 # device allocation to be handeled in data loader and model
                 # forward pass
                 pred = model.forward(inp)
@@ -478,12 +492,12 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
                 predictions.to('cpu'), targets.int().to('cpu')[:, 0])
 
         self.summary_writer.add_scalar(
-            f"{eval_type}/loss", eval_loss / len(self.val_loader.dataset),
+            f"{eval_type}/loss", eval_loss / len(_loader.dataset),
             current_epoch)
         self.summary_writer.add_scalar(f"{eval_type}/F1", f1_value,
                                        current_epoch)
-        logger.info(f"Evaluation loss after epoch {current_epoch}/{n_epochs}:"
-                    f" {eval_loss / len(self.val_loader.dataset)}")
+        logger.info(f"{eval_type} loss after epoch {current_epoch}/{n_epochs}:"
+                    f" {eval_loss / len(_loader.dataset)}")
         logger.info(
             f"F1-Score after epoch {current_epoch}/{n_epochs}: {f1_value}")
         
@@ -504,7 +518,10 @@ PIPELINE_NAME_TO_CLASS_MAP = {
 
 
 if __name__ == "__main__":
-    DEFAULT_CONFIG_LOCATION = "experiment_configs/exp_00_sample_b.yaml"
+    from util import PROJECTPATH
+    from pathlib import Path
+    DEFAULT_CONFIG_LOCATION \
+        = str(Path(PROJECTPATH)/"src/experiment_configs/exp_01_task2_cnn_res.yaml")
     argparser = ArgumentParser()
     argparser.add_argument("--config", type=str,
                             default=DEFAULT_CONFIG_LOCATION)

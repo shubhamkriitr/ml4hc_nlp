@@ -299,7 +299,7 @@ class ProcessedTextDataLoaderUtil(BaseTextDataLoaderUtil):
     
     def create_label_pipeline(self, label_to_index):
         
-        def _label_pipeline(self, label):
+        def _label_pipeline(label):
             return label_to_index[label]
 
         return _label_pipeline
@@ -316,7 +316,9 @@ class ProcessedTextDataLoaderUtil(BaseTextDataLoaderUtil):
         label_list = torch.tensor(label_list, dtype=torch.int64)
         offsets = torch.tensor(offsets[:-1]).cumsum(dim=0)
         text_list = torch.cat(text_list)
-        return label_list.to(self.device), text_list.to(self.device), offsets.to(self.device)
+        x = (text_list.to(self.device), offsets.to(self.device))
+        y = label_list.to(self.device)
+        return x, y
     
 # Add newly created specialized loader utils here        
 DATALOADER_UTIL_CLASS_MAP = {
