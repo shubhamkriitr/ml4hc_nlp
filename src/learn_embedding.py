@@ -12,6 +12,7 @@ import json
 DEFAULT_CORPUS_FILE_PATH = str(Path(PROJECTPATH)/"resources/processed_data/text_processed_for_learning_embedding.txt")
 DEFAULT_EPOCHS = 1000
 DEFAULT_OUTPUT_PATH = str(Path(PROJECTPATH)/"resources/saved_models/embedding.model")
+DEFAULT_VECTOR_SIZE = 200
 
 def save_json(path, data):
     with open(path, "w") as f:
@@ -68,6 +69,8 @@ if __name__ == "__main__":
                     default=DEFAULT_CORPUS_FILE_PATH)
     ap.add_argument("--output-path", "-o", type=str, default=DEFAULT_OUTPUT_PATH)
     ap.add_argument("--epochs", "-e", type=int, default=DEFAULT_EPOCHS)
+    ap.add_argument("--vector-size",
+                    "-d", type=int, default=DEFAULT_VECTOR_SIZE)
     
     args = ap.parse_args()
     
@@ -77,6 +80,7 @@ if __name__ == "__main__":
     epochs = args.epochs
     output_path = args.output_path
     workers = args.workers
+    vector_size = args.vector_size
     # set up directories
     
     os.makedirs(os.path.dirname(corpus_path), exist_ok=True)
@@ -88,7 +92,7 @@ if __name__ == "__main__":
     vocab_word_to_index, vocab_index_to_word \
         = txt_corpus_processor.create_indexed_vocab(vocab)
     vocab_sorted_by_frequency = OrderedDict(sorted(vocab.items(), key=lambda x: x[1]))
-    model = Word2Vec(sentences=pubmed_text, vector_size=200,
+    model = Word2Vec(sentences=pubmed_text, vector_size=vector_size,
                     window=5, min_count=1, workers=workers,
                     sg=1, # use skip gram
                     hs=1 # use heirarchical softmax
