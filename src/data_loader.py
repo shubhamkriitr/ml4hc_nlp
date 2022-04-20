@@ -180,6 +180,7 @@ class TextDataLoaderUtilMini(TextDataLoaderUtil):
                                  f" {valid_names}")
         return os.path.join(DATASET_DIR_LOC, split_name+"_mini.txt")
 
+
 class EmbeddingLoader(object):
     def load(self, embedding_model_path):
         vocab_file_suffix = ".vocab_word_to_index.json"
@@ -189,7 +190,7 @@ class EmbeddingLoader(object):
         model = Word2Vec.load(embedding_model_path)
         
         
-        logger.info(f"{embedding_model_path}/{vocab_file_suffix} file must be present")
+        logger.info(f"{embedding_model_path}{vocab_file_suffix} file must be present")
         vocab_path = embedding_model_path+vocab_file_suffix
         word_to_index = commonutil.load_json(vocab_path)
         
@@ -200,13 +201,31 @@ class EmbeddingLoader(object):
         assert TOKEN_PAD_IDX == 0 , "Token padding index must be 0"
         
         index_to_word = {idx: word for word, idx in word_to_index.items()}
+        embeddings = self.create_embedding_tensor(model, index_to_word)
+        
+        return embeddings, word_to_index, index_to_word
     
     def create_embedding_tensor(self, model, index_to_word):
-        pass
+        logger.info(f"Total words in vocabulary (including padding) = {len(index_to_word)}")
+        num_dims = model.wv[index_to_word[1]].shape[0]
+        pad_embedding = np.zeros(shape=(1, num_dims))
         
+        embeddings = [pad_embedding]
+        # at 0th index - padding was there
         
+        for idx in range(1, len(index_to_word)):
+            v = model.wv[index_to_word[idx]]
+            v = np.expand_dims(v, 0)
+            embeddings.append(v)
+        
+        embeddings = np.concatenate(embeddings, axis=0)
+        
+        embeddings = torch.tensor(data=embeddings, dtype=torch.float32)
+        
+        return embeddings
         
     def check_model(self, model, word_to_index):
+        logger.debug("Checking model for missing words")
         missing_words = []
         for word in word_to_index:
             try:
@@ -217,7 +236,7 @@ class EmbeddingLoader(object):
         if len(missing_words) > 0:
             raise AssertionError(f"Embedding model does not have these words:",
                                  f" \n{missing_words}")
-        
+        logger.debug("All checks passed.")    
         
 class ProcessedTextDataLoaderUtil(BaseTextDataLoaderUtil):
     def __init__(self, config=None) -> None:
