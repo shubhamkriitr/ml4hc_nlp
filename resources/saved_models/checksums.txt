@@ -1,0 +1,3 @@
+75b7203867433f8affeb09bb3d14ba606ee770c885a318733171c3b56770902f  word2vec.model
+bcde7e09e82fffd40b6353bb5310b3d03b680dbb4d157747b4e4d86e8aa349b3  word2vec.model.vocab.json
+d9782392239d9cef91796253cfa1d86d1e9a39401cff021b2297ed55d7fe625a  word2vec.model.vocab_sorted_by_frequency.json
