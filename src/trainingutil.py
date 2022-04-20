@@ -10,7 +10,7 @@ from torch.optim.adamw import AdamW
 from torch.optim.optimizer import Optimizer
 from torch.utils.tensorboard import SummaryWriter
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from data_loader import (DataLoaderUtilFactory)
+from data_loader import (DataLoaderUtilFactory, EmbeddingLoader)
 from model_factory import ModelFactory
 from util import get_timestamp_str, BaseFactory
 import util as commonutil
@@ -180,6 +180,13 @@ class ExperimentPipeline(BaseExperimentPipeline):
         self.prepare_epoch_callbacks()
 
         self.trainer = self.prepare_trainer()
+    
+    def _prepare_embeddings(self):
+        # if "embedding_model_path" is in the config.. this method wil be called
+        # during model preparation before loading wieghts from checkpoint
+        raise NotImplementedError()
+        
+        
 
 
     def prepare_dataloaders(self):
@@ -226,6 +233,9 @@ class ExperimentPipeline(BaseExperimentPipeline):
         
         # use cuda if available (TODO: decide to use config/resolve device)
         self.model.to(commonutil.resolve_device())
+        
+        if "embedding_model_path" in self.config:
+            self._prepare_embeddings()
 
         if self.config["load_from_checkpoint"]:
             checkpoint_path = self.config["checkpoint_path"]
@@ -366,6 +376,35 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
     def __init__(self, config) -> None:
         super().__init__(config)
         self.best_metric = None
+    
+    def _prepare_embeddings(self):
+        embeddings, word_to_index, index_to_word \
+            = EmbeddingLoader().load(self.config["embedding_model_path"])
+        
+        self.model.set_embeddings(embeddings)
+        self.model.set_word_to_index(word_to_index)
+        self.model.set_index_to_word(index_to_word)
+    
+    def prepare_dataloaders(self):
+        dataloader_util_class_name = self.config["dataloader_util_class_name"]
+        train_batch_size = self.config["batch_size"]
+
+        train_loader, val_loader, test_loader \
+        = DataLoaderUtilFactory()\
+            .get(dataloader_util_class_name, config=None)\
+            .get_data_loaders(
+                root_dir=self.config["dataloader_root_dir"],
+                word_to_index=self.model.word_to_index, # make sure it was set
+                # during model preparation
+                batch_size=train_batch_size,
+                shuffle=self.config["shuffle"])
+            
+        
+
+        self.train_loader = train_loader
+        self.val_loader = val_loader
+        self.test_loader = test_loader
+        return train_loader, val_loader, test_loader
 
     def epoch_callback(self, model: nn.Module, batch_data, global_batch_number,
      current_epoch, current_epoch_batch_number, **kwargs):

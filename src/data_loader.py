@@ -10,7 +10,8 @@ import os
 from util import logger
 import util as commonutil
 from collections import defaultdict
-from constants  import (TOKEN_PAD, TOKEN_PAD_IDX)
+from constants  import (TOKEN_PAD, TOKEN_PAD_IDX, PUBMED_ID_TO_LABEL_MAP,
+                        PUBMED_LABEL_TO_ID_MAP)
 # import datasets
 
 DATASET_LOC_TRAIN = str(Path(PROJECTPATH)/"resources/train.txt")
@@ -19,11 +20,6 @@ DATASET_LOC_VAL = str(Path(PROJECTPATH)/"resources/dev.txt")
 DATASET_DIR_LOC = str(Path(PROJECTPATH)/"resources/")
 PROCESSED_DATASET_DIR_LOC = str(Path(PROJECTPATH)/"resources/processed_data")
 
-PUBMED_ID_TO_LABEL_MAP = {0: 'BACKGROUND', 1: 'CONCLUSIONS',
-                          2: 'METHODS', 3: 'OBJECTIVE',
-                          4: 'RESULTS'}
-PUBMED_LABEL_TO_ID_MAP = {label: id_ for id_, label
-                          in PUBMED_ID_TO_LABEL_MAP.items()}
 
 class BaseTextDataLoaderUtil(object):
     def __init__(self, config=None) -> None:
@@ -249,14 +245,65 @@ class ProcessedTextDataLoaderUtil(BaseTextDataLoaderUtil):
         self.device = commonutil.resolve_device()
         self.embedding_model = None
     
-    def get_data_loaders(self, root_dir, embedding_model_dir, batch_size, shuffle):
-        pass
+    def get_data_loaders(self, root_dir, word_to_index, batch_size, shuffle):
+        assert self.text_pipeline is None
+        assert self.label_pipeline is None
+        
+        self.text_pipeline = self.create_text_pipeline(word_to_index)
+        # Use PUBMED_LABEL_TO_ID_MAP all throughout
+        self.label_pipeline = self.create_label_pipeline(PUBMED_LABEL_TO_ID_MAP)
+        
+        train_loader = self.create_loader(
+            os.path.join(root_dir, self.train_file_name),
+            batch_size, shuffle
+        )
+        val_loader = self.create_loader(
+            os.path.join(root_dir, self.val_file_name),
+            batch_size, shuffle
+        )
+        test_loader = self.create_loader(
+            os.path.join(root_dir, self.test_file_name),
+            batch_size, shuffle
+        )
+        
+        return train_loader, val_loader, test_loader
     
     def create_loader(self, file_path, batch_size, shuffle):
-        pass
+        data = self.load(file_path)
+        _loader = DataLoader(data, batch_size=batch_size, shuffle=shuffle,
+                   collate_fn=self.collate_batch)
+        return _loader
+        
     
     def load(self, file_path):
-        pass
+        data = []
+        lines = None
+        with open(file_path, "r") as f:
+            lines = f.readlines()
+        
+        for l in lines:
+            label, text = l.split("\t")
+            label = label.strip().upper()
+            text = text.strip()
+            data.append((label, text))
+        
+        return data
+    def create_text_pipeline(self, word_to_index):
+        # it should tokenize and return list of indices
+        def _text_pipeline(text):
+            text = text.split()
+            word_idx = [word_to_index[word] for word in text]
+            return word_idx
+        
+        return _text_pipeline
+    
+    def create_label_pipeline(self, label_to_index):
+        
+        def _label_pipeline(self, label):
+            return label_to_index[label]
+
+        return _label_pipeline
+        
         
     def collate_batch(self, batch):
         # taken from pytorch tutorial

@@ -6,6 +6,7 @@ from pathlib import Path
 from datetime import datetime
 import numpy as np
 # Generic utility code
+import json
 
 PROJECTPATH = Path(__file__).parent.parent
 
@@ -50,6 +51,11 @@ def to_cuda_if_available(pytorch_object):
     except RuntimeError:
         return pytorch_object
 
+def load_json(file_path):
+    data = None
+    with open(file_path, "r") as f:
+        data = json.load(f)
+    return data
 
 class BaseFactory(object):
     def __init__(self, config=None) -> None:

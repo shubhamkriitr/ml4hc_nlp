@@ -4,7 +4,10 @@ from torch.optim.adam import Adam
 from sklearn.metrics import accuracy_score, f1_score
 from util import logger
 
-
+# # TODO
+# >>> self.model.set_embeddings(embeddings)
+# >>> self.model.set_word_to_index(word_to_index)
+# >>> self.model.set_index_to_word(index_to_word)
 class CnnWithResidualConnection(nn.Module):
 
     def __init__(self, config={"num_classes": 5}, *args, **kwargs) -> None:

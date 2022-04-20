@@ -4,11 +4,8 @@ import re
 import spacy
 import string
 import tqdm
+from constants import(SPACY_MODEL, TOK_NUM, TOKEN_BOS, TOKEN_EOS)
 
-SPACY_MODEL = "en_core_web_lg"
-TOK_NUM = "spcltokennum"
-TOKEN_BOS = "<bos>"
-TOKEN_EOS = "<eos>"
 SPECIAL_TOKENS = [
     
 ]
