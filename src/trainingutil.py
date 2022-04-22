@@ -446,6 +446,8 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
             file_path = os.path.join(self.current_experiment_directory,
             f"best_model_{self.config['model_name_tag']}.ckpt")
             torch.save(model.state_dict(), file_path)
+            self.compute_and_log_evaluation_metrics(
+            model, current_epoch, "test", save_files=True)
         
         if (current_epoch % self.config["model_save_frequency"] == 0)\
             or (current_epoch == self.config["num_epochs"]):
@@ -468,7 +470,7 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
         return self.best_metric
 
     def compute_and_log_evaluation_metrics(self, model, current_epoch,
-        eval_type, save_files=True):
+        eval_type, save_files=False):
         model.eval()
         eval_loss = 0.
         n_epochs = self.config["num_epochs"]
