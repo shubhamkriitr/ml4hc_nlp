@@ -59,7 +59,8 @@ class TransformerPipeline:
         self.prepare_metrics()
         self.prepare_batch_callbacks()
         self.prepare_epoch_callbacks()
-        self.prepare_trainer()        
+        self.prepare_trainer()
+        self.save_config() 
 
     def prepare_datasets(self):
         logger.info("Loading tokenizer {}".format(self.config["tokenizer"]))
@@ -157,7 +158,8 @@ class TransformerPipeline:
             logging_steps=self.config["log_steps"],
             eval_steps=self.config["eval_steps"],
             save_steps=self.config["save_steps"],
-            save_strategy=self.config["save_strategy"]
+            save_strategy=self.config["save_strategy"],
+            save_total_limit=self.config["save_total_limit"]
         )
 
         self.trainer = Trainer(
