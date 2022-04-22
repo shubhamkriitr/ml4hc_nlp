@@ -501,9 +501,9 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
                 predictions_hard.to('cpu'), targets.int().to('cpu'))
             if save_files:
                 target_path = os.path.join(
-                    self.current_experiment_log_directory, "test_true.npz")
+                    self.current_experiment_directory, "test_true.npz")
                 pred_path = os.path.join(
-                    self.current_experiment_log_directory, "test_pred.npz"
+                    self.current_experiment_directory, "test_pred.npz"
                 )                           
                 np.save(target_path, targets.cpu().detach().numpy())
                 np.save(pred_path, predictions_hard.cpu().detach().numpy())
