@@ -17,6 +17,7 @@ import util as commonutil
 from util import logger
 from cost_functions import CostFunctionFactory
 from sklearn.metrics import accuracy_score, f1_score
+import numpy as np
 
 class BaseTrainer(object):
 
@@ -467,7 +468,7 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
         return self.best_metric
 
     def compute_and_log_evaluation_metrics(self, model, current_epoch,
-        eval_type):
+        eval_type, save_files=True):
         model.eval()
         eval_loss = 0.
         n_epochs = self.config["num_epochs"]
@@ -498,6 +499,16 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
             predictions_hard = torch.argmax(predictions, axis=1)
             f1_value = self.metrics["F1"](
                 predictions_hard.to('cpu'), targets.int().to('cpu'))
+            if save_files:
+                target_path = os.path.join(
+                    self.current_experiment_log_directory, "test_true.npz")
+                pred_path = os.path.join(
+                    self.current_experiment_log_directory, "test_pred.npz"
+                )                           
+                np.save(target_path, targets.cpu().detach().numpy())
+                np.save(pred_path, predictions_hard.cpu().detach().numpy())
+                logger.info(f"Saved test files at:\ni) {target_path}"
+                            f"\nii) {pred_path}")
 
         self.summary_writer.add_scalar(
             f"{eval_type}/loss", eval_loss / len(_loader.dataset),

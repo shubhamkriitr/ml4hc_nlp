@@ -16,7 +16,7 @@ cost_function_class_name: "CrossEntropyLoss"
 threshold: 0.5 # to be used only if we decide to go for one vs all setting/ else ignored
 trainer_class_name: "NetworkTrainer"
 num_epochs: 300
-batch_size: 8
+batch_size: 50
 optimizer_class_name: "AdamW"
 learning_rate: 0.001
 scheduler: null
@@ -24,7 +24,7 @@ weight_decay: 0.0000001
 logdir: "runs"
 batch_log_frequency: 1000 # Print log after after these many batches
 tensorboard_log_frequency: 1 # Log scalars after these many batches
-model_save_frequency: 2 # frequency in epochs
+model_save_frequency: 5 # frequency in epochs
 model_name_tag: "exp_01_task2_cnn_res" # it will be included in the model file name
 do_class_weighting: null
 class_weighting_scheme: null
