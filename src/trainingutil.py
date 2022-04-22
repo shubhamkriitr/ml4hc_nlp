@@ -19,6 +19,15 @@ from cost_functions import CostFunctionFactory
 from sklearn.metrics import accuracy_score, f1_score
 import numpy as np
 
+
+SEED_VALUE = 2022
+np.random.seed(SEED_VALUE)
+torch.manual_seed(SEED_VALUE)
+torch.cuda.manual_seed(SEED_VALUE)
+torch.backends.cudnn.deterministic = True
+
+
+
 class BaseTrainer(object):
 
     def __init__(self, model: nn.Module, dataloader, cost_function,
