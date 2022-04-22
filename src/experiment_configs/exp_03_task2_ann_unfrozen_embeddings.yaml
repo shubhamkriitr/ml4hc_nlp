@@ -19,7 +19,7 @@ trainer_class_name: "NetworkTrainer"
 num_epochs: 300
 batch_size: 50
 optimizer_class_name: "AdamW"
-learning_rate: 0.001
+learning_rate: 0.0001
 scheduler: null
 weight_decay: 0.0000001
 logdir: "runs"
