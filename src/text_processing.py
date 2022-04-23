@@ -3,6 +3,26 @@ import spacy
 import string
 import tqdm
 from constants import(SPACY_MODEL, TOK_NUM, TOKEN_BOS, TOKEN_EOS)
+SPACY_DOWNLOAD_CMD = "python -m spacy download en_core_web_lg"
+def download_spacy():
+    try:
+        _ = spacy.load(SPACY_MODEL)
+    except Exception as exc:
+        cmd = SPACY_DOWNLOAD_CMD
+        print(exc)
+        
+        raise AssertionError(f"It seems spacy model is not available."
+              f"Please run this to download: "
+              f"{cmd}")
+        
+try:     
+    download_spacy()
+except AssertionError as exc:
+    print(exc)
+    import os
+    print(f"Running: {SPACY_DOWNLOAD_CMD}")
+    os.system(f"{SPACY_DOWNLOAD_CMD}")
+
 
 SPECIAL_TOKENS = [
     
