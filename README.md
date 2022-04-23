@@ -1,4 +1,85 @@
-# NLP
+# ML for Healthcare Project 2
+
+## Acknowlegment
+We expect everything to work on an isolated python environment created 
+as per the instructions below, but in case you face any issues running
+the code please feel free to contact us by email or on MS-Teams 
+(irodrigu@student.ethz.ch, kumarsh@student.ethz.ch, neumannam@ethz.ch).
+
+We have tested our code in an environment with the following specifications:
+- Machine:
+    - CPU: `11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz`
+        - `x86_64 ` 
+    - RAM: 16 GB
+- OS: `Ubuntu 20.04.4 LTS`
+- Python Version: `3.7.11`
+## Creating isolated execution environment
+- Go to the root directory (after extractig the zip)
+- Execute the following in sequence (enter yes when prompted):
+```
+conda create -n ml4hc_proj2 python=3.7.11
+conda activate ml4hc_proj2
+pip install -r src/requirements.txt 
+```
+- Now the environment should be ready
+- Make sure to check that the environment is activated before running the code
+
+
+> **Please make the datasets available in the `resources` folder (see below)
+```
+(root)
+|
+├── README.md
+├── resources
+│   ├── dev_mini.txt
+│   ├── dev.txt
+│   ├── processed_data
+│   │   ├── checksums.txt
+│   │   ├── processed_dev.txt
+│   │   ├── processed_test.txt
+│   │   ├── processed_train.txt
+│   │   ├── text_original_lower.txt
+│   │   └── text_processed_for_learning_embedding.txt
+│   ├── Project2ML4HNLP.pdf
+│   ├── saved_models
+│   │   ├── checksums.txt
+│   │   ├── chectest.txt
+│   │   ├── embedding.model
+│   │   ├── embedding.model.vocab_index_to_word.json
+│   │   ├── embedding.model.vocab.json
+│   │   ├── embedding.model.vocab_sorted_by_frequency.json
+│   │   └── embedding.model.vocab_word_to_index.json
+│   ├── test_mini.txt
+│   ├── test.txt
+│   ├── train_mini.txt
+│   └── train.txt
+└── src
+    ├── constants.py
+    ├── corpus_generator.py
+    ├── cost_functions.py
+    ├── Data_loader_nlp.py
+    ├── data_loader.py
+    ├── dev_notebook_ml4hc_nlp.ipynb
+    ├── experiment_configs
+    │   ├── exp_02b_task2_ann.yaml
+    │   ├── exp_02_task2_ann.yaml
+    │   ├── exp_03_task2_ann_unfrozen_embeddings.yaml
+    │   └── exp_04_task2_cnn_res.yaml
+    ├── learn_embedding.py
+    ├── main.py
+    ├── model_ann.py
+    ├── model_baseline.py
+    ├── model_cnn_res.py
+    ├── model_factory.py
+    ├── model_transformer.py
+    ├── requirements.txt
+    ├── test_embeddings.py
+    ├── text_processing.py
+    ├── trainingutil.py
+    ├── transformer_pipeline.py
+    ├── util.py
+    └── Word2Vec.ipynb
+
 
 ```
 conda create -n ml4hc_proj2 python=3.7.11
