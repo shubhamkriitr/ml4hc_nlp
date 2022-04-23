@@ -259,7 +259,7 @@ class ExperimentPipeline(BaseExperimentPipeline):
             self.model
         )
         
-        logger.info(f"Number of parameters: {num_params}")
+        logger.info(f"Number of parameters (includes embedding): {num_params}")
         logger.info(f"Number of trainable parameters: {num_trainable_params}")
         
         return self.model
