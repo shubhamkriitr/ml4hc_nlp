@@ -113,7 +113,7 @@ class CnnWithResidualConnection(nn.Module):
         self.flatten = nn.Flatten()
 
         self.fc_block = nn.Sequential(
-            nn.Linear(in_features=80, out_features=64),
+            nn.Linear(in_features=128, out_features=64),
             nn.ReLU(),
             nn.Linear(in_features=64, out_features=self.num_classes),
             nn.ReLU()
@@ -159,18 +159,20 @@ class CnnWithResidualConnection(nn.Module):
         output_ = self.block_2(output_)
         output_ = identity_output_ + output_ # shortcut connection
         output_ = self.downsample_2(output_)
-        identity_output_ = output_
+        # identity_output_ = output_
 
-        output_ = self.block_3(output_)
-        output_ = identity_output_ + output_ # shortcut connection
-        output_ = self.downsample_3(output_)
-        identity_output_ = output_
+        # Average pooling
+        output_ = torch.mean(output_, dim=2) # ouput --> (B, 128)
+        # output_ = self.block_3(output_)
+        # output_ = identity_output_ + output_ # shortcut connection
+        # output_ = self.downsample_3(output_)
+        # identity_output_ = output_
 
-        output_ = self.block_4(output_)
-        output_ = identity_output_ + output_ # shortcut connection
+        # output_ = self.block_4(output_)
+        # output_ = identity_output_ + output_ # shortcut connection
         
-        output_ = self.relu(output_)
-        output_ = self.downsample_4(output_)
+        # output_ = self.relu(output_)
+        # output_ = self.downsample_4(output_)
 
         output_ = self.flatten(output_)
 
