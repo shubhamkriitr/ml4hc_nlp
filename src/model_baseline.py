@@ -53,17 +53,17 @@ class baseline_model():
         return self.pipeline
     def tuning_parameters(self,test_data,test_data_labels):
         parameters= {
-            #"vect__max_df": (0.5,0.75,1),
-            #'vect__max_features': (None, 5000, 10000, 50000),
-            #"vect__ngram_range": ((1, 1), (1, 2),(2,1)),  # unigrams or bigrams
-            # 'tfidf__use_idf': (True, False),
-            #'tfidf__norm': ('l1', 'l2'),
+            "vect__max_df": (0.5,0.75,1),
+            'vect__max_features': (None, 5000, 10000, 50000),
+            "vect__ngram_range": ((1, 1), (1, 2)),  # unigrams or bigrams
+            'tfidf__use_idf': (True, False),
+            'tfidf__norm': ('l1', 'l2'),
             "clf__alpha": (0.00001, 0.000001),
             #'clf__class_prior': [None, 'balanced'],
             #'clf__n_jobs': [-1]
             # "clf__fit_prior": [True, False]
         }
-        grid_search = GridSearchCV(self.pipeline, parameters, n_jobs=-1, scoring='f1_macro',verbose=1,cv=5)
+        grid_search = GridSearchCV(self.pipeline, parameters, n_jobs=-1, scoring='f1_weighted',verbose=1,cv=5)
         print("parameters:")
         print(parameters)
         grid_search.fit(test_data, test_data_labels)
@@ -84,7 +84,7 @@ class baseline_model():
         accuracy=accuracy_score(predicted_data_labels, true_data_labels)
         print(accuracy)
 
-        f1=f1_score(predicted_data_labels, true_data_labels,average='micro')
+        f1=f1_score(predicted_data_labels, true_data_labels,average='weighted')
         print(f1)
 
         conf_matrix = confusion_matrix(true_data_labels, predicted_data_labels)
@@ -116,12 +116,13 @@ if __name__ == "__main__":
     Validation_data = Data_preprocessor.removing_stop_word(Validation_data_raw)
     Validation_data = Data_preprocessor.remove_punctuation(Validation_data)
     # finding the best hyperparameters
-    '''
+    
     # creating and tunning the model
+    '''
     Model_baseline = baseline_model(vect_max_df=1,vect_max_features=None,vect_ngram_range=(1,1),tfidf_norm="l2",tfidf_use_idf = True,clf_alpha=1)
     best_model,best_params = Model_baseline.tuning_parameters(Training_data,Training_labels)
-    #validation_predictions=Model_baseline.predict(Validation_data)
-    #accuracy,f1,conf_matrix = Model_baseline.metrics_score(Validation_labels,validation_predictions)
+    validation_predictions=Model_baseline.predict(Validation_data)
+    accuracy,f1,conf_matrix = Model_baseline.metrics_score(Validation_labels,validation_predictions)
     '''
     # LIST OF THE BEST HYPERPARAMETERS
     # tfidf_norm = l2
@@ -129,9 +130,9 @@ if __name__ == "__main__":
     # vect_max_df = 0.5
     # vect_max_features= 50000
     #vect_ngram_range= (1,2)
-    # clf_alpha = 1e-05   or 0.1
+    # clf_alpha = 1e-05  
     # clf_class_prior = None
-    # accuracy 0.7698 
+    # accuracy 0.7941 
 
     # training the model 
     Best_pipeline= baseline_model(vect_max_df=0.5,vect_max_features= 50000,vect_ngram_range=(1,2),tfidf_norm="l2",tfidf_use_idf = False,clf_alpha=0.00001)
@@ -163,32 +164,4 @@ text_mnb_stemmed = Pipeline([('vect', stemmed_count_vect),('tfidf', TfidfTransfo
 text_mnb_stemmed = text_mnb_stemmed.fit(twenty_train.data, twenty_train.target)
 predicted_mnb_stemmed = text_mnb_stemmed.predict(twenty_test.data)
 np.mean(predicted_mnb_stemmed == twenty_test.target)
-
-
-'''
-'''
-count_vectorizer = CountVectorizer(lowercase=True,stop_words=None)
-training_data_count = count_vectorizer.fit_transform(training_without_stop)
-
-tfidtransformer = TfidfTransformer()
-training_data_tfidf=tfidtransformer.fit_transform(training_data_count)
-classifier = MultinomialNB()
-training_data_fitted= classifier.fit(training_data_tfidf, Training_labels)'''
-
-'''
-tfidf_vec = TfidfVectorizer(preprocessor=lambda x: x, tokenizer=lambda x: x)
-tfIdfVectorizer=TfidfVectorizer(use_idf=True)
-tfIdf = tfIdfVectorizer.fit_transform(dataset)
-df = pd.DataFrame(tfIdf[0].T.todense(), index=tfIdfVectorizer.get_feature_names(), columns=["TF-IDF"])
-tfidf_df = pd.DataFrame(tfidf_vector.toarray(), index=text_titles, columns=tfidf_vectorizer.get_feature_names())
-
-df = df.sort_values('TF-IDF', ascending=False)
-print (df.head(25))
-
-features.append(('tfidf', tfidf_vec))
-vec = FeatureUnion(features)
-classifier = Pipeline([('tfidf', TfidfVectorizer()), ('cls', MultinomialNB())])
-## or [('vect', CountVectorizer()),('tfidf', TfidfTransformer())
-
-classifier.fit(training_data, training_data_target)
 '''
