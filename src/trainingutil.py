@@ -397,7 +397,7 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
     
     def prepare_metrics(self):
         self.metrics = {}
-        self.metrics["F1"] = lambda y_true, y_pred : f1_score(
+        self.metrics["F1"] = lambda y_pred, y_true : f1_score(
             y_true=y_true, y_pred=y_pred, average=F1_AVERAGING_SCHEME)
     
     def _prepare_embeddings(self):
@@ -464,7 +464,7 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
             f"best_model_{self.config['model_name_tag']}.ckpt")
             torch.save(model.state_dict(), file_path)
             self.compute_and_log_evaluation_metrics(
-            model, current_epoch, "test")
+            model, current_epoch, "test", save_files=True)
         
         if (current_epoch % self.config["model_save_frequency"] == 0)\
             or (current_epoch == self.config["num_epochs"]):
@@ -520,13 +520,13 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
                 predictions_hard.to('cpu'), targets.int().to('cpu'))
             if save_files:
                 target_path = os.path.join(
-                    self.current_experiment_directory, "test_true.npz")
+                    self.current_experiment_directory, f"{eval_type}_true.npz")
                 pred_path = os.path.join(
-                    self.current_experiment_directory, "test_pred.npz"
+                    self.current_experiment_directory, f"{eval_type}_pred.npz"
                 )                           
                 np.save(target_path, targets.cpu().detach().numpy())
                 np.save(pred_path, predictions_hard.cpu().detach().numpy())
-                logger.info(f"Saved test files at:\ni) {target_path}"
+                logger.info(f"Saved {eval_type} files at:\ni) {target_path}"
                             f"\nii) {pred_path}")
 
         self.summary_writer.add_scalar(
@@ -568,10 +568,15 @@ class EvaluationPipelineForClassification(ExperimentPipelineForClassification):
     
     def run_experiment(self):
         model = self.model
+        experiment_tag = self.config["experiment_metadata"]["tag"]
+        timestamp = get_timestamp_str()
+        self.current_experiment_directory = os.path.join(
+            self.config["logdir"],timestamp+"EVALUATION_"+experiment_tag)
+        os.makedirs(self.current_experiment_directory, exist_ok=True)
         _ = self.compute_and_log_evaluation_metrics(
-            model, 0, "val")
+            model, 0, "val", save_files=True)
         _ = self.compute_and_log_evaluation_metrics(
-            model, 0, "test")
+            model, 0, "test", save_files=True)
         
     
     
