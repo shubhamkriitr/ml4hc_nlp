@@ -543,6 +543,35 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
         return f1_value, loss
 
         
+
+class EvaluationPipelineForClassification(ExperimentPipelineForClassification):
+    def __init__(self, config) -> None:
+        super().__init__(config)
+        
+    def prepare_experiment(self):
+        return super().prepare_experiment()
+    
+    def prepare_summary_writer(self):
+        # return mock summary writer
+        class _DummyWriter:
+            def add_scalar(*args, **kwargs):
+                return
+            
+            def flush(*args, **kwargs):
+                return
+            
+            def add_graph(*args, **kwargs):
+                return
+        self.summary_writer = _DummyWriter()
+        
+        return self.summary_writer
+    
+    def run_experiment(self):
+        model = self.model
+        _ = self.compute_and_log_evaluation_metrics(
+            model, 0, "val")
+        _ = self.compute_and_log_evaluation_metrics(
+            model, 0, "test")
         
     
     
@@ -552,7 +581,8 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
         
 PIPELINE_NAME_TO_CLASS_MAP = {
     "ExperimentPipeline": ExperimentPipeline,
-    "ExperimentPipelineForClassification": ExperimentPipelineForClassification
+    "ExperimentPipelineForClassification": ExperimentPipelineForClassification,
+    "EvaluationPipelineForClassification": EvaluationPipelineForClassification
 }
 
 
