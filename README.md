@@ -124,18 +124,26 @@ Files with `processed_` prefix , have label and processed text pairs, while othe
 
 ## Training and testing Word2Vec Model
 
-- The file `text_processed_for_learning_embedding.txt` created in the previous 
-step can be used for training an embedding model
+- **Training the embedding model**
 
-- To create the preprocessed files run the folowing command
+  - The file `text_processed_for_learning_embedding.txt` created in the previous step can be used for training an embedding model
 
-
-- **Testing embedding model**
-- ```
-    ANALOGY:
-    Bromfenac is a nonsteroidal anti-inflammatory drug marketed in the US as an ophthalmic solution by ISTA Pharmaceuticals for short-term, local use
-    Nepafenac, sold under the brand name Nevanac among others, is a nonsteroidal anti-inflammatory drug, usually sold as a prescription eye drop 0.1
+  - To create the preprocessed files run the folowing command
     ```
+      python src/learn_embedding.py
+    ```
+    This will train Word2Vec model (with vector size 200, and other default parameters)
+  - If you want to change the input corpus, output path, vector size, epochs _etc._, then pass them as arguments.
+  - Run `python src/learn_embedding.py -h` for argument information.
+
+
+- **Testing the embedding model**
+  - Run:
+    ```
+    python src/test_embeddings.py
+    ```
+  - It will load the embedding model from `resources/saved_models/embedding.model`, and using this model it will print out a list of similar words for a few test words like `ecg`, `doctor` _etc._, and after that it will print out analogy results for some word triplets _e.g._ `woman->girl::man->?`
+
 
 
 
