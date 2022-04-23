@@ -128,7 +128,7 @@ Files with `processed_` prefix , have label and processed text pairs, while othe
 
   - The file `resources/processed_data/text_processed_for_learning_embedding.txt`  created in the previous step is used for training the embedding model (by default)
 
-  - To create the preprocessed files run the folowing command
+  - To create trained embedding model (Word2Vec)
     ```
       python src/learn_embedding.py
     ```
@@ -145,10 +145,39 @@ Files with `processed_` prefix , have label and processed text pairs, while othe
   - It will load the embedding model from `resources/saved_models/embedding.model`, and using this model it will print out a list of similar words for a few test words like `ecg`, `doctor` _etc._, and after that it will print out analogy results for some word triplets _e.g._ `woman->girl::man->?`
 
 
+## Training classifier
+
+- To start training execute:
+  - ```
+    python src/trainingutil.py --config <path-to-run-config-file>
+    ```
+  - _e.g._
+    ```
+    python src/trainingutil.py --config src/experiment_configs/eval_02_task2_ann.yaml
+    ```
+  - The **src/experiment_configs** directory contains many configs, that we have used
+  for running our experiments. You can choose any of those or create your own.
+
+The steps above will do the following:
+- It will start training 
+- create `runs` folder if not already present
+- create a timestamped folder with `tag` value provided in the config as suffix
+_e.g._ : `2022-04-23_154910__exp_02_task2_ann`
+  - this folder will be used to keep track of the model checkpoints, best model etc.
+  - in this folder `logs` subfolder will be created in which tensorboard logs will be saved.
+- the best model will be saved  if the validation F1 (weighted) has increased when
+  compared to the last best F1. Test F1 is also printed in the logs , but validation F1 is
+  used for selecting the best model.
+### These are the training Config File used for different experiments (training)
+|**Config File**| **Experiment description**|
+|--------------------|---------------------|
+|`exp_02_task2_ann.yaml`|Fully conncted neural network (with class weighting used)|
+|`exp_02b_task2_ann.yaml`|Fully connected neural network|
+|`exp_03_task2_ann_unfrozen_embeddings.yaml`|Fully connected neural network (with embedding being also fine tuned)|
+|`exp_04_task2_cnn_res.yaml`|Residual CNN based model|
 
 
-
-## Task 3 (@Ivan #TODO)
+# Task 3 (@Ivan #TODO)
 
 
 
