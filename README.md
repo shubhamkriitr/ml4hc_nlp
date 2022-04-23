@@ -33,7 +33,11 @@ RESULTS	<bos> a post hoc analysis be conduct with the use of datum from the eval
 RESULTS	<bos> liver function test lft be measure at spcltokennum time point from baseline at discharge and up to spcltokennum month follow up <eos>
 ```
 
-
+```
+ANALOGY:
+Bromfenac is a nonsteroidal anti-inflammatory drug marketed in the US as an ophthalmic solution by ISTA Pharmaceuticals for short-term, local use
+Nepafenac, sold under the brand name Nevanac among others, is a nonsteroidal anti-inflammatory drug, usually sold as a prescription eye drop 0.1
+```
 
 
 ```
