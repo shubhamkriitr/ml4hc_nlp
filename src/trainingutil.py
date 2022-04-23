@@ -552,7 +552,7 @@ if __name__ == "__main__":
     from util import PROJECTPATH
     from pathlib import Path
     DEFAULT_CONFIG_LOCATION \
-        = str(Path(PROJECTPATH)/"src/experiment_configs/exp_01_task2_cnn_res.yaml")
+        = str(Path(PROJECTPATH)/"src/experiment_configs/exp_04_task2_cnn_res.yaml")
     argparser = ArgumentParser()
     argparser.add_argument("--config", type=str,
                             default=DEFAULT_CONFIG_LOCATION)

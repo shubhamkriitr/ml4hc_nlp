@@ -8,7 +8,7 @@ import numpy as np
 
 CLASS_FREQ = torch.tensor(data=np.array([21727, 27168, 59353, 13839, 57953]),
                           dtype=torch.float32, requires_grad=False)
-CLASS_FREQ = CLASS_FREQ/np.max(CLASS_FREQ) # scale b/w 0 to 1.0
+CLASS_FREQ = CLASS_FREQ/torch.max(CLASS_FREQ) # scale b/w 0 to 1.0
 WT_INV = 1/CLASS_FREQ
 WT_INV_SQR = 1/(CLASS_FREQ*CLASS_FREQ)
 
