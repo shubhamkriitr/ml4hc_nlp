@@ -176,6 +176,22 @@ _e.g._ : `2022-04-23_154910__exp_02_task2_ann`
 |`exp_03_task2_ann_unfrozen_embeddings.yaml`|Fully connected neural network (with embedding being also fine tuned)|
 |`exp_04_task2_cnn_res.yaml`|Residual CNN based model|
 
+## Evaluation of saved classifier
+
+To evaluate the models the script `src/evalutil.py` and the configs in `src/experiment_configs/eval` can be used.
+
+_e.g._
+
+
+```
+python src/evalutil.py --config src/experiment_configs/eval/eval_02_task2_ann.yaml TODO UPDATE saved model here
+```
+
+This should print the scores on valdiation and test datasets.
+
+- Make sure that the correct checkpoint path is set in the config file (under the field : `checkpoint_path`) 
+
+
 
 # Task 3 (@Ivan #TODO)
 
