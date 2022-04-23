@@ -11,7 +11,7 @@ import json
 
 DEFAULT_CORPUS_FILE_PATH = str(Path(PROJECTPATH)/"resources/processed_data/text_processed_for_learning_embedding.txt")
 DEFAULT_EPOCHS = 1000
-DEFAULT_OUTPUT_PATH = ""
+DEFAULT_OUPUT_FOLDER = ""
 DEFAULT_VECTOR_SIZE = 200
 
 def save_json(path, data):
@@ -67,7 +67,7 @@ if __name__ == "__main__":
                     help="Number of worker processes to use.")
     ap.add_argument("--corpus-path", "-c", type=str, 
                     default=DEFAULT_CORPUS_FILE_PATH)
-    ap.add_argument("--output-path", "-o", type=str, default=DEFAULT_OUTPUT_PATH)
+    ap.add_argument("--output-folder", "-o", type=str, default=DEFAULT_OUPUT_FOLDER)
     ap.add_argument("--epochs", "-e", type=int, default=DEFAULT_EPOCHS)
     ap.add_argument("--vector-size",
                     "-d", type=int, default=DEFAULT_VECTOR_SIZE)
@@ -78,14 +78,16 @@ if __name__ == "__main__":
     
     corpus_path = args.corpus_path
     epochs = args.epochs
-    output_path = args.output_path
+    output_folder = args.output_folder
     workers = args.workers
     vector_size = args.vector_size
     # set up directories
     
-    if output_path == "":
+    if output_folder == "":
         output_path = str(Path(PROJECTPATH)/\
             f"resources/saved_models_{get_timestamp_str()}/embedding.model")
+    else:
+        output_path = os.path.join(output_folder, "embedding.model")
     output_dir = os.path.dirname(output_path)
     logger.info(f"Model will be saved in directory: {output_dir}")
     os.makedirs(os.path.dirname(corpus_path), exist_ok=True)
