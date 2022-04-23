@@ -75,40 +75,6 @@ class CnnWithResidualConnection(nn.Module):
             nn.ReLU()
         )
 
-        self.block_3 = nn.Sequential(
-            nn.Conv1d(in_channels=32*4, out_channels=32*4, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm1d(num_features=32*4),
-            nn.ReLU(),
-            nn.Conv1d(in_channels=32*4, out_channels=32*4, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm1d(num_features=32*4),
-            nn.ReLU()
-        )
-
-        self.downsample_3 = nn.Sequential(
-            nn.ReLU(),
-            nn.MaxPool1d(kernel_size=3, stride=2),
-            nn.Conv1d(in_channels=16*8, out_channels=32*8, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm1d(num_features=32*8),
-            nn.ReLU()
-        )
-
-        self.block_4 = nn.Sequential(
-            nn.Conv1d(in_channels=32*8, out_channels=32*8, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm1d(num_features=32*8),
-            nn.ReLU(),
-            nn.Conv1d(in_channels=32*8, out_channels=32*8, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm1d(num_features=32*8),
-            nn.ReLU()
-        )
-
-        self.downsample_4 = nn.Sequential(
-            nn.ReLU(),
-            nn.MaxPool1d(kernel_size=3, stride=2),
-            nn.Conv1d(in_channels=32*8, out_channels=16, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm1d(num_features=16),
-            nn.ReLU()
-        )
-
         
         self.flatten = nn.Flatten()
 
@@ -159,21 +125,10 @@ class CnnWithResidualConnection(nn.Module):
         output_ = self.block_2(output_)
         output_ = identity_output_ + output_ # shortcut connection
         output_ = self.downsample_2(output_)
-        # identity_output_ = output_
 
         # Average pooling
         output_ = torch.mean(output_, dim=2) # ouput --> (B, 128)
-        # output_ = self.block_3(output_)
-        # output_ = identity_output_ + output_ # shortcut connection
-        # output_ = self.downsample_3(output_)
-        # identity_output_ = output_
-
-        # output_ = self.block_4(output_)
-        # output_ = identity_output_ + output_ # shortcut connection
-        
-        # output_ = self.relu(output_)
-        # output_ = self.downsample_4(output_)
-
+       
         output_ = self.flatten(output_)
 
         output_ = self.fc_block(output_)
