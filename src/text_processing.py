@@ -52,6 +52,7 @@ class BaseTextPreprocessor(object):
             self.get_replacer(r"[\.]{1,}", "."), # replace one or more dots 
             # with just one 
             self.lemmatize,
+            self.remove_stopwords,
             self.substitute_numbers,
             self.remove_punctuations,
             self.add_bos_eos_tokens,
