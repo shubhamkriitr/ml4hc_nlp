@@ -126,7 +126,7 @@ Files with `processed_` prefix , have label and processed text pairs, while othe
 
 - **Training the embedding model**
 
-  - The file `text_processed_for_learning_embedding.txt` created in the previous step can be used for training an embedding model
+  - The file `resources/processed_data/text_processed_for_learning_embedding.txt`  created in the previous step is used for training the embedding model (by default)
 
   - To create the preprocessed files run the folowing command
     ```
