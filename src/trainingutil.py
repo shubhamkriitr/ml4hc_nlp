@@ -591,7 +591,7 @@ PIPELINE_NAME_TO_CLASS_MAP = {
 }
 
 
-if __name__ == "__main__":
+def main():
     from util import PROJECTPATH
     from pathlib import Path
     DEFAULT_CONFIG_LOCATION \
@@ -611,4 +611,6 @@ if __name__ == "__main__":
     pipeline.prepare_experiment()
     pipeline.run_experiment()
 
+if __name__ == "__main__":
+    main()
 
