@@ -19,7 +19,7 @@ from cost_functions import CostFunctionFactory
 from sklearn.metrics import accuracy_score, f1_score
 import numpy as np
 
-
+F1_AVERAGING_SCHEME = "weighted" # e.g. "micro"/ "macro"/ "weighted"
 SEED_VALUE = 100
 np.random.seed(SEED_VALUE)
 torch.manual_seed(SEED_VALUE)
@@ -390,7 +390,7 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
     def prepare_metrics(self):
         self.metrics = {}
         self.metrics["F1"] = lambda y_true, y_pred : f1_score(
-            y_true=y_true, y_pred=y_pred, average="macro")
+            y_true=y_true, y_pred=y_pred, average=F1_AVERAGING_SCHEME)
     
     def _prepare_embeddings(self):
         embeddings, word_to_index, index_to_word \

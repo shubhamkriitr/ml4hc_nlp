@@ -83,7 +83,9 @@ def main():
                     default=DEFAULT_EMBEDDING_MODEL_PATH)
     
     model_path = ap.parse_args().embedding_model
-    
+    print(f"You may pass the desired model path using"
+          f" `--embedding-model` argument")
+    print(f"Loading model from : {model_path}")
     model = Word2Vec.load(model_path)
     
     show_closest_words(model, STRINGS_TO_TEST)
