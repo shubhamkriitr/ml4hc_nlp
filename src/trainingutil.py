@@ -464,7 +464,7 @@ class ExperimentPipelineForClassification(ExperimentPipeline):
             f"best_model_{self.config['model_name_tag']}.ckpt")
             torch.save(model.state_dict(), file_path)
             self.compute_and_log_evaluation_metrics(
-            model, current_epoch, "test", save_files=True)
+            model, current_epoch, "test")
         
         if (current_epoch % self.config["model_save_frequency"] == 0)\
             or (current_epoch == self.config["num_epochs"]):
