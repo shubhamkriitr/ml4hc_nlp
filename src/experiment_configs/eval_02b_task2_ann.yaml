@@ -10,7 +10,7 @@ dataloader_root_dir: "resources/processed_data" # set root dir to load data from
 shuffle: true
 model_class_name: "FullyConnectedModel" # The network to use
 load_from_checkpoint: true
-checkpoint_path: "TODO: Add checkpoint (saved model) path here"
+checkpoint_path: "runs/2022-04-23_165825__exp_03_task2_ann_unfrozen/best_model_exp_03_task2_ann_unfrozen.ckpt"
 embedding_model_path: "resources/saved_models/embedding.model" #to load 
 # word embeddings / vocabulary etc.
 # NOTE: vaocalubalry file name is inferred from the model file name
