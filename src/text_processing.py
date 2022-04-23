@@ -41,8 +41,7 @@ class BaseTextPreprocessor(object):
     
     
     def init_stopwords(self):
-        self.stopwords = self.nlp.Defaults.stop_words.union(
-            nltk_stopwords.words('english'))
+        self.stopwords = self.nlp.Defaults.stop_words
           
     def init_transformations(self):
         self.transforms = [
