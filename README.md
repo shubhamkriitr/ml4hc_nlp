@@ -20,6 +20,10 @@ We have tested our code in an environment with the following specifications:
 conda create -n ml4hc_proj2 python=3.7.11
 conda activate ml4hc_proj2
 pip install -r src/requirements.txt 
+
+
+# Download spacy model used for text processing (see `text_processing.py`)
+python -m spacy download en_core_web_lg
 ```
 - Now the environment should be ready
 - Make sure to check that the environment is activated before running the code
@@ -82,27 +86,32 @@ pip install -r src/requirements.txt
 
 
 ```
+
+
+# Task 1 (@Amira #TODO)
+
+
+# Task 2 (@Shubham #TODO)
+
+
+## Creating processed corpus (Similar to files in: resources/processed_data/)
+
+First make sure that `dev.txt`, `train.txt`, and `test.txt` are available in 
+the `resources` directory, and spacy's `en_core_web_lg` model is downloaded.
+(`src/text_processing.py` will try to download this automatically when running
+ `src/corpus_generator.py`)
+
+  
+To create processed corpus for training the embeddings and learning classification
+model (for task 2), run the following:
 ```
-conda create -n ml4hc_proj2 python=3.7.11
-conda activate ml4hc_proj2
-pip install -r src/requirements.txt 
-python src/trainingutil.py --config src/experiment_configs/exp_02_task2_ann.yaml 
-
+python src/corpus_generator.py -o <output directory path>
 ```
+_e.g._ `python src/corpus_generator.py -o new_corpus`
 
-## Task 1 (@Amira #TODO)
-
-
-## Task 2 (@Shubham #TODO)
-
-- To create the preprocessed files riun the folowing command
-
-```
-python corpus_generator.py -o corpus_output_folder
-```
 This will create following files:
 ```
-corpus_output_folder
+<output directory path>
 |
 ├── processed_dev.txt
 ├── processed_test.txt
@@ -111,21 +120,35 @@ corpus_output_folder
 └── text_processed_for_learning_embedding.txt
 ```
 
-Files with `processed_` prefix , have label and processed text pairs. 
-_e.g._
-```
-BACKGROUND	<bos> this study analyze liver function abnormality in heart failure patient admit with severe acute decompensate heart failure adhf <eos>
-RESULTS	<bos> a post hoc analysis be conduct with the use of datum from the evaluation study of congestive heart failure and pulmonary artery catheterization effectiveness escape <eos>
-RESULTS	<bos> liver function test lft be measure at spcltokennum time point from baseline at discharge and up to spcltokennum month follow up <eos>
-```
+Files with `processed_` prefix , have label and processed text pairs, while others will have just processed texts.
 
-```
-ANALOGY:
-Bromfenac is a nonsteroidal anti-inflammatory drug marketed in the US as an ophthalmic solution by ISTA Pharmaceuticals for short-term, local use
-Nepafenac, sold under the brand name Nevanac among others, is a nonsteroidal anti-inflammatory drug, usually sold as a prescription eye drop 0.1
-```
+## Training and testing Word2Vec Model
+
+- The file `text_processed_for_learning_embedding.txt` created in the previous 
+step can be used for training an embedding model
+
+- To create the preprocessed files run the folowing command
 
 
+- **Testing embedding model**
+- ```
+    ANALOGY:
+    Bromfenac is a nonsteroidal anti-inflammatory drug marketed in the US as an ophthalmic solution by ISTA Pharmaceuticals for short-term, local use
+    Nepafenac, sold under the brand name Nevanac among others, is a nonsteroidal anti-inflammatory drug, usually sold as a prescription eye drop 0.1
+    ```
+
+
+
+
+## Task 3 (@Ivan #TODO)
+
+
+
+
+
+----
+
+# Snippets ( TODO: remove later)
 ```
 defaultdict(<function <lambda> at 0x7fce7b3523b0>, {'OBJECTIVE': 13839, 'METHODS': 59353, 'RESULTS': 57953, 'CONCLUSIONS': 27168, 'BACKGROUND': 21727})
 [cn[PUBMED_ID_TO_LABEL_MAP[i]] for i in PUBMED_ID_TO_LABEL_MAP]
@@ -144,5 +167,6 @@ array([4.60256823e-05, 3.68080094e-05, 1.68483480e-05, 7.22595563e-05,
        1.72553621e-05])
 ```
 
-
-## Task 3 (@Ivan #TODO)
+```
+python src/trainingutil.py --config src/experiment_configs/eval_02b_task2_ann.yaml
+```
