@@ -26,7 +26,7 @@ class BaseTextDataLoaderUtil(object):
         self.data_loaded = False
         if config is None:
             config = {
-                "verbose": True,
+                "verbose": False,
                 "preprocessor_class": None,
                 "label_to_id_map": PUBMED_LABEL_TO_ID_MAP,
                 "id_to_label_map": PUBMED_ID_TO_LABEL_MAP
