@@ -82,13 +82,18 @@ pip install -r src/requirements.txt
 
 
 ```
+```
 conda create -n ml4hc_proj2 python=3.7.11
 conda activate ml4hc_proj2
 pip install -r src/requirements.txt 
 python src/trainingutil.py --config src/experiment_configs/exp_02_task2_ann.yaml 
 
 ```
-## Task 2
+
+## Task 1 (@Amira #TODO)
+
+
+## Task 2 (@Shubham #TODO)
 
 - To create the preprocessed files riun the folowing command
 
@@ -138,3 +143,6 @@ array([21727, 27168, 59353, 13839, 57953])
 array([4.60256823e-05, 3.68080094e-05, 1.68483480e-05, 7.22595563e-05,
        1.72553621e-05])
 ```
+
+
+## Task 3 (@Ivan #TODO)
