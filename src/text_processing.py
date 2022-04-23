@@ -1,5 +1,3 @@
-from nltk.stem.snowball import SnowballStemmer
-from nltk.corpus import stopwords as nltk_stopwords
 import re
 import spacy
 import string
