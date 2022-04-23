@@ -20,7 +20,7 @@ from sklearn.metrics import accuracy_score, f1_score
 import numpy as np
 
 
-SEED_VALUE = 2022
+SEED_VALUE = 100
 np.random.seed(SEED_VALUE)
 torch.manual_seed(SEED_VALUE)
 torch.cuda.manual_seed(SEED_VALUE)

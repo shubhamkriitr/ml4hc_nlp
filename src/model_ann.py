@@ -18,6 +18,8 @@ class FullyConnectedModel(nn.Module):
             nn.ReLU(),
             nn.Linear(in_features=200, out_features=128),
             nn.ReLU(),
+            nn.Linear(in_features=128, out_features=128),
+            nn.ReLU(),
             nn.Linear(in_features=128, out_features=64),
             nn.ReLU(),
             nn.Linear(in_features=64, out_features=32),
@@ -101,7 +103,7 @@ class FullyConnectedModelWithDropout(FullyConnectedModel):
         )
         
 class FullyConnectedModelUnfrozenEmdeddings(FullyConnectedModel):
-    def __init__(self, config={ "num_classes": 5 }, *args, **kwargs) -> None:
+    def __init__(self, config={ "num_classes": 5 , "vector_size": 200}, *args, **kwargs) -> None:
         super().__init__(config, *args, **kwargs)
     
     def set_embeddings(self, embeddings):
