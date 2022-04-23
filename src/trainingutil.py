@@ -254,6 +254,14 @@ class ExperimentPipeline(BaseExperimentPipeline):
             logger.info(str(self.model))
             logger.info(f"Model Loaded")
         
+        num_params = commonutil.count_number_of_params(self.model)
+        num_trainable_params = commonutil.count_number_of_trainable_params(
+            self.model
+        )
+        
+        logger.info(f"Number of parameters: {num_params}")
+        logger.info(f"Number of trainable parameters: {num_trainable_params}")
+        
         return self.model
     
     def prepare_optimizer(self):
