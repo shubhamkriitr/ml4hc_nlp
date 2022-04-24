@@ -33,6 +33,27 @@ SPECIAL_TOKENS = [
     
 ]
 
+# to avoid pickle error during multiproessing - moving these to top
+def get_replacer(regex, new_value):
+    prog = re.compile(regex)
+    def _replace(text: str):
+        text = prog.sub(new_value, text)
+        return text
+    return _replace
+
+PERCENT_REGEX = re.compile(r"%")
+DOTS_REGEX = re.compile(r"[\.]{1,}")
+
+def replace_percent(text):
+    text = PERCENT_REGEX.sub("percent", text)
+    return text
+
+def replace_dots(text):
+    text = DOTS_REGEX.sub(".", text)
+    return text
+
+REPLACE_PERCENT = get_replacer(r"%", "percent")
+REPLACE_DOTS = get_replacer(r"[\.]{1,}", ".")
 class BaseTextPreprocessor(object):
     def __init__(self, config=None) -> None:
         if config is None:
@@ -70,8 +91,8 @@ class BaseTextPreprocessor(object):
         self.transforms = [
             self.lower_case,
             self.tokenize,
-            self.get_replacer(r"%", "percent"),
-            self.get_replacer(r"[\.]{1,}", "."), # replace one or more dots 
+            replace_percent,
+            replace_dots, # replace one or more dots 
             # with just one 
             self.lemmatize,
             self.remove_stopwords,
