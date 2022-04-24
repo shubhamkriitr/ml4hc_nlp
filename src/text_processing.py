@@ -3,9 +3,11 @@ import spacy
 import string
 import tqdm
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+import concurrent
 import os
 from constants import(SPACY_MODEL, TOK_NUM, TOKEN_BOS, TOKEN_EOS)
 from util import logger
+from collections import defaultdict
 SPACY_DOWNLOAD_CMD = "python -m spacy download en_core_web_lg"
 def download_spacy():
     try:
@@ -113,8 +115,29 @@ class BaseTextPreprocessor(object):
                            f" cpu_count = {cpu_count} ")
             num_workers = cpu_count
         split_data = self.split_inputs_for_workers(text_dataset, num_workers)
+        num_workers = len(split_data) # num workers should not exceed 
+        # the number of batches
+        results_dict = defaultdict(lambda : [])
+        logger.info(f"Using {num_workers} workers for processing "
+                    f" {len(text_dataset)} text samples.")
+        with ProcessPoolExecutor(max_workers=num_workers) as executor:
+            future_to_job = {
+                executor.submit(self._process_dataset, data) : job_idx
+                             for job_idx, data in enumerate(split_data) }
+            for future in concurrent.futures.as_completed(future_to_job):
+                job_idx = future_to_job[future]
+                try:
+                    results_dict[job_idx] = future.result()
+                except Exception as exc:
+                    logger.exception(
+                        '%r generated an exception: %s' % (job_idx, exc))
+
+        # combine back the results
+        new_dataset = []
+        for idx in sorted(results_dict.keys()):
+            new_dataset.extend(results_dict[idx])
         
-        return self._process_dataset(text_dataset)
+        return new_dataset
         
     def _process_dataset(self, text_dataset):
         new_dataset = []
