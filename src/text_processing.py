@@ -3,7 +3,9 @@ import spacy
 import string
 import tqdm
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+import os
 from constants import(SPACY_MODEL, TOK_NUM, TOKEN_BOS, TOKEN_EOS)
+from util import logger
 SPACY_DOWNLOAD_CMD = "python -m spacy download en_core_web_lg"
 def download_spacy():
     try:
@@ -96,7 +98,8 @@ class BaseTextPreprocessor(object):
             if remainder > 0:
                 end += 1
                 remainder -= 1
-            
+            if start == end:
+                continue
             split_data.append(text_dataset[start:end])
             start = end
         
@@ -104,6 +107,13 @@ class BaseTextPreprocessor(object):
         
     def process_dataset(self, text_dataset, num_workers=8):
         # apply multiprocessing
+        cpu_count = os.cpu_count()
+        if cpu_count < num_workers:
+            logger.warning(f"num_workers requested = {num_workers} > "
+                           f" cpu_count = {cpu_count} ")
+            num_workers = cpu_count
+        split_data = self.split_inputs_for_workers(text_dataset, num_workers)
+        
         return self._process_dataset(text_dataset)
         
     def _process_dataset(self, text_dataset):
