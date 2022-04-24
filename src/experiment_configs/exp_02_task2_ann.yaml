@@ -15,8 +15,8 @@ embedding_model_path: "resources/saved_models/embedding.model" #to load
 cost_function_class_name: "CrossEntropyLoss"
 threshold: 0.5 # to be used only if we decide to go for one vs all setting/ else ignored
 trainer_class_name: "NetworkTrainer"
-num_epochs: 5
-batch_size: 16
+num_epochs: 10
+batch_size: 64
 optimizer_class_name: "AdamW"
 learning_rate: 0.0005
 scheduler: null
