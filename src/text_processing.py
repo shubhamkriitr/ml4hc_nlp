@@ -2,12 +2,7 @@ import re
 import spacy
 import string
 import tqdm
-from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
-import concurrent
-import os
 from constants import(SPACY_MODEL, TOK_NUM, TOKEN_BOS, TOKEN_EOS)
-from util import logger
-from collections import defaultdict
 SPACY_DOWNLOAD_CMD = "python -m spacy download en_core_web_lg"
 def download_spacy():
     try:
@@ -33,27 +28,6 @@ SPECIAL_TOKENS = [
     
 ]
 
-# to avoid pickle error during multiproessing - moving these to top
-def get_replacer(regex, new_value):
-    prog = re.compile(regex)
-    def _replace(text: str):
-        text = prog.sub(new_value, text)
-        return text
-    return _replace
-
-PERCENT_REGEX = re.compile(r"%")
-DOTS_REGEX = re.compile(r"[\.]{1,}")
-
-def replace_percent(text):
-    text = PERCENT_REGEX.sub("percent", text)
-    return text
-
-def replace_dots(text):
-    text = DOTS_REGEX.sub(".", text)
-    return text
-
-REPLACE_PERCENT = get_replacer(r"%", "percent")
-REPLACE_DOTS = get_replacer(r"[\.]{1,}", ".")
 class BaseTextPreprocessor(object):
     def __init__(self, config=None) -> None:
         if config is None:
@@ -91,8 +65,8 @@ class BaseTextPreprocessor(object):
         self.transforms = [
             self.lower_case,
             self.tokenize,
-            replace_percent,
-            replace_dots, # replace one or more dots 
+            self.get_replacer(r"%", "percent"),
+            self.get_replacer(r"[\.]{1,}", "."), # replace one or more dots 
             # with just one 
             self.lemmatize,
             self.remove_stopwords,
@@ -109,58 +83,8 @@ class BaseTextPreprocessor(object):
         for transform in self.transforms:
             text = transform(text)
         return text 
-    def split_inputs_for_workers(self, text_dataset, num_workers):
-        split_data = []
-        n = len(text_dataset)
-        n_per_core = n // num_workers
-        remainder = n % num_workers
-        
-        start = 0
-        for i in range(num_workers):
-            end = start + n_per_core
-            if remainder > 0:
-                end += 1
-                remainder -= 1
-            if start == end:
-                continue
-            split_data.append(text_dataset[start:end])
-            start = end
-        
-        return split_data
-        
-    def process_dataset(self, text_dataset, num_workers=8):
-        # apply multiprocessing
-        cpu_count = os.cpu_count()
-        if cpu_count < num_workers:
-            logger.warning(f"num_workers requested = {num_workers} > "
-                           f" cpu_count = {cpu_count} ")
-            num_workers = cpu_count
-        split_data = self.split_inputs_for_workers(text_dataset, num_workers)
-        num_workers = len(split_data) # num workers should not exceed 
-        # the number of batches
-        results_dict = defaultdict(lambda : [])
-        logger.info(f"Using {num_workers} workers for processing "
-                    f" {len(text_dataset)} text samples.")
-        with ProcessPoolExecutor(max_workers=num_workers) as executor:
-            future_to_job = {
-                executor.submit(self._process_dataset, data) : job_idx
-                             for job_idx, data in enumerate(split_data) }
-            for future in concurrent.futures.as_completed(future_to_job):
-                job_idx = future_to_job[future]
-                try:
-                    results_dict[job_idx] = future.result()
-                except Exception as exc:
-                    logger.exception(
-                        '%r generated an exception: %s' % (job_idx, exc))
-
-        # combine back the results
-        new_dataset = []
-        for idx in sorted(results_dict.keys()):
-            new_dataset.extend(results_dict[idx])
-        
-        return new_dataset
-        
-    def _process_dataset(self, text_dataset):
+    
+    def process_dataset(self, text_dataset):
         new_dataset = []
         with tqdm.tqdm(total=len(text_dataset)) as progress_bar:
             for text in text_dataset:
