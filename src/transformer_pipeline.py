@@ -2,7 +2,7 @@ from data_loader import TransformerDataUtil, PUBMED_ID_TO_LABEL_MAP
 from datasets import Dataset, DatasetDict, load_metric
 from transformers import ProgressCallback, Trainer, TrainingArguments, AutoTokenizer, AutoModelForSequenceClassification
 from transformers.trainer_callback import TrainerCallback
-import transformers
+from collections import defaultdict
 from util import get_timestamp_str, PROJECTPATH
 from torch.utils.tensorboard import SummaryWriter
 from transformers.data.data_collator import DefaultDataCollator, DataCollatorWithPadding
@@ -96,6 +96,10 @@ class TransformerPipeline:
         if self.config["downsample_valid"]:
             logger.info("Downsampling validation data")
             self.valid_data = self.valid_data.shuffle(seed=0).select(range(self.config["downsample_valid"]))
+        if self.config["downsample_test"]:
+            logger.info("Downsampling test data")
+            self.test_data = self.test_data.shuffle(seed=0).select(range(self.config["downsample_test"]))
+
 
         self.data_collator = DataCollatorWithPadding(
             tokenizer=self.tokenizer,
@@ -181,7 +185,7 @@ class TransformerPipeline:
             predictions = np.argmax(logits, axis=-1)
             res = { }
             res['accuracy'] = accuracy_score(labels, predictions)
-            res['f1'] = f1_score(labels, predictions, average='macro')
+            res['f1'] = f1_score(labels, predictions, average='weighted')
             #for metric, kwargs in metrics:
             #    metric_val = metric.compute(predictions=predictions, references=labels, **kwargs)
             #    res.update(metric_val)
@@ -250,6 +254,9 @@ class TransformerPipeline:
     
         model.eval()
 
+    def evaluate(self):
+        self.trainer.evaluate(self.test_data, metric_key_prefix="test")
+
     def save_config(self):
         try:
             file_path = os.path.join(self.current_experiment_directory,
@@ -270,9 +277,13 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.ERROR)
     logger.setLevel(logging.INFO)
     with open(args.config, 'r', encoding="utf-8") as f:
-        config_data = yaml.load(f, Loader=yaml.FullLoader)
+        config_data = defaultdict(lambda:None, yaml.load(f, Loader=yaml.FullLoader))
     config_data["verbose"] = args.verbose
     logger.info('Config:'+str(config_data))
     experiment = TransformerPipeline(config_data, device=device)
-    experiment.run_experiment()
+    if config_data["train"]:
+        experiment.run_experiment()
+    if config_data["evaluate"]:
+        logger.info("Running evaluation")
+        experiment.evaluate()
     #print(experiment.trainer.log_history)
