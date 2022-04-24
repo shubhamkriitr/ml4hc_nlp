@@ -2,6 +2,7 @@ import re
 import spacy
 import string
 import tqdm
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from constants import(SPACY_MODEL, TOK_NUM, TOKEN_BOS, TOKEN_EOS)
 SPACY_DOWNLOAD_CMD = "python -m spacy download en_core_web_lg"
 def download_spacy():
@@ -83,6 +84,24 @@ class BaseTextPreprocessor(object):
         for transform in self.transforms:
             text = transform(text)
         return text 
+    def split_inputs_for_workers(self, text_dataset, num_workers):
+        split_data = []
+        n = len(text_dataset)
+        n_per_core = n // num_workers
+        remainder = n % num_workers
+        
+        start = 0
+        for i in range(num_workers):
+            end = start + n_per_core
+            if remainder > 0:
+                end += 1
+                remainder -= 1
+            
+            split_data.append(text_dataset[start:end])
+            start = end
+        
+        return split_data
+        
     def process_dataset(self, text_dataset, num_workers=8):
         # apply multiprocessing
         return self._process_dataset(text_dataset)
