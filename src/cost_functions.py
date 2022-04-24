@@ -15,7 +15,8 @@ WT_INV_SQR = 1/(CLASS_FREQ*CLASS_FREQ)
 
 COST_FUNCTION_NAME_TO_CLASS_MAP = {
     "CrossEntropyLoss": CrossEntropyLoss,
-    "WeightedCrossEntropyLoss": lambda : CrossEntropyLoss(weight=WT_INV),
+    "WeightedCrossEntropyLoss": lambda : CrossEntropyLoss(
+        weight=WT_INV.to(resolve_device())),
     "WeightedCrossEntropyLossInvSqr": lambda : CrossEntropyLoss(
         weight=WT_INV_SQR.to(resolve_device()))
 }
