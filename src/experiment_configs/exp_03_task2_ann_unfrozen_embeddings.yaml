@@ -17,7 +17,7 @@ cost_function_class_name: "CrossEntropyLoss"
 threshold: 0.5 # to be used only if we decide to go for one vs all setting/ else ignored
 trainer_class_name: "NetworkTrainer"
 num_epochs: 5
-batch_size: 8
+batch_size: 16
 optimizer_class_name: "AdamW"
 learning_rate: 0.0005
 scheduler: null
