@@ -17,7 +17,7 @@ COST_FUNCTION_NAME_TO_CLASS_MAP = {
     "CrossEntropyLoss": CrossEntropyLoss,
     "WeightedCrossEntropyLoss": lambda : CrossEntropyLoss(weight=WT_INV),
     "WeightedCrossEntropyLossInvSqr": lambda : CrossEntropyLoss(
-        weight=WT_INV_SQR)
+        weight=WT_INV_SQR.to(resolve_device()))
 }
 
 class CostFunctionFactory(BaseFactory):
