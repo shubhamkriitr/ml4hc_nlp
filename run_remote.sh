@@ -1,14 +1,7 @@
-echo "Running this will overwrite resources/processed_data and resources/saved_models"
-read -p "Press 'y' and 'enter' to continue:  " VAR1
-
-VAR2="y"
-if [ "$VAR1" = "$VAR2" ]; then
-    echo "Starting..."
-else
-    echo "Exitting..."
-    exit 0
-fi
-
+# Activate Conda
+eval "$(/cluster/home/kumarsh/miniconda3/bin/conda shell.bash hook)"
+conda activate ml4hc_proj2 
+cd /cluster/scratch/kumarsh/ml4hc_nlp
 python src/corpus_generator.py -o resources/processed_data
 python src/learn_embedding.py -o resources/saved_models
 python src/trainingutil.py --config src/experiment_configs/exp_02_task2_ann.yaml
