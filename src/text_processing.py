@@ -83,8 +83,11 @@ class BaseTextPreprocessor(object):
         for transform in self.transforms:
             text = transform(text)
         return text 
-    
-    def process_dataset(self, text_dataset):
+    def process_dataset(self, text_dataset, num_workers=8):
+        # apply multiprocessing
+        return self._process_dataset(text_dataset)
+        
+    def _process_dataset(self, text_dataset):
         new_dataset = []
         with tqdm.tqdm(total=len(text_dataset)) as progress_bar:
             for text in text_dataset:
