@@ -72,6 +72,7 @@ class BaseTextPreprocessor(object):
             self.remove_stopwords,
             self.substitute_numbers,
             self.remove_punctuations,
+            self.remove_stopwords,
             self.add_bos_eos_tokens,
             self.lower_case, # lower casing again, as some chars were
             # in upper case, during lemmatizing
@@ -124,13 +125,13 @@ class BaseTextPreprocessor(object):
         return _replace
     
     def remove_punctuations(self, text):
-        text = [token.translate(self.punctuation_replacement_table)
-                    for token in text.split()]
-        return " ".join(text)
+        text = text.translate(self.punctuation_replacement_table)
+        text = self.remove_extra_whitespaces(text)
+        return text
     
     def remove_stopwords(self, text):
         text = text.strip().split()
-        new_text = [token for token in text if token not in self.stopwords]
+        new_text = [token.strip() for token in text if token.strip() not in self.stopwords]
         return " ".join(new_text)
     
     def remove_extra_whitespaces(self, text):
