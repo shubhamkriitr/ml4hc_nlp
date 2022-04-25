@@ -41,59 +41,10 @@ reproducing the results.
 Please visit here for the [resources](https://drive.google.com/drive/folders/1Urq0BorNnwAkshpvvoVlvvbBP-AQBu6P?usp=sharing): https://drive.google.com/drive/folders/1Urq0BorNnwAkshpvvoVlvvbBP-AQBu6P?usp=sharing
 
 > **Please make the datasets available in the `resources` folder (see below)
-```
-(root)
-|
-├── README.md
-├── resources
-│   ├── dev_mini.txt
-│   ├── dev.txt
-│   ├── processed_data
-│   │   ├── checksums.txt
-│   │   ├── processed_dev.txt
-│   │   ├── processed_test.txt
-│   │   ├── processed_train.txt
-│   │   ├── text_original_lower.txt
-│   │   └── text_processed_for_learning_embedding.txt
-│   ├── Project2ML4HNLP.pdf
-│   ├── saved_models
-│   │   ├── checksums.txt
-│   │   ├── embedding.model
-│   │   ├── embedding.model.vocab_index_to_word.json
-│   │   ├── embedding.model.vocab.json
-│   │   ├── embedding.model.vocab_sorted_by_frequency.json
-│   │   └── embedding.model.vocab_word_to_index.json
-│   ├── test_mini.txt
-│   ├── test.txt
-│   ├── train_mini.txt
-│   └── train.txt
-└── src
-    ├── constants.py
-    ├── corpus_generator.py
-    ├── cost_functions.py
-    ├── data_loader_task1.py
-    ├── data_loader.py
-    ├── dev_notebook_ml4hc_nlp.ipynb
-    ├── experiment_configs
-    │   ├── exp_02b_task2_ann.yaml
-    │   ├── exp_02_task2_ann.yaml
-    │   ├── exp_03_task2_ann_unfrozen_embeddings.yaml
-    │   └── exp_04_task2_cnn_res.yaml
-    ├── learn_embedding.py
-    ├── main.py
-    ├── model_ann.py
-    ├── model_baseline.py
-    ├── model_factory.py
-    ├── model_transformer.py
-    ├── requirements.txt
-    ├── test_embeddings.py
-    ├── text_processing.py
-    ├── trainingutil.py
-    ├── transformer_pipeline.py
-    ├── util.py
+> Please refer to the file **SAMPLE_FOLDER_STRCUTURE.txt** to see the
+> folder structure.
 
 
-```
 ## Indications  
 Before running the models, please make sure to download the data from the following git repository [https://github.com/Franck-Dernoncourt/pubmed-rct]. The data should then be stored in a separate directory than the models called `resources`. The data should contain 3 files: 
 `dev.txt`, `train.txt`, and `test.txt` corresponding to the validation dataset, the training dataset and the test dataset.
