@@ -14,7 +14,7 @@ DEFAULT_EMBEDDING_MODEL_PATH \
     
 STRINGS_TO_TEST = [
     "nurse",
-    "doctor"
+    "doctor",
     "therapy",
     "treatment",
     "tender",
