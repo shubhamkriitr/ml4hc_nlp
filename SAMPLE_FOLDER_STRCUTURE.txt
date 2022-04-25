@@ -1,0 +1,98 @@
+.
+├── cluster
+│   ├── run2b.sh
+│   ├── run2.sh
+│   ├── run3.sh
+│   └── run_remote.sh
+├── README.md
+├── requirements.txt
+├── resources
+│   ├── checksums.txt
+│   ├── dev.txt
+│   ├── emilyalsentzer_Bio_ClinicalBERT_tokenizer
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer_config.json
+│   │   ├── tokenizer.json
+│   │   └── vocab.txt
+│   ├── ml4hc_nlp_200k_raw_pubmed_data.zip
+│   ├── processed_data
+│   │   ├── ml4hc_nlp_200k_processed_data.zip
+│   │   ├── processed_dev.txt
+│   │   ├── processed_test.txt
+│   │   ├── processed_train.txt
+│   │   ├── text_original_lower.txt
+│   │   └── text_processed_for_learning_embedding.txt
+│   ├── saved_models
+│   │   ├── embedding.model
+│   │   ├── embedding.model.syn1neg.npy
+│   │   ├── embedding.model.syn1.npy
+│   │   ├── embedding.model.vocab_index_to_word.json
+│   │   ├── embedding.model.vocab.json
+│   │   ├── embedding.model.vocab_sorted_by_frequency.json
+│   │   ├── embedding.model.vocab_word_to_index.json
+│   │   ├── embedding.model.wv.vectors.npy
+│   │   └── ml4hc_nlp_200k_embedding_model.zip
+│   ├── test.txt
+│   └── train.txt
+├── runs
+│   ├── 2022-04-25_012657__exp_02b_task2_ann
+│   │   ├── best_model_exp_02b_task2_ann.ckpt
+│   │   ├── config.yaml
+│   │   ├── logs
+│   │   │   └── events.out.tfevents.1650842817.eu-g3-068.129241.0
+│   │   ├── test_pred.npz.npy
+│   │   └── test_true.npz.npy
+│   ├── 2022-04-25_012657__exp_02_task2_ann
+│   │   ├── best_model_exp_02_task2_ann.ckpt
+│   │   ├── config.yaml
+│   │   ├── logs
+│   │   │   └── events.out.tfevents.1650842817.eu-g3-068.129204.0
+│   │   ├── test_pred.npz.npy
+│   │   └── test_true.npz.npy
+│   ├── 2022-04-25_025100__exp_03_task2_ann_unfrozen
+│   │   ├── best_model_exp_03_task2_ann_unfrozen.ckpt
+│   │   ├── config.yaml
+│   │   ├── logs
+│   │   │   └── events.out.tfevents.1650847860.eu-g3-068.36591.0
+│   │   ├── test_pred.npz.npy
+│   │   └── test_true.npz.npy
+│   └── ml4hc_nlp_200k_models.zip
+├── run.sh
+├── SAMPLE_FOLDER_STRCUTURE.txt
+└── src
+    ├── confusion_matrix_labels.jpg
+    ├── constants.py
+    ├── corpus_generator.py
+    ├── cost_functions.py
+    ├── data_loader.py
+    ├── data_loader_task1.py
+    ├── evalutil.py
+    ├── experiment_configs
+    │   ├── eval
+    │   │   ├── eval_02b_task2_ann.yaml
+    │   │   ├── eval_02_task2_ann.yaml
+    │   │   ├── eval_03_task2_ann_unfrozen_embeddings.yaml
+    │   │   ├── eval_05_task3_bert.yaml
+    │   │   ├── eval_06_task3_pooling.yaml
+    │   │   └── eval_07_task3_attention.yaml
+    │   ├── exp_02b_task2_ann.yaml
+    │   ├── exp_02_task2_ann.yaml
+    │   ├── exp_03_task2_ann_unfrozen_embeddings.yaml
+    │   ├── exp_05_task3_bert.yaml
+    │   ├── exp_06_task3_pooling.yaml
+    │   ├── exp_07_task3_attention.yaml
+    │   └── exp_mini_task3_bert.yaml
+    ├── learn_embedding.py
+    ├── main.py
+    ├── model_ann.py
+    ├── model_baseline.py
+    ├── model_factory.py
+    ├── model_transformer.py
+    ├── requirements.txt
+    ├── test_embeddings.py
+    ├── text_processing.py
+    ├── trainingutil.py
+    ├── transformer_pipeline.py
+    └── util.py
+
+15 directories, 80 files
