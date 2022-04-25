@@ -4,8 +4,8 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 import nltk
 import re
-#nltk.download('stopwords')
-#nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('punkt')
 from nltk.tokenize import word_tokenize
 import numpy as np
 import pandas as pd
