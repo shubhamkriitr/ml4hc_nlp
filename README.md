@@ -86,8 +86,10 @@ python -m spacy download en_core_web_lg
 
 
 ```
-
-
+## Indications  
+Before running the models, please make sure to download the data from the following git repository [https://github.com/Franck-Dernoncourt/pubmed-rct]. The data should then be stored in a separate directory than the models called `resources`. The data should contain 3 files: 
+`dev.txt`, `train.txt`, and `test.txt` corresponding to the validation dataset, the training dataset and the test dataset.
+ 
 # Task 1 (@Amira #TODO)
 To get the results you can run the file from the terminal : 
 ```
@@ -104,8 +106,7 @@ The confusion matrix will be plotted on the screen as an output. The image repor
 
 ## Creating processed corpus (Similar to files in: resources/processed_data/)
 
-First make sure that `dev.txt`, `train.txt`, and `test.txt` are available in 
-the `resources` directory, and spacy's `en_core_web_lg` model is downloaded.
+First make sure that spacy's `en_core_web_lg` model is downloaded.
 (`src/text_processing.py` will try to download this automatically when running
  `src/corpus_generator.py`)
 
