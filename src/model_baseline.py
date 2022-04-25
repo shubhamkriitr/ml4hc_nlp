@@ -89,11 +89,13 @@ class baseline_model():
             predicted_data_labels)))
         return accuracy,f1,conf_matrix
     #plotting confusion matrix
-    def plotting_confusion_matrix(self,conf_mat, labels):
+    def plotting_confusion_matrix(self,conf_mat, labels,name):
         df_cm = pd.DataFrame(conf_mat, index=[i for i in labels],\
             columns=[y for y in labels])
         plt.figure(figsize=(10, 7))
-        plt.title('Confusion matrix')
+        plt.title('Confusion matrix'+name)
+        plt.xlabel("Predicted labels")
+        plt.ylabel("True labels")
         sn.heatmap(df_cm, annot=True, fmt='g')
         plt.show()
 
@@ -113,9 +115,8 @@ if __name__ == "__main__":
 
     Validation_data = Data_preprocessor.removing_stop_word(Validation_data_raw)
     Validation_data = Data_preprocessor.remove_punctuation(Validation_data)
-    # finding the best hyperparameters
-    
-    # creating and tunning the model : uncomment if you want to tune the model
+    # finding the best hyperparameters: uncomment if you want to tune the model
+    # creating and tunning the model 
     '''
     Model_baseline=baseline_model(vect_max_df=1,vect_max_features=None,\
         vect_ngram_range=(1,1),tfidf_norm="l2",tfidf_use_idf=True,clf_alpha=1)
@@ -143,11 +144,11 @@ if __name__ == "__main__":
 
     # getting validation score
     validation_predictions=Best_pipeline.predict(Validation_data)
-    accuracy_val,f1_val,conf_matrix_val = \
-        Best_pipeline.metrics_score(Validation_labels,validation_predictions)
+    accuracy_val,f1_val,conf_matrix_val = Best_pipeline.metrics_score\
+        (Validation_labels,validation_predictions,"Validation set")
 
     # getting scores on the testing dataset
     test_predictions=Best_pipeline.predict(Test_data)
     accuracy_,f1,conf_matrix_ = \
-        Best_pipeline.metrics_score(Test_labels,test_predictions)
+        Best_pipeline.metrics_score(Test_labels,test_predictions,"Test set")
     
