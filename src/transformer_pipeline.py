@@ -6,7 +6,8 @@ from collections import defaultdict
 from util import get_timestamp_str, PROJECTPATH
 from torch.utils.tensorboard import SummaryWriter
 from transformers.data.data_collator import DefaultDataCollator, DataCollatorWithPadding
-from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
+from model_baseline import baseline_model
 import logging
 import os
 import yaml
@@ -15,7 +16,9 @@ import torch
 import numpy as np
 from pathlib import Path
 import datasets
-
+import seaborn as sn
+import pandas as pd
+import matplotlib.pyplot as plt
 
 logger = logging.getLogger(name=__file__)
 
@@ -248,7 +251,21 @@ class TransformerPipeline:
         model.eval()
 
     def evaluate(self):
-        return self.trainer.evaluate(self.test_data, metric_key_prefix="test")
+        result = self.trainer.predict(self.test_data, metric_key_prefix="test")
+        metrics = result.metrics
+        pred = np.argmax(result.predictions, axis=-1)
+        groundtruth = np.array(self.test_data["label"])
+        conf_matrix = confusion_matrix(groundtruth, pred)
+        labels = [PUBMED_ID_TO_LABEL_MAP[i] for i in range(len(PUBMED_ID_TO_LABEL_MAP))]
+        df_cm = pd.DataFrame(conf_matrix, index=labels,\
+            columns=[y for y in labels])
+        plt.figure(figsize=(10, 7))
+        plt.title('Confusion matrix - '+'test')
+        sn.heatmap(df_cm, annot=True, fmt='g')
+        plt.xlabel("Predicted labels")
+        plt.ylabel("True labels")
+        plt.savefig(self.current_experiment_directory+"/confusion_matrix.png")
+        return metrics
 
     def save_config(self):
         try:
