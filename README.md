@@ -13,6 +13,11 @@ We have tested our code in an environment with the following specifications:
     - RAM: 16 GB
 - OS: `Ubuntu 20.04.4 LTS`
 - Python Version: `3.7.11`
+
+Besides this, all the model training (for task 2 and 3) was done on a node with GPU (`NVIDIATITANRTX`).
+
+Text preprocessing may take long time, so we suggest downloading the preprocessed
+texts from the drive link shared below in the document.
 ## Creating isolated execution environment
 - Go to the root directory (after extractig the zip)
 - Execute the following in sequence (enter yes when prompted):
@@ -53,7 +58,6 @@ Please visit here for the [resources](https://drive.google.com/drive/folders/1Ur
 │   ├── Project2ML4HNLP.pdf
 │   ├── saved_models
 │   │   ├── checksums.txt
-│   │   ├── chectest.txt
 │   │   ├── embedding.model
 │   │   ├── embedding.model.vocab_index_to_word.json
 │   │   ├── embedding.model.vocab.json
@@ -79,7 +83,6 @@ Please visit here for the [resources](https://drive.google.com/drive/folders/1Ur
     ├── main.py
     ├── model_ann.py
     ├── model_baseline.py
-    ├── model_cnn_res.py
     ├── model_factory.py
     ├── model_transformer.py
     ├── requirements.txt
@@ -88,7 +91,6 @@ Please visit here for the [resources](https://drive.google.com/drive/folders/1Ur
     ├── trainingutil.py
     ├── transformer_pipeline.py
     ├── util.py
-    └── Word2Vec.ipynb
 
 
 ```
