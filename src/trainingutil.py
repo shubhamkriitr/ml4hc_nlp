@@ -250,7 +250,10 @@ class ExperimentPipeline(BaseExperimentPipeline):
         if self.config["load_from_checkpoint"]:
             checkpoint_path = self.config["checkpoint_path"]
             logger.info(f"Loading from checkpoint: {checkpoint_path}")
-            self.model.load_state_dict(torch.load(checkpoint_path))
+            self.model.load_state_dict(
+                torch.load(checkpoint_path,
+                        map_location=commonutil.resolve_device())
+                )
             logger.info(str(self.model))
             logger.info(f"Model Loaded")
         
@@ -575,8 +578,25 @@ class EvaluationPipelineForClassification(ExperimentPipelineForClassification):
         os.makedirs(self.current_experiment_directory, exist_ok=True)
         _ = self.compute_and_log_evaluation_metrics(
             model, 0, "val", save_files=True)
+        logger.info(f"Validation accuracy= {self.get_accuracy('val')}")
         _ = self.compute_and_log_evaluation_metrics(
             model, 0, "test", save_files=True)
+        logger.info(f"Test accuracy= {self.get_accuracy('test')}")
+    
+    def get_accuracy(self, eval_type):
+        """Assumes prediction files are saved already
+        
+        """
+        target_path = os.path.join(
+                    self.current_experiment_directory, f"{eval_type}_true.npz.npy")
+        pred_path = os.path.join(
+            self.current_experiment_directory, f"{eval_type}_pred.npz.npy"
+        )
+        
+        acc = accuracy_score(y_true=np.load(target_path),
+                             y_pred=np.load(pred_path))
+        
+        return acc
         
     
     
