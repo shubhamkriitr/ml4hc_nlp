@@ -22,7 +22,10 @@ STRINGS_TO_TEST = [
     "male",
     "good",
     "mri",
-    "ecg"
+    "ecg",
+    "eye",
+    "hair",
+    
 ]
 
 ANALOGIES = [
@@ -31,10 +34,16 @@ ANALOGIES = [
     ["man", "doctor", "woman"],
     ["man", "physician", "woman"],
     ["woman", "physician", "man"],
-    ["skin", "ointment", "eye"],
-    ["eye", "nepafenac", "lung" ],
-    ["eye", "myopia", "lung" ]
-    
+    ["skin", "ointment", "eye"], # organ - medication relation
+    ["eye", "systane", "hair" ], # organ - medication relation
+    ["eye", "myopia", "stomach" ], # organ-disease relation
+    ["lung", "asthma", "eye"], # organ-disease relation
+    ["fever", "paracetamol", "headache"], # remedies
+    ["fever", "weakness", "cancer"], # querying symptoms
+    ["heart", "ecg", "brain"], # querying organ - measurement device
+    ["brain", "mri", "stomach"], # querying organ - measurement device
+    ["brain", "cerebrum", "lung" ], # organ subparts
+    ["eye", "myopia", "throat" ], # organ-disease relation
 ]
 
 def pad_print(msg, width=40, pad_char="="):
