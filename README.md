@@ -89,7 +89,11 @@ python -m spacy download en_core_web_lg
 
 
 # Task 1 (@Amira #TODO)
-To get the results you can simply run the file (run `python src/model_baseline.py). The training of the model was already done and the best model should directly be running. The output will be the confusion matrix, for the validation dataset and the test dataset. 
+To get the results you can run the file from the terminal : 
+```
+python src/model_baseline.py 
+```
+The training of the model was already done and the best model should directly be running. The output will be the confusion matrix, for the validation dataset and the test dataset. 
 ## Training of the model
 The training was already made and the best parameters were selected so it will take fewer time running the file. To tune the model and find the best hyperparameters, the lines 118 to 126 can be uncommented and the best hyperparameters should be printed on the terminal. Then you can input the new parameters to the constuctor in order to predict the results for the test data. 
 ## Results - Confusion matrix
