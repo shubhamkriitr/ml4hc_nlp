@@ -76,7 +76,7 @@ class baseline_model():
     def predict(self,data):
         return self.model.predict(data)
 
-    def metrics_score(self,true_data_labels,predicted_data_labels):
+    def metrics_score(self,true_data_labels,predicted_data_labels,name_plot):
         accuracy=accuracy_score(predicted_data_labels, true_data_labels)
         print(accuracy)
 
@@ -84,7 +84,8 @@ class baseline_model():
         print(f1)
 
         conf_matrix = confusion_matrix(true_data_labels, predicted_data_labels)
-        self.plotting_confusion_matrix(conf_matrix, set(true_data_labels))
+        self.plotting_confusion_matrix(conf_matrix, set(true_data_labels)\
+            ,name_plot)
         print('Confusion Matrix : \n' + str(confusion_matrix(true_data_labels,\
             predicted_data_labels)))
         return accuracy,f1,conf_matrix
@@ -93,10 +94,10 @@ class baseline_model():
         df_cm = pd.DataFrame(conf_mat, index=[i for i in labels],\
             columns=[y for y in labels])
         plt.figure(figsize=(10, 7))
-        plt.title('Confusion matrix'+name)
+        plt.title('Confusion matrix - '+name)
+        sn.heatmap(df_cm, annot=True, fmt='g')
         plt.xlabel("Predicted labels")
         plt.ylabel("True labels")
-        sn.heatmap(df_cm, annot=True, fmt='g')
         plt.show()
 
 if __name__ == "__main__":
