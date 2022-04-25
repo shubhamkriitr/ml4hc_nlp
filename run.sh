@@ -14,4 +14,3 @@ python src/learn_embedding.py -o resources/saved_models
 python src/trainingutil.py --config src/experiment_configs/exp_02_task2_ann.yaml
 python src/trainingutil.py --config src/experiment_configs/exp_02b_task2_ann.yaml
 python src/trainingutil.py --config src/experiment_configs/exp_03_task2_ann_unfrozen_embeddings.yaml
-python src/trainingutil.py --config src/experiment_configs/exp_04_task2_cnn_res.yaml
