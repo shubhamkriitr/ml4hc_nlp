@@ -1,4 +1,4 @@
-from Data_loader_nlp import DataLoaderUtil
+from data_loader_task1 import DataLoaderUtil
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
