@@ -1,17 +1,5 @@
-# Data loader classes for arrythmia and PTB datasets
-import pandas as pd
-import numpy as np
-# from sklearn.model_selection import train_test_split
 from pathlib import Path
-import torch
-from torch.utils.data import DataLoader, Dataset
 from util import PROJECTPATH
-
-
-Test = "test"
-Train = "train"
-Validation = "dev"
-
 
 DATASET_LOC_TRAIN = str(Path(PROJECTPATH)/"resources/train.txt")
 DATASET_LOC__TEST = str(Path(PROJECTPATH)/"resources/test.txt")
@@ -22,7 +10,6 @@ class DataLoaderUtil:
         Training_data =[]
         with open(DATASET_LOC_TRAIN,'r') as f:
             Training_samples = f.readlines()
-            # ordlist = [line.split(None, 1)[0] for line in Training_samples] 
             for i, line in enumerate(Training_samples):
                 if line!= '\n':
                     Training_sample_labels = line.split()[0]
