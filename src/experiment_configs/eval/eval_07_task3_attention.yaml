@@ -6,7 +6,7 @@ logdir: "runs/"
 load_disk_data:
 tokenizer: "resources/emilyalsentzer_Bio_ClinicalBERT_tokenizer"
 max_length: 512
-train: True
+train: False
 evaluate: True
 save_disk_data: False
 from_pretrained: "resources/saved_models/attention_BERT"
