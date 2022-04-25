@@ -84,6 +84,29 @@ def show_analogies(model, analogies_to_test):
             print("One of the given words is not present in model vacabulary")
         print(f"{'-'*22}")
 
+def print_latex_code(model, analogies_to_test):
+    pad_print("AnalogiesLaTeX")
+    for sr, word_list in enumerate(analogies_to_test):
+        a, b, c = word_list
+        try:
+            possible_choices = model.wv.most_similar(
+                positive=[c, b], negative=[a,], topn=10)
+            arrow = r"$\rightarrow$"
+            latex = f"{sr+1} & {a} {arrow} {b} & {c} {arrow} "
+            comma = ""
+            i = 0
+            for choice_word, score in possible_choices:
+                latex += f"{comma} {choice_word}"
+                i+=1
+                comma = ","
+                if i==3:
+                    break
+            latex += r" & TODO\\ \hline"
+            print(latex)
+                
+        except KeyError:
+            print("One of the given words is not present in model vacabulary")
+
 def main():
     ap = ArgumentParser()
     ap.add_argument("--embedding-model", "-e", type=str,
@@ -97,6 +120,7 @@ def main():
     
     show_closest_words(model, STRINGS_TO_TEST)
     show_analogies(model, analogies_to_test=ANALOGIES)
+    print_latex_code(model, analogies_to_test=ANALOGIES)
 
 
 if __name__ == "__main__":
