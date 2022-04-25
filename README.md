@@ -28,6 +28,12 @@ python -m spacy download en_core_web_lg
 - Now the environment should be ready
 - Make sure to check that the environment is activated before running the code
 
+## Raw data/ Processed data/ Trained Models
+
+For your convenience we are sharing the drive link containing the resources for
+reproducing the results. 
+
+Please visit here for the [resources](https://drive.google.com/drive/folders/1Urq0BorNnwAkshpvvoVlvvbBP-AQBu6P?usp=sharing): https://drive.google.com/drive/folders/1Urq0BorNnwAkshpvvoVlvvbBP-AQBu6P?usp=sharing
 
 > **Please make the datasets available in the `resources` folder (see below)
 ```
