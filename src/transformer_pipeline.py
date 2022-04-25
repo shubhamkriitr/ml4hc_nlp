@@ -27,9 +27,6 @@ class TokenizerFactory:
     def get(name):
         return AutoTokenizer.from_pretrained(name)
 
-"""metric_dict = {
-    'accuracy': (load_metric('accuracy'), {}),
-    'f1_macro': (load_metric('f1'), dict(average="macro"))}"""
 
 TRANSFORMER_DATA = str(Path(PROJECTPATH)/"pubmed-rct-master"/"PubMed_200k_RCT")
 
@@ -50,9 +47,8 @@ class SummarizerCallback(TrainerCallback):
 
 
 class TransformerPipeline:
-    def __init__(self, config, device=None) -> None:
+    def __init__(self, config) -> None:
         self.config = config
-        self.device = "cuda" if device is None else device
         self.prepare_summary_writer()
         self.prepare_datasets()
         self.prepare_model()
@@ -117,7 +113,7 @@ class TransformerPipeline:
             logger.info(str(self.model))
             logger.info(f"Model Loaded")
         else:
-            logger.info(f"Creating new model")
+            logger.info("Loading model {}".format(self.config["from_pretrained"]))
             model = TransformerFactory.get(self.config["from_pretrained"])
             self.model = model
 
@@ -143,11 +139,11 @@ class TransformerPipeline:
             unfrozen.append(name)
 
         logger.info("Unfrozen layers {}".format(', '.join(unfrozen)))
-        logger.info("Model to {}".format(self.device))
+        """logger.info("Model to {}".format(self.device))
         if self.device == "cpu":
             self.model.cpu()
         else:
-            self.model.cuda()
+            self.model.cuda()"""
 
     def prepare_trainer(self):
         training_args = TrainingArguments(
@@ -165,14 +161,13 @@ class TransformerPipeline:
             save_strategy=self.config["save_strategy"],
             save_total_limit=self.config["save_total_limit"]
         )
-
         self.trainer = Trainer(
             model=self.model,
             args=training_args,
             train_dataset=self.training_data,
             data_collator=self.data_collator,
             eval_dataset=self.valid_data,
-            compute_metrics=self.compute_metrics
+            compute_metrics=self.compute_metrics,
             #callbacks=[SummarizerCallback(self.summary_writer)]
         )
 
@@ -186,9 +181,6 @@ class TransformerPipeline:
             res = { }
             res['accuracy'] = accuracy_score(labels, predictions)
             res['f1'] = f1_score(labels, predictions, average='weighted')
-            #for metric, kwargs in metrics:
-            #    metric_val = metric.compute(predictions=predictions, references=labels, **kwargs)
-            #    res.update(metric_val)
             return res
             
         self.compute_metrics = compute_metrics
@@ -231,10 +223,11 @@ class TransformerPipeline:
         self.epoch_callbacks = [self.epoch_callback]
 
     def run_experiment(self):
-        self.trainer.train()
+        metrics = self.trainer.train()
         if self.config["save_pretrained"]:
             logger.info("Saving model")
             self.model.save_pretrained(self.current_experiment_directory+"/final_model")
+        return metrics
     
     def batch_callback(self, model, batch_data, global_batch_number,
                     current_epoch, current_epoch_batch_number, **kwargs):
@@ -255,7 +248,7 @@ class TransformerPipeline:
         model.eval()
 
     def evaluate(self):
-        self.trainer.evaluate(self.test_data, metric_key_prefix="test")
+        return self.trainer.evaluate(self.test_data, metric_key_prefix="test")
 
     def save_config(self):
         try:
@@ -271,19 +264,25 @@ if __name__ == "__main__":
     parser.add_argument("--config", type=str, required=True)
     parser.add_argument("--cpu", action="store_true")
     parser.add_argument("-v", "--verbose", action="store", default=1, type=int)
+    parser.add_argument("--pretrained", default=None)
+    parser.add_argument("--dataset", default=None)
     args = parser.parse_args()
-    device = "cpu" if args.cpu or not torch.cuda.is_available() else "cuda"
+    #device = "cpu" if args.cpu or not torch.cuda.is_available() else "cuda"
+    torch.device("cpu" if args.cpu or not torch.cuda.is_available() else "cuda")
     #logger.basicConfig()
     logging.basicConfig(level=logging.ERROR)
     logger.setLevel(logging.INFO)
     with open(args.config, 'r', encoding="utf-8") as f:
         config_data = defaultdict(lambda:None, yaml.load(f, Loader=yaml.FullLoader))
     config_data["verbose"] = args.verbose
+    config_data["from_pretrained"] = args.pretrained if args.pretrained else config_data["from_pretrained"]
+    config_data["load_disk_data"] = args.dataset if args.dataset else config_data["load_disk_data"]
     logger.info('Config:'+str(config_data))
-    experiment = TransformerPipeline(config_data, device=device)
+    experiment = TransformerPipeline(config_data)
     if config_data["train"]:
-        experiment.run_experiment()
+        train_metrics = experiment.run_experiment()
+        print("Training took {}s. Loss: {}".format(train_metrics.metrics["train_runtime"], train_metrics.metrics["train_loss"]))
     if config_data["evaluate"]:
-        logger.info("Running evaluation")
-        experiment.evaluate()
-    #print(experiment.trainer.log_history)
+        print("Running evaluation on test data")
+        eval_metrics = experiment.evaluate()
+        print("\nTest results: f1: {}, accuracy: {}".format(eval_metrics["test_f1"], eval_metrics["test_accuracy"]))

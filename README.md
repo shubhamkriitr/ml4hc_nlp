@@ -195,9 +195,41 @@ This should print the scores on valdiation and test datasets.
 
 # Task 3 (@Ivan #TODO)
 
+## Using pre-trained BERT
+
+To complete this task we have used the (emilyalsentzer/Bio_ClinicalBERT)[https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT] pre-trained BERT model available in Hugging Face.
+
+- To start training execute:
+  - ```
+    python src/transformer_pipeline.py --config <path-to-run-config-file>
+    ```
+- You can also find the different configuration files used at **src/experiment_configs**
+### These are the training Config File used for different experiments (training)
+|**Config File**| **Experiment description**|
+|--------------------|---------------------|
+|`exp_05_task3_bert.yaml`|Frozen Bio_ClinicalBERT, train classification layer|
+|`exp_06_task3_pooling.yaml`|Finetune Bio_ClinicalBERT's output pooling layer|
+|`exp_07_task3_attention.yaml`|Finetune Bio_ClinicalBERT's from last attention layer|
+|`exp_mini_task3_bert.yaml`|Test execution on a small fraction of data|
+
+- After running any of the above configs for the first time, the pre-trained emilyalsentzer/Bio_ClinicalBERT model should be downloaded. If there is a network connection error, you can download the `pretrained_BERT.zip` from **TODO: add link**, unzip it and run:
+  - ```
+    python src/transformer_pipeline.py --config <path-to-run-config-file> --pretrained <path-to-pretrained-model>
+    ```
+## Evaluation of saved classifier
+
+In the previous link **#TODO add here also** you can also find the language models we finetuned:
+- classifier_BERT.zip: only classification layer trained
+- pooling_BERT.zip: finetuned output pooling
+- attention_BERT.zip: finetuned last attention layer
+
+To evaluate the transformer models you can uncompress the zip files, copy the contained folder into `resources/saved_models`, and run `src/transformer_pipeline.py` with the configs in `src/experiment_configs/eval`.
+_e.g._
 
 
-
+```
+python src/transformer_pipeline.py --config src/experiment_configs/eval/eval_05_task3_bert.yaml
+```
 
 ----
 

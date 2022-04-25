@@ -1,0 +1,30 @@
+pipeline_class: "ExperimentPipelineForClassifier"
+experiment_metadata:
+  description: "Evaluate finetuned BERT last attention module"
+  tag: "finetune_2"
+logdir: "runs/"
+load_disk_data:
+tokenizer: "resources/emilyalsentzer_Bio_ClinicalBERT_tokenizer"
+max_length: 512
+train: True
+evaluate: True
+save_disk_data: False
+from_pretrained: "resources/saved_models/attention_BERT"
+save_pretrained: False
+load_from_checkpoint:
+fit_modules_from: -20
+fit_modules: # not implemented
+learning_rate: 0.0001
+lr_scheduler_type: 'linear'
+warmup_ratio: 0.05
+batch_size: 64
+num_epochs: 3
+evaluation_strategy: "steps"
+eval_steps: 3000
+log_steps: 300
+save_strategy: "epoch"
+save_total_limit: 1
+save_steps:
+downsample_train: 
+downsample_valid:
+downsample_test:
