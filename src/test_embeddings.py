@@ -22,9 +22,7 @@ STRINGS_TO_TEST = [
     "male",
     "good",
     "mri",
-    "ecg",
-    "eye",
-    "hair",
+    "ecg"
     
 ]
 
