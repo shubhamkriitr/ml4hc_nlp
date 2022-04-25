@@ -61,7 +61,7 @@ python -m spacy download en_core_web_lg
     ├── constants.py
     ├── corpus_generator.py
     ├── cost_functions.py
-    ├── Data_loader_nlp.py
+    ├── data_loader_task1.py
     ├── data_loader.py
     ├── dev_notebook_ml4hc_nlp.ipynb
     ├── experiment_configs
@@ -89,7 +89,11 @@ python -m spacy download en_core_web_lg
 
 
 # Task 1 (@Amira #TODO)
-
+To get the results you can simply run the file (run `python src/model_baseline.py). The training of the model was already done and the best model should directly be running. The output will be the confusion matrix, for the validation dataset and the test dataset. 
+## Training of the model
+The training was already made and the best parameters were selected so it will take fewer time running the file. To tune the model and find the best hyperparameters, the lines 118 to 126 can be uncommented and the best hyperparameters should be printed on the terminal. Then you can input the new parameters to the constuctor in order to predict the results for the test data. 
+## Results - Confusion matrix
+The confusion matrix will be plotted on the screen as an output. The image reports the total number of times a label was predicted as any other class of label. For example: it could be that for the label: RESULTS, the model predicted it as RESULTS 90 times, as CONCLSUION 50 times and as BACKGROUND 20 times etc. 
 
 # Task 2 (@Shubham #TODO)
 
