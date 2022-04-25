@@ -261,6 +261,7 @@ class TransformerPipeline:
             columns=[y for y in labels])
         plt.figure(figsize=(10, 7))
         plt.title('Confusion matrix')
+        sn.set(font_scale=2)
         sn.heatmap(df_cm, annot=True, fmt='g')
         plt.xlabel("Predicted labels")
         plt.ylabel("True labels")
