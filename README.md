@@ -58,7 +58,7 @@ _(Please make sure to extract these files when needed to the path indicated late
 > detailed folder structure.
 
 ## Indications  
-Before running the models, please make sure to download the 200k data from the following here [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` shared in the google drive. Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
+Before running the models, please make sure to download the 200k data from the following link: [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` shared in the google drive. Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
 `dev.txt`, `train.txt`, and `test.txt` corresponding to the validation, the training and the test dataset.
  
 # Task 1
@@ -179,14 +179,14 @@ This should print the scores on valdiation and test datasets.
 
 ## Using pre-trained BERT
 
-To complete this task we have used the (emilyalsentzer/Bio_ClinicalBERT)[https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT] pre-trained BERT model available in Hugging Face.
+To complete this task we have used the [emilyalsentzer/Bio_ClinicalBERT](https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT) pre-trained BERT model available in Hugging Face.
 
-- To start training execute:
+- To train/finetune the model and obtain test results (including the confusion matrix) run:
   - ```
     python src/transformer_pipeline.py --config <path-to-run-config-file>
     ```
 - You can also find the different configuration files used at **src/experiment_configs**
-### These are the training Config File used for different experiments (training)
+### These are the training Config File used for different experiments
 |**Config File**| **Experiment description**|
 |--------------------|---------------------|
 |`exp_05_task3_bert.yaml`|Frozen Bio_ClinicalBERT, train classification layer|
