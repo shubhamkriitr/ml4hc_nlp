@@ -157,9 +157,9 @@ _e.g._ : `2022-04-23_154910__exp_02_task2_ann`
 ### These are the training Config File used for different experiments (training)
 |**Config File**| **Experiment description**|
 |--------------------|---------------------|
-|`exp_02_task2_ann.yaml`|Fully conncted neural network (with class weighting used)|
-|`exp_02b_task2_ann.yaml`|Fully connected neural network|
-|`exp_03_task2_ann_unfrozen_embeddings.yaml`|Fully connected neural network (with embedding being also fine tuned)|
+|`exp_02_task2_ann.yaml`|Fully conncted neural network |
+|`exp_02b_task2_ann.yaml`|Fully connected neural network (with class weighting used)|
+|`exp_03_task2_ann_unfrozen_embeddings.yaml`|Fully connected neural network (with embedding also being fine tuned)|
 
 - The models we trained are available in shared file : `ml4hc_nlp_200k_models.zip`
 ## Evaluation of saved classifier
