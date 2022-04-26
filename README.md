@@ -55,7 +55,7 @@ _(Please make sure to extract these files when needed to the path indicated late
 > detailed folder structure.
 
 ## Indications  
-Before running the models, please make sure to download the 200k data from the following here [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` . Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
+Before running the models, please make sure to download the 200k data from the following here [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` shared in the google drive. Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
 `dev.txt`, `train.txt`, and `test.txt` corresponding to the validation, the training and the test dataset.
  
 # Task 1
