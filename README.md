@@ -75,7 +75,7 @@ The confusion matrix will be plotted on the screen as an output. The image repor
 # Task 2
 
 
-## Creating processed corpus (Similar to files in: resources/processed_data/ (Please refer: `SAMPLE_FOLDER_STRCUTURE.txt`))
+## Creating processed corpus (Similar to files in: resources/processed_data/ (Please refer: `SAMPLE_FOLDER_STRUCTURE.txt`))
 
 First make sure that spacy's `en_core_web_lg` model is downloaded.
 (`src/text_processing.py` will try to download this automatically when running
