@@ -42,7 +42,7 @@ Please visit here for the [resources](https://drive.google.com/drive/folders/1Ur
 
 
 Following is a brief summary of the files we have made available in the drive:
-
+_(Please make sure to extract these files when needed to the path indicated later in the document in respective task sections)_
 - `task_2` 
   - `ml4hc_nlp_200k_raw_pubmed_data.zip` (raw pubmed dataset , 200k)
   - `ml4hc_nlp_200k_processed_data.zip` (processed pubmed texts for learning embedding and training classifiers)
