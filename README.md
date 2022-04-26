@@ -40,7 +40,17 @@ reproducing the results.
 
 Please visit here for the [resources](https://drive.google.com/drive/folders/1Urq0BorNnwAkshpvvoVlvvbBP-AQBu6P?usp=sharing): https://drive.google.com/drive/folders/1Urq0BorNnwAkshpvvoVlvvbBP-AQBu6P?usp=sharing
 
-> **Please make the datasets available in the `resources` folder (see below)
+
+Following is a brief summary of the files we have made available in the drive:
+
+- `task_2` (resources specific to task 2)
+  - `ml4hc_nlp_200k_raw_pubmed_data.zip` (raw pubmed dataset , 200k)
+  - ml4hc_nlp_200k_processed_data.zip (processed pubmed texts for learning embedding and training classifiers)
+  - `ml4hc_nlp_200k_embedding_model.zip` (trained Word2Vec model and genetrated dictionary and other helper files)
+  - `ml4hc_nlp_200k_models.zip` (trained classifiers along with test output files and tensorboard logs)
+- `task_3`
+  - 
+> **Please make the datasets available in the `resources` folder (see below).
 > Please refer to the file **SAMPLE_FOLDER_STRCUTURE.txt** to see the
 > folder structure.
 
@@ -49,7 +59,7 @@ Please visit here for the [resources](https://drive.google.com/drive/folders/1Ur
 Before running the models, please make sure to download the data from the following git repository [https://github.com/Franck-Dernoncourt/pubmed-rct]. The data should then be stored in a separate directory than the models called `resources`. The data should contain 3 files: 
 `dev.txt`, `train.txt`, and `test.txt` corresponding to the validation dataset, the training dataset and the test dataset.
  
-# Task 1 (@Amira #TODO)
+# Task 1
 To get the results you can run the file from the terminal : 
 ```
 python src/model_baseline.py 
@@ -60,7 +70,7 @@ The training was already made and the best parameters were selected so it will t
 ## Results - Confusion matrix
 The confusion matrix will be plotted on the screen as an output. The image reports the total number of times a label was predicted as any other class of label. For example: it could be that for the label: RESULTS, the model predicted it as RESULTS 90 times, as CONCLSUION 50 times and as BACKGROUND 20 times etc. 
 
-# Task 2 (@Shubham #TODO)
+# Task 2
 
 
 ## Creating processed corpus (Similar to files in: resources/processed_data/)
@@ -113,7 +123,7 @@ Files with `processed_` prefix , have label and processed text pairs, while othe
   - It will load the embedding model from `resources/saved_models/embedding.model`, and using this model it will print out a list of similar words for a few test words like `ecg`, `doctor` _etc._, and after that it will print out analogy results for some word triplets _e.g._ `woman->girl::man->?`
 
 
-## Training classifier
+## Training the classifiers
 
 - To start training execute:
   - ```
@@ -123,7 +133,7 @@ Files with `processed_` prefix , have label and processed text pairs, while othe
     ```
     python src/trainingutil.py --config src/experiment_configs/eval_02_task2_ann.yaml
     ```
-  - The **src/experiment_configs** directory contains many configs, that we have used
+  - The **src/experiment_configs** directory contains other configs as well, that we have used
   for running our experiments. You can choose any of those or create your own.
 
 The steps above will do the following:
@@ -142,7 +152,6 @@ _e.g._ : `2022-04-23_154910__exp_02_task2_ann`
 |`exp_02_task2_ann.yaml`|Fully conncted neural network (with class weighting used)|
 |`exp_02b_task2_ann.yaml`|Fully connected neural network|
 |`exp_03_task2_ann_unfrozen_embeddings.yaml`|Fully connected neural network (with embedding being also fine tuned)|
-|`exp_04_task2_cnn_res.yaml`|Residual CNN based model|
 
 ## Evaluation of saved classifier
 
@@ -152,7 +161,7 @@ _e.g._
 
 
 ```
-python src/evalutil.py --config src/experiment_configs/eval/eval_02_task2_ann.yaml TODO UPDATE saved model here
+python src/evalutil.py --config src/experiment_configs/eval/eval_02_task2_ann.yaml
 ```
 
 This should print the scores on valdiation and test datasets.
@@ -161,7 +170,7 @@ This should print the scores on valdiation and test datasets.
 
 
 
-# Task 3 (@Ivan #TODO)
+# Task 3
 
 ## Using pre-trained BERT
 
@@ -201,25 +210,3 @@ python src/transformer_pipeline.py --config src/experiment_configs/eval/eval_05_
 
 ----
 
-# Snippets ( TODO: remove later)
-```
-defaultdict(<function <lambda> at 0x7fce7b3523b0>, {'OBJECTIVE': 13839, 'METHODS': 59353, 'RESULTS': 57953, 'CONCLUSIONS': 27168, 'BACKGROUND': 21727})
-[cn[PUBMED_ID_TO_LABEL_MAP[i]] for i in PUBMED_ID_TO_LABEL_MAP]
-[21727, 27168, 59353, 13839, 57953]
-np.array(_)
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-NameError: name '_' is not defined
-np.array([cn[PUBMED_ID_TO_LABEL_MAP[i]] for i in PUBMED_ID_TO_LABEL_MAP])
-array([21727, 27168, 59353, 13839, 57953])
-x__ = np.array([cn[PUBMED_ID_TO_LABEL_MAP[i]] for i in PUBMED_ID_TO_LABEL_MAP])
-x__
-array([21727, 27168, 59353, 13839, 57953])
-1/(x__)
-array([4.60256823e-05, 3.68080094e-05, 1.68483480e-05, 7.22595563e-05,
-       1.72553621e-05])
-```
-
-```
-python src/trainingutil.py --config src/experiment_configs/eval_02b_task2_ann.yaml
-```
