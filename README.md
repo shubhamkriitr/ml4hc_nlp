@@ -180,7 +180,7 @@ This should print the scores on valdiation and test datasets.
 
 - Make sure that the correct checkpoint path is set in the config file (under the field : `checkpoint_path`) 
 
-
+- The eval configs already available in `src/experiment_configs/eval` would work without any change if you use the models we shared : `ml4hc_nlp_200k_models.zip` (in google [drive](#raw-data-processed-data-trained-models))
 
 # Task 3
 
