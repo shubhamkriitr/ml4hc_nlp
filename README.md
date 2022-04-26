@@ -89,7 +89,7 @@ python src/corpus_generator.py -o <output directory path>
 ```
 _e.g._ `python src/corpus_generator.py -o resources/processed_data`
 
-> NOTE: This would **replace** the existing files
+> NOTE: This would **replace** the existing files `resources/processed_data`
 
 
 This will create following files:
