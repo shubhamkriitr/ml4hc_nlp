@@ -31,7 +31,7 @@ class TokenizerFactory:
         return AutoTokenizer.from_pretrained(name)
 
 
-TRANSFORMER_DATA = str(Path(PROJECTPATH)/"pubmed-rct-master"/"PubMed_200k_RCT")
+TRANSFORMER_DATA = str(Path(PROJECTPATH)/"resources")
 
 class SummarizerCallback(TrainerCallback):
     def __init__(self, summarizer: SummaryWriter):
