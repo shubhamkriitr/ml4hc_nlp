@@ -87,7 +87,7 @@ model (for task 2), run the following:
 ```
 python src/corpus_generator.py -o <output directory path>
 ```
-_e.g._ `python src/corpus_generator.py -o new_corpus`
+_suggestion._ `python src/corpus_generator.py -o resources/processed_data`
 
 This will create following files:
 ```
