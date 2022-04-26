@@ -211,7 +211,7 @@ To complete this task we have used the [emilyalsentzer/Bio_ClinicalBERT](https:/
     ```
 ## Evaluation of saved classifier
 
-In the previous [drive](#raw-data-processed-data-trained-models) you can also find the language models we finetuned. To evaluate them and obtain accuracy and f1 scores you can uncompress the zip files, copy the contained folder into `resources/saved_models`, and run `src/transformer_pipeline.py` with the respective config in `src/experiment_configs/eval`.
+In the same [drive](#raw-data-processed-data-trained-models) you can also find the language models we finetuned. To evaluate them and obtain similar accuracy and f1 scores you can uncompress the zip files, copy the contained folder into `resources/saved_models`, and run `src/transformer_pipeline.py` with the respective config in `src/experiment_configs/eval`.
 _e.g._ for evaluating classifier_BERT.zip
 
 
