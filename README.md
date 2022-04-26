@@ -192,6 +192,10 @@ To complete this task we have used the [emilyalsentzer/Bio_ClinicalBERT](https:/
   - ```
     python src/transformer_pipeline.py --config <path-to-run-config-file>
     ```
+  - _e.g._
+  ```
+    python src/transformer_pipeline.py --config src/experiment_configs/exp_05_task3_bert.yaml
+  ```
 - You can also find the different configuration files used at **src/experiment_configs**
 ### These are the training Config File used for different experiments
 |**Config File**| **Experiment description**|
