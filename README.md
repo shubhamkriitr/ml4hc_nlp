@@ -17,7 +17,7 @@ We have tested our code in an environment with the following specifications:
 Besides this, all the model training (for task 2 and 3) was done on a node with GPU (`NVIDIATITANRTX`).
 
 Text preprocessing may take long time, so we suggest downloading the preprocessed
-texts from the drive link shared later in the document.
+texts from the drive link shared [later](#raw-data-processed-data-trained-models) in the document.
 ## Creating isolated execution environment
 - Go to the root directory (after extractig the zip)
 - Execute the following in sequence (enter yes when prompted):
@@ -58,7 +58,7 @@ _(Please make sure to extract these files when needed to the path indicated late
 > detailed folder structure.
 
 ## Indications  
-Before running the models, please make sure to download the 200k data from the following link: [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` shared in the google drive. Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
+Before running the models, please make sure to download the 200k data from the following link: [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` shared in the google [drive](#raw-data-processed-data-trained-models). Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
 `dev.txt`, `train.txt`, and `test.txt` corresponding to the validation, the training and the test dataset.
  
 # Task 1
@@ -102,7 +102,7 @@ This will create following files:
 
 Files with `processed_` prefix , have label and processed text pairs, while others will have just processed texts.
 
-You may use the file `ml4hc_nlp_200k_processed_data.zip` shared in the google drive to get the final processed data for next steps.
+You may use the file `ml4hc_nlp_200k_processed_data.zip` shared in the google [drive](#raw-data-processed-data-trained-models) to get the final processed data for next steps.
 ## Training and testing Word2Vec Model
 
 - **Training the embedding model**
@@ -117,7 +117,7 @@ You may use the file `ml4hc_nlp_200k_processed_data.zip` shared in the google dr
   - If you want to change the input corpus, output path, vector size, epochs _etc._, then pass them as arguments.
   - Run `python src/learn_embedding.py -h` for argument information.
 
-  - You may use the trained embedding model shared in the google drive `ml4hc_nlp_200k_embedding_model.zip` for the next steps.
+  - You may use the trained embedding model shared in the google [drive](#raw-data-processed-data-trained-models) `ml4hc_nlp_200k_embedding_model.zip` for the next steps.
 - **Testing the embedding model**
   - Run:
     ```
@@ -161,7 +161,7 @@ _e.g._ : `2022-04-23_154910__exp_02_task2_ann`
 |`exp_02b_task2_ann.yaml`|Fully connected neural network (with class weighting used)|
 |`exp_03_task2_ann_unfrozen_embeddings.yaml`|Fully connected neural network (with embedding also being fine tuned)|
 
-- The models we trained are available in the shared file : `ml4hc_nlp_200k_models.zip` (in google drive)
+- The models we trained are available in the shared file : `ml4hc_nlp_200k_models.zip` (in google [drive](#raw-data-processed-data-trained-models))
 ## Evaluation of saved classifier
 
 To evaluate the models the script `src/evalutil.py` and the configs in `src/experiment_configs/eval` can be used.
