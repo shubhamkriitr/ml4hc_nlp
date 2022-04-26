@@ -58,8 +58,8 @@ _(Please make sure to extract these files when needed to the path indicated late
 > detailed folder structure.
 
 ## Indications  
-Before running the models, please make sure to download the 200k data from the following link: [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` shared in the google [drive](#raw-data-processed-data-trained-models). Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
-`dev.txt`, `train.txt`, and `test.txt` corresponding to the validation, the training and the test dataset.
+Before running the models, please make sure to download the 200k data from the following link: [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` shared in the google [drive](#raw-data-processed-data-trained-models). Then the data should be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
+`dev.txt`, `train.txt`, and `test.txt` corresponding to the validation, the training and the test dataset respectively.
  
 # Task 1
 To get the results you can run the file model_baseline directly from the terminal : 
