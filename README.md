@@ -65,7 +65,7 @@ python src/model_baseline.py
 ```
 The training of the model will be done and the best model should directly be running. The output will be two confusion matrices, for the validation dataset and the test dataset. 
 ## Training of the model
-The training was already made and the best parameters were selected so it will take fewer time running the file. To tune the model and find the best hyperparameters, the lines 118 to 126 can be uncommented and the best hyperparameters should be printed on the terminal. Then you can input the new parameters to the constuctor in order to predict the results for the test data. 
+We already searched for the best hyperparameters which we have used these in the script, so that it will take fewer time running the file. To tune the model and find the best hyperparameters, the lines 118 to 126 can be uncommented and the best hyperparameters should be printed on the terminal. Then you can input the new parameters to the constuctor in order to predict the results for the test data. 
 ## Results - Confusion matrix
 The confusion matrix will be plotted on the screen as an output. The image reports the total number of times a label was predicted as any other class of label. For example: it could be that for the label: RESULTS, the model predicted it as RESULTS 90 times, as CONCLSUION 50 times and as BACKGROUND 20 times etc. 
 
