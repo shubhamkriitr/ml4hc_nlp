@@ -205,7 +205,7 @@ To complete this task we have used the [emilyalsentzer/Bio_ClinicalBERT](https:/
 |`exp_07_task3_attention.yaml`|Finetune Bio_ClinicalBERT's from last attention layer|
 |`exp_mini_task3_bert.yaml`|Test execution on a small fraction of data|
 
-- After running any of the above configs for the first time, the pre-trained emilyalsentzer/Bio_ClinicalBERT model should be downloaded. If there is a network connection error, you can download the `pretrained_BERT.zip` from the [drive folder](#raw-data-processed-data-trained-models), unzip it and run:
+- After running any of the above configs for the first time, the pre-trained [emilyalsentzer/Bio_ClinicalBERT](https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT) model should be downloaded. If there is a network connection error, you can download the `pretrained_BERT.zip` from the [drive folder](#raw-data-processed-data-trained-models), unzip it and run:
   - ```
     python src/transformer_pipeline.py --config <path-to-run-config-file> --pretrained <path-to-pretrained-model>
     ```
