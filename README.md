@@ -58,7 +58,7 @@ _(Please make sure to extract these files when needed to the path indicated late
 > detailed folder structure.
 
 ## Indications  
-Before running the models, please make sure to download the 200k data from the following here [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` . Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
+Before running the models, please make sure to download the 200k data from the following here [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` shared in the google drive. Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
 `dev.txt`, `train.txt`, and `test.txt` corresponding to the validation, the training and the test dataset.
  
 # Task 1
@@ -68,14 +68,14 @@ python src/model_baseline.py
 ```
 The training of the model will be done and the best model should directly be running. The output will be two confusion matrices, for the validation dataset and the test dataset. 
 ## Training of the model
-The training was already made and the best parameters were selected so it will take fewer time running the file. To tune the model and find the best hyperparameters, the lines 118 to 126 can be uncommented and the best hyperparameters should be printed on the terminal. Then you can input the new parameters to the constuctor in order to predict the results for the test data. 
+We already searched for the best hyperparameters which we have used in the script, so that it will take less time running the file. To tune the model and find the best hyperparameters, the lines 118 to 126 can be uncommented and the best hyperparameters should be printed on the terminal. Then you can input the new parameters to the constuctor in order to predict the results for the test data. 
 ## Results - Confusion matrix
-The confusion matrix will be plotted on the screen as an output. The image reports the total number of times a label was predicted as any other class of label. For example: it could be that for the label: RESULTS, the model predicted it as RESULTS 90 times, as CONCLSUION 50 times and as BACKGROUND 20 times etc. 
+The confusion matrix will be plotted on the screen as an output. The image reports the total number of times a label was predicted as any other class of label. For example: it could be that for the label: RESULTS, the model predicted it as RESULTS 90 times, as CONCLSUION 50 times and as BACKGROUND 20 times _etc._ 
 
 # Task 2
 
 
-## Creating processed corpus (Similar to files in: resources/processed_data/)
+## Creating processed corpus (Similar to files in: resources/processed_data/ (Please refer: `SAMPLE_FOLDER_STRCUTURE.txt`))
 
 First make sure that spacy's `en_core_web_lg` model is downloaded.
 (`src/text_processing.py` will try to download this automatically when running
