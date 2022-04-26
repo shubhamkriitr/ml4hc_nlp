@@ -141,7 +141,7 @@ You may use the file `ml4hc_nlp_200k_processed_data.zip` shared in the google [d
     ```
   - _e.g._
     ```
-    python src/trainingutil.py --config src/experiment_configs/eval_02_task2_ann.yaml
+    python src/trainingutil.py --config src/experiment_configs/eval/eval_02_task2_ann.yaml
     ```
   - The **src/experiment_configs** directory contains other configs as well, that we have used
   for running our experiments. You can choose any of those or create your own.
