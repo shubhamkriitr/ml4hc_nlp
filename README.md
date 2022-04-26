@@ -99,7 +99,7 @@ This will create following files:
 
 Files with `processed_` prefix , have label and processed text pairs, while others will have just processed texts.
 
-You may use the file `ml4hc_nlp_200k_processed_data.zip` shared in the drive to get the final processed data for next steps.
+You may use the file `ml4hc_nlp_200k_processed_data.zip` shared in the google drive to get the final processed data for next steps.
 ## Training and testing Word2Vec Model
 
 - **Training the embedding model**
@@ -114,11 +114,15 @@ You may use the file `ml4hc_nlp_200k_processed_data.zip` shared in the drive to 
   - If you want to change the input corpus, output path, vector size, epochs _etc._, then pass them as arguments.
   - Run `python src/learn_embedding.py -h` for argument information.
 
-  - You may use the trained embedding model shared in the drive `ml4hc_nlp_200k_embedding_model.zip`
+  - You may use the trained embedding model shared in the google drive `ml4hc_nlp_200k_embedding_model.zip` for the next steps.
 - **Testing the embedding model**
   - Run:
     ```
     python src/test_embeddings.py
+    ```
+    or
+    ```
+    python src/test_embeddings.py | less
     ```
   - It will load the embedding model from `resources/saved_models/embedding.model`, and using this model it will print out a list of similar words for a few test words like `ecg`, `doctor` _etc._, and after that it will print out analogy results for some word triplets _e.g._ `woman->girl::man->?`
 
