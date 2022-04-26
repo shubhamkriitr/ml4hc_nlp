@@ -43,13 +43,13 @@ Please visit here for the [resources](https://drive.google.com/drive/folders/1Ur
 
 Following is a brief summary of the files we have made available in the drive:
 
-- `task_2` (resources specific to task 2)
+- `task_2` 
   - `ml4hc_nlp_200k_raw_pubmed_data.zip` (raw pubmed dataset , 200k)
-  - ml4hc_nlp_200k_processed_data.zip (processed pubmed texts for learning embedding and training classifiers)
+  - `ml4hc_nlp_200k_processed_data.zip` (processed pubmed texts for learning embedding and training classifiers)
   - `ml4hc_nlp_200k_embedding_model.zip` (trained Word2Vec model and genetrated dictionary and other helper files)
-  - `ml4hc_nlp_200k_models.zip` (trained classifiers along with test output files and tensorboard logs)
+  - `ml4hc_nlp_200k_models.zip` (trained classifiers along with test groundtruth and prediction files and tensorboard logs)
 - `task_3`
-  - 
+  - TODO
 > **Please make the datasets available in the `resources` folder (see below).
 > Please refer to the file **SAMPLE_FOLDER_STRCUTURE.txt** to see the
 > folder structure.
@@ -100,6 +100,7 @@ This will create following files:
 
 Files with `processed_` prefix , have label and processed text pairs, while others will have just processed texts.
 
+You may use the file `ml4hc_nlp_200k_processed_data.zip` shared in the drive to get the final processed data for next steps.
 ## Training and testing Word2Vec Model
 
 - **Training the embedding model**
@@ -114,7 +115,7 @@ Files with `processed_` prefix , have label and processed text pairs, while othe
   - If you want to change the input corpus, output path, vector size, epochs _etc._, then pass them as arguments.
   - Run `python src/learn_embedding.py -h` for argument information.
 
-
+  - You may use the trained embedding model shared in the drive `ml4hc_nlp_200k_embedding_model.zip`
 - **Testing the embedding model**
   - Run:
     ```
@@ -136,6 +137,7 @@ Files with `processed_` prefix , have label and processed text pairs, while othe
   - The **src/experiment_configs** directory contains other configs as well, that we have used
   for running our experiments. You can choose any of those or create your own.
 
+
 The steps above will do the following:
 - It will start training 
 - create `runs` folder if not already present
@@ -153,6 +155,7 @@ _e.g._ : `2022-04-23_154910__exp_02_task2_ann`
 |`exp_02b_task2_ann.yaml`|Fully connected neural network|
 |`exp_03_task2_ann_unfrozen_embeddings.yaml`|Fully connected neural network (with embedding being also fine tuned)|
 
+- The models we trained are available in shared file : `ml4hc_nlp_200k_models.zip`
 ## Evaluation of saved classifier
 
 To evaluate the models the script `src/evalutil.py` and the configs in `src/experiment_configs/eval` can be used.
