@@ -54,7 +54,7 @@ _(Please make sure to extract these files when needed to the path indicated late
   - pooling_BERT.zip: (Bio_ClinicalBERT with finetuned output pooling layer)
   - attention_BERT.zip: (Bio_ClinicalBERT with finetuned pooling+last attention layer)
 
-> Please refer to the file **SAMPLE_FOLDER_STRCUTURE.txt** to see the
+> Please refer to the file **SAMPLE_FOLDER_STRUCTURE.txt** to see the
 > detailed folder structure.
 
 ## Indications  

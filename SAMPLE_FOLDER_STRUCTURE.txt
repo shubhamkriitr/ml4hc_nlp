@@ -58,7 +58,7 @@
 │   │   └── test_true.npz.npy
 │   └── ml4hc_nlp_200k_models.zip
 ├── run.sh
-├── SAMPLE_FOLDER_STRCUTURE.txt
+├── SAMPLE_FOLDER_STRUCTURE.txt
 └── src
     ├── confusion_matrix_labels.jpg
     ├── constants.py
