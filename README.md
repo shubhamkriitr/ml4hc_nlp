@@ -17,7 +17,7 @@ We have tested our code in an environment with the following specifications:
 Besides this, all the model training (for task 2 and 3) was done on a node with GPU (`NVIDIATITANRTX`).
 
 Text preprocessing may take long time, so we suggest downloading the preprocessed
-texts from the drive link shared below in the document.
+texts from the drive link shared later in the document.
 ## Creating isolated execution environment
 - Go to the root directory (after extractig the zip)
 - Execute the following in sequence (enter yes when prompted):
@@ -50,12 +50,12 @@ _(Please make sure to extract these files when needed to the path indicated late
   - `ml4hc_nlp_200k_models.zip` (trained classifiers along with test groundtruth and prediction files and tensorboard logs)
 - `task_3`
   - TODO
-> **Please make the datasets available in the `resources` folder (see below).
+
 > Please refer to the file **SAMPLE_FOLDER_STRCUTURE.txt** to see the
-> folder structure.
+> detailed folder structure.
 
 ## Indications  
-Before running the models, please make sure to download the data from the following git repository [https://github.com/Franck-Dernoncourt/pubmed-rct]. Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
+Before running the models, please make sure to download the 200k data (without) from the following here [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` . Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
 `dev.txt`, `train.txt`, and `test.txt` corresponding to the validation, the training and the test dataset.
  
 # Task 1
