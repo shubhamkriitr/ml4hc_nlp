@@ -49,13 +49,16 @@ _(Please make sure to extract these files when needed to the path indicated late
   - `ml4hc_nlp_200k_embedding_model.zip` (trained Word2Vec model and genetrated dictionary and other helper files)
   - `ml4hc_nlp_200k_models.zip` (trained classifiers along with test groundtruth and prediction files and tensorboard logs)
 - `task_3`
-  - TODO
+  - pretrained_BERT.zip (emilyalsentzer/Bio_ClinicalBERT pretrained model)
+  - classifier_BERT.zip (Bio_ClinicalBERT with trained classification layer)
+  - pooling_BERT.zip: (Bio_ClinicalBERT with finetuned output pooling layer)
+  - attention_BERT.zip: (Bio_ClinicalBERT with finetuned pooling+last attention layer)
 
 > Please refer to the file **SAMPLE_FOLDER_STRCUTURE.txt** to see the
 > detailed folder structure.
 
 ## Indications  
-Before running the models, please make sure to download the 200k data from the following here [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` shared in the google drive. Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
+Before running the models, please make sure to download the 200k data from the following link: [https://github.com/Franck-Dernoncourt/pubmed-rct/tree/master/PubMed_200k_RCT], or you may also use `ml4hc_nlp_200k_raw_pubmed_data.zip` shared in the google drive. Then, the data should then be put in a separate directory than the models, called `resources`. The data should contain 3 files: 
 `dev.txt`, `train.txt`, and `test.txt` corresponding to the validation, the training and the test dataset.
  
 # Task 1
@@ -180,14 +183,14 @@ This should print the scores on valdiation and test datasets.
 
 ## Using pre-trained BERT
 
-To complete this task we have used the (emilyalsentzer/Bio_ClinicalBERT)[https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT] pre-trained BERT model available in Hugging Face.
+To complete this task we have used the [emilyalsentzer/Bio_ClinicalBERT](https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT) pre-trained BERT model available in Hugging Face.
 
-- To start training execute:
+- To train/finetune the model and obtain test results (including the confusion matrix) run:
   - ```
     python src/transformer_pipeline.py --config <path-to-run-config-file>
     ```
 - You can also find the different configuration files used at **src/experiment_configs**
-### These are the training Config File used for different experiments (training)
+### These are the training Config File used for different experiments
 |**Config File**| **Experiment description**|
 |--------------------|---------------------|
 |`exp_05_task3_bert.yaml`|Frozen Bio_ClinicalBERT, train classification layer|
@@ -195,19 +198,14 @@ To complete this task we have used the (emilyalsentzer/Bio_ClinicalBERT)[https:/
 |`exp_07_task3_attention.yaml`|Finetune Bio_ClinicalBERT's from last attention layer|
 |`exp_mini_task3_bert.yaml`|Test execution on a small fraction of data|
 
-- After running any of the above configs for the first time, the pre-trained emilyalsentzer/Bio_ClinicalBERT model should be downloaded. If there is a network connection error, you can download the `pretrained_BERT.zip` from **TODO: add link**, unzip it and run:
+- After running any of the above configs for the first time, the pre-trained emilyalsentzer/Bio_ClinicalBERT model should be downloaded. If there is a network connection error, you can download the `pretrained_BERT.zip` from the [drive folder](#raw-data-processed-data-trained-models), unzip it and run:
   - ```
     python src/transformer_pipeline.py --config <path-to-run-config-file> --pretrained <path-to-pretrained-model>
     ```
 ## Evaluation of saved classifier
 
-In the previous link **#TODO add here also** you can also find the language models we finetuned:
-- classifier_BERT.zip: only classification layer trained
-- pooling_BERT.zip: finetuned output pooling
-- attention_BERT.zip: finetuned last attention layer
-
-To evaluate the transformer models you can uncompress the zip files, copy the contained folder into `resources/saved_models`, and run `src/transformer_pipeline.py` with the configs in `src/experiment_configs/eval`.
-_e.g._
+In the previous [drive](#raw-data-processed-data-trained-models) you can also find the language models we finetuned. To evaluate them and obtain accuracy and f1 scores you can uncompress the zip files, copy the contained folder into `resources/saved_models`, and run `src/transformer_pipeline.py` with the respective config in `src/experiment_configs/eval`.
+_e.g._ for evaluating classifier_BERT.zip
 
 
 ```
