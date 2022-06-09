@@ -1,12 +1,6 @@
-# ML for Healthcare Project 2
+# ML for Healthcare (PubMed Medical Document Analysis)
 
-## Acknowlegment
-We expect everything to work on an isolated python environment created 
-as per the instructions below, but in case you face any issues running
-the code please feel free to contact us by email or on MS-Teams 
-(irodrigu@student.ethz.ch, kumarsh@student.ethz.ch, neumannam@ethz.ch).
-
-We have tested our code in an environment with the following specifications:
+The code has been tested in an environment with the following specifications:
 - Machine:
     - CPU: `11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz`
         - `x86_64 ` 
@@ -75,7 +69,8 @@ The confusion matrix will be plotted on the screen as an output. The image repor
 # Task 2
 
 
-## Creating processed corpus (Similar to files in: resources/processed_data/ (Please refer: `SAMPLE_FOLDER_STRUCTURE.txt`))
+## Creating processed corpus 
+### (Similar to files in: resources/processed_data/ (Please refer: `SAMPLE_FOLDER_STRUCTURE.txt`))
 
 First make sure that spacy's `en_core_web_lg` model is downloaded.
 (`src/text_processing.py` will try to download this automatically when running
